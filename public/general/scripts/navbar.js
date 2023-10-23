@@ -1,4 +1,4 @@
-const url = "";
+const url = "http://localhost:2000";
 document.getElementById("navbar-home").addEventListener("click", (ev) => {
   window.location.href = `${url}`;
 });
