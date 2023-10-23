@@ -24,3 +24,7 @@ app.listen(2000, () => {
 });
 
 // Routes
+
+app.get("/", (req, res) => {
+  res.render("home");
+});
