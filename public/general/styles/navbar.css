@@ -1,0 +1,22 @@
+.navbar {
+  display: flex;
+  position: relative;
+  height: 70px;
+  justify-content: center;
+}
+.navbar-item {
+  margin: 20px;
+  height: 30px;
+  position: relative;
+  display: flex;
+  justify-content: center;
+}
+.navbar-item-name {
+  color: white;
+  font-size: 30px;
+  font-family: "Varela Round";
+}
+.navbar-item:hover > .navbar-item-name {
+  color: rgb(153, 153, 153);
+  cursor: pointer;
+}
