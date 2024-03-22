@@ -39,3 +39,7 @@ const smurfModel = mongoose.model("smurf", smurfSchema, "bte-smurfs");
 
 const create = async (url: string, statsOnSave: Record<string, any>) =>
   await smurfModel.create({ url, statsOnSave });
+
+// Exports
+
+export { create };
