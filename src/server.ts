@@ -1,10 +1,12 @@
 // Imports
 
 import express from "express";
-import path from "path";
 import mongoose from "mongoose";
 import cors from "cors";
 import env from "dotenv";
+import bodyParser from "body-parser";
+import cookieParser from "cookie-parser";
+import path from "path";
 
 // Presets
 
@@ -14,26 +16,24 @@ const app = express();
 
 env.config();
 
-app.use(express.urlencoded({ extended: true }));
-app.use(express.json());
 app.use(
   cors({
     methods: ["GET", "POST", "DELETE", "PATCH"],
-    origin: "*",
   })
 );
+app.use(bodyParser.json());
+app.use(cookieParser());
+app.use(express.static(path.join(__dirname, "pages/public")));
 app.set("view engine", "ejs");
-app.set("views", path.join(__dirname, "views"));
-app.use(express.static(path.join(__dirname, "public")));
-app.listen(2000, () => {
-  console.log("Server running on port 2000");
-});
+app.set("views", path.join(__dirname, "pages/views"));
 
-// Routes
+mongoose.connect(<string>process.env.DatabaseURL);
 
-app.get("/", (req, res) => {
-  res.render("home");
+// Code
+
+app.listen(process.env.PORT, () => {
+  console.log(`Server running on port ${process.env.PORT}`);
 });
-app.get("/about", (req, res) => {
-  res.render("about");
+mongoose.connection.on("connected", () => {
+  console.log("Database connected");
 });
