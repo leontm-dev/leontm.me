@@ -8,6 +8,11 @@ import bodyParser from "body-parser";
 import cookieParser from "cookie-parser";
 import path from "path";
 
+// Project-Imports
+
+import api from "./router/api";
+import router from "./router";
+
 // Presets
 
 const app = express();
@@ -34,6 +39,10 @@ mongoose.connect(<string>process.env.DatabaseURL);
 app.listen(process.env.PORT, () => {
   console.log(`Server running on port ${process.env.PORT}`);
 });
+
 mongoose.connection.on("connected", () => {
   console.log("Database connected");
 });
+
+app.use("/api", api());
+app.use("/", router());
