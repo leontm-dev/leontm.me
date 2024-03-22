@@ -8,7 +8,7 @@
     "start": "npm run build  && node dist/server.js",
     "nodemon": "nodemon src/server.ts"
   },
-  "author": "LeonAnneken <LeonTM> (LAnneken09@gmail.com)",
+  "author": "Leon Anneken <LeonTM> (LAnneken09@gmail.com)",
   "license": "ISC",
   "dependencies": {
     "body-parser": "^1.20.2",
