@@ -44,3 +44,7 @@ const sendApiResponse = (status: number, content: any): ApiResponse => {
   }
   return response;
 };
+
+// Exports
+
+export default sendApiResponse;
