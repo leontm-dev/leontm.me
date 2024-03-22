@@ -1,12 +1,18 @@
 // Imports
 
-const express = require("express");
-const app = express();
-const dotenv = require("dotenv").config();
-const path = require("path");
-const cors = require("cors");
+import express from "express";
+import path from "path";
+import mongoose from "mongoose";
+import cors from "cors";
+import env from "dotenv";
 
-// Settings
+// Presets
+
+const app = express();
+
+// Configs
+
+env.config();
 
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
