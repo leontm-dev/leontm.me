@@ -11,6 +11,9 @@ const dotenv_1 = __importDefault(require("dotenv"));
 const body_parser_1 = __importDefault(require("body-parser"));
 const cookie_parser_1 = __importDefault(require("cookie-parser"));
 const path_1 = __importDefault(require("path"));
+// Project-Imports
+const api_1 = __importDefault(require("./router/api"));
+const router_1 = __importDefault(require("./router"));
 // Presets
 const app = (0, express_1.default)();
 // Configs
@@ -31,3 +34,5 @@ app.listen(process.env.PORT, () => {
 mongoose_1.default.connection.on("connected", () => {
     console.log("Database connected");
 });
+app.use("/api", (0, api_1.default)());
+app.use("/", (0, router_1.default)());
