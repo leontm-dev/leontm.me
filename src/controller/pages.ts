@@ -13,4 +13,4 @@ const openAboutPage = (req: express.Request, res: express.Response) => {
 
 // Exports
 
-export default { openHomePage, openAboutPage };
+export { openHomePage, openAboutPage };
