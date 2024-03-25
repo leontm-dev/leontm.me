@@ -7,7 +7,7 @@ Object.defineProperty(exports, "__esModule", { value: true });
 const mongoose_1 = __importDefault(require("mongoose"));
 // Presets
 const userSchema = new mongoose_1.default.Schema({
-    userame: {
+    username: {
         type: String,
         required: true,
         unique: true,
