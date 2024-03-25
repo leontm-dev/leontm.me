@@ -32,4 +32,12 @@ const openAppStorePage = (req: express.Request, res: express.Response) => {
 
 // Exports
 
-export { openHomePage, openAboutPage };
+export {
+  openHomePage,
+  openAboutPage,
+  openAccountPage,
+  openProjectsPage,
+  openLoginPage,
+  openRegisterPage,
+  openAppStorePage,
+};
