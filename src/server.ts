@@ -19,7 +19,7 @@ const app = express();
 
 // Configs
 
-env.config();
+env.config({ debug: true, encoding: "UTF-8" });
 
 app.use(
   cors({
@@ -32,12 +32,16 @@ app.use(express.static(path.join(__dirname, "pages/public")));
 app.set("view engine", "ejs");
 app.set("views", path.join(__dirname, "pages/views"));
 
-mongoose.connect(<string>process.env.DATABASE_URL);
+if (!process.env.DATABASE_URL) {
+  console.log("Please provide a database URL!");
+  process.exit(1);
+}
+mongoose.connect(process.env.DATABASE_URL);
 
 // Code
 
-app.listen(process.env.PORT, () => {
-  console.log(`Server running on port ${process.env.PORT}`);
+app.listen(process.env.PORT || 3000, () => {
+  console.log(`Server running on port ${process.env.PORT || 3000}`);
 });
 
 mongoose.connection.on("connected", () => {
