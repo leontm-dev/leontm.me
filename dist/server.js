@@ -17,7 +17,7 @@ const router_1 = __importDefault(require("./router"));
 // Presets
 const app = (0, express_1.default)();
 // Configs
-dotenv_1.default.config();
+dotenv_1.default.config({ debug: true, encoding: "UTF-8" });
 app.use((0, cors_1.default)({
     methods: ["GET", "POST", "DELETE", "PATCH"],
 }));
@@ -26,13 +26,20 @@ app.use((0, cookie_parser_1.default)());
 app.use(express_1.default.static(path_1.default.join(__dirname, "pages/public")));
 app.set("view engine", "ejs");
 app.set("views", path_1.default.join(__dirname, "pages/views"));
-mongoose_1.default.connect(process.env.DatabaseURL);
+if (!process.env.DATABASE_URL) {
+    console.log("Please provide a database URL!");
+    process.exit(1);
+}
+mongoose_1.default.connect(process.env.DATABASE_URL);
 // Code
-app.listen(process.env.PORT, () => {
-    console.log(`Server running on port ${process.env.PORT}`);
+app.listen(process.env.PORT || 3000, () => {
+    console.log(`Server running on port ${process.env.PORT || 3000}`);
 });
 mongoose_1.default.connection.on("connected", () => {
-    console.log("Database connected");
+    console.log("Database connected!");
+});
+mongoose_1.default.connection.on("error", (err) => {
+    console.log(`Couldn't connect to the database because of: ${err}`);
 });
 app.use("/api", (0, api_1.default)());
 app.use("/", (0, router_1.default)());
