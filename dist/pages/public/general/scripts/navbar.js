@@ -1,4 +1,4 @@
-const url = "https://www.leontm.me";
+const url = "https://leontm-me.onrender.com";
 document.getElementById("navbar-home").addEventListener("click", (ev) => {
   window.location.href = `${url}`;
 });
