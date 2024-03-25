@@ -162,3 +162,32 @@ const userSchema = new mongoose.Schema({
     },
   },
 });
+const UserModel = mongoose.model("User", userSchema, "user");
+
+// Code
+
+const createU = async (username: string, auth: Record<string, any>) =>
+  UserModel.create({ username, auth });
+const deleteU = async (username: string) =>
+  UserModel.findOneAndDelete({ username });
+const getU = async (username: string) => UserModel.findOne({ username });
+const updateUAuth = async (username: string, auth: Record<string, any>) =>
+  UserModel.findOneAndUpdate({ username }, { auth });
+const updateUServices = async (
+  username: string,
+  services: Record<string, any>
+) => UserModel.findOneAndUpdate({ username }, { services });
+const updateUInfo = async (username: string, userInfo: Record<string, any>) =>
+  UserModel.findOneAndUpdate({ username }, { userInfo });
+
+// Exports
+
+export {
+  UserModel,
+  createU,
+  deleteU,
+  getU,
+  updateUAuth,
+  updateUServices,
+  updateUInfo,
+};
