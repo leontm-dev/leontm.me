@@ -41,7 +41,10 @@ app.listen(process.env.PORT, () => {
 });
 
 mongoose.connection.on("connected", () => {
-  console.log("Database connected");
+  console.log("Database connected!");
+});
+mongoose.connection.on("error", (err) => {
+  console.log(`Couldn't connect to the database because of: ${err}`);
 });
 
 app.use("/api", api());
