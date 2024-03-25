@@ -1,4 +1,4 @@
-const url = "http://localhost:2000";
+const url = "https://www.leontm.me";
 document.getElementById("navbar-home").addEventListener("click", (ev) => {
   window.location.href = `${url}`;
 });
