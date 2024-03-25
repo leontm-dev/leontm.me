@@ -32,7 +32,7 @@ app.use(express.static(path.join(__dirname, "pages/public")));
 app.set("view engine", "ejs");
 app.set("views", path.join(__dirname, "pages/views"));
 
-mongoose.connect(<string>process.env.DatabaseURL);
+mongoose.connect(<string>process.env.DATABASE_URL);
 
 // Code
 
