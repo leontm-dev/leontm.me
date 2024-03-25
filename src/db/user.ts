@@ -5,7 +5,7 @@ import mongoose from "mongoose";
 // Presets
 
 const userSchema = new mongoose.Schema({
-  userame: {
+  username: {
     type: String,
     required: true,
     unique: true,
