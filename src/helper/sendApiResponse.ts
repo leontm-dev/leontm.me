@@ -30,4 +30,4 @@ const sendApiResponse = (status: number, content: any): ApiResponse => {
 
 // Exports
 
-export { sendApiResponse };
+export default sendApiResponse;
