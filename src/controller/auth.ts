@@ -60,7 +60,18 @@ const register = async (req: express.Request, res: express.Response) => {
         .end();
     }
 
-    return res.status(200).json(sendApiResponse(200, user, "Your user.")).end();
+    if (user.auth?.session != null) {
+      user.auth.session.salt = random();
+      user.auth.session.key = auth(user.auth.session.salt, user._id.toString());
+    }
+
+    await user.save();
+
+    return res
+      .cookie("LEONTM-AUTH", user.auth?.session?.key, { domain: "localhost" })
+      .status(200)
+      .json(sendApiResponse(200, user, "Your user."))
+      .end();
   } catch (error) {
     console.error(error);
     return res
@@ -134,7 +145,6 @@ const login = async (req: express.Request, res: express.Response) => {
     return res
       .cookie("LEONTM-AUTH", user.auth?.session?.key, {
         domain: "localhost",
-        path: "/",
       })
       .status(200)
       .json(sendApiResponse(200, null, "You are now logged in."))
