@@ -5,7 +5,7 @@ type ApiResponse = {
     type: "response" | "error" | "info";
     message: string;
     statusCode: number;
-    status: number;
+    status: string;
     thrownAt: Date;
     processable: boolean;
   };
