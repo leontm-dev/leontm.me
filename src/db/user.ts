@@ -47,10 +47,6 @@ const userSchema = new mongoose.Schema({
         required: true,
         select: false,
       },
-      name: {
-        type: String,
-        required: true,
-      },
       key: {
         type: String,
         required: true,
