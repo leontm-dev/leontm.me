@@ -5,7 +5,7 @@ import express from "express";
 // Project-Imports
 
 import { create } from "../db/smurf";
-import sendApiResponse from "../../../helper/sendApiResponse";
+import sendApiResponse from "../../../helpers/sendApiResponse";
 
 // Code
 
