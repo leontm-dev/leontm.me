@@ -6,7 +6,8 @@
   "scripts": {
     "build": "yarn && npx tsc -build",
     "start": "npm run build  && node dist/server.js",
-    "nodemon": "nodemon src/server.ts"
+    "dev": "nodemon",
+    "dev-raw": "ts-node src/server.ts"
   },
   "author": "Leon Anneken <LeonTM> (LAnneken09@gmail.com)",
   "license": "ISC",
