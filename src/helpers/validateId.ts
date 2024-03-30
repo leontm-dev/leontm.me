@@ -1,6 +1,6 @@
 // Imports
 
-import { getU } from "../db/user";
+import { getUById } from "../db/user";
 
 // Project-Imports
 
@@ -10,7 +10,7 @@ import IdValidationResponse from "../types/idValidationResponse";
 
 async function validateId(id: string): Promise<IdValidationResponse> {
   const testable: { function: Function; type: string }[] = [
-    { function: getU, type: "user" },
+    { function: getUById, type: "user" },
   ];
   const result: IdValidationResponse = {
     valid: false,
