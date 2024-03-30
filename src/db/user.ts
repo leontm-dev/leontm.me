@@ -170,7 +170,11 @@ const createU = async (username: string, auth: Record<string, any>) =>
   UserModel.create({ username, auth });
 const deleteU = async (username: string) =>
   UserModel.findOneAndDelete({ username });
-const getU = async (username: string) => UserModel.findOne({ username });
+const getUbyUsername = async (username: string) =>
+  UserModel.findOne({ username });
+const getUBySessionToken = (sessionToken: string) =>
+  UserModel.findOne({ "auth.session.key": sessionToken });
+const getUById = async (id: string) => UserModel.findById(id);
 const updateUAuth = async (username: string, auth: Record<string, any>) =>
   UserModel.findOneAndUpdate({ username }, { auth });
 const updateUServices = async (
@@ -186,7 +190,9 @@ export {
   UserModel,
   createU,
   deleteU,
-  getU,
+  getUbyUsername,
+  getUById,
+  getUBySessionToken,
   updateUAuth,
   updateUServices,
   updateUInfo,
