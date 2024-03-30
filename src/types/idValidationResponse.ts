@@ -3,7 +3,7 @@
 interface IdValidationResponse {
   valid: boolean;
   id: string;
-  type: "user" | "project" | "smurf" | "prebuild";
+  type: "user" | "project" | "smurf" | "prebuild" | null;
 }
 
 // Exports
