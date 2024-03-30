@@ -162,6 +162,7 @@ const UserModel = mongoose.model("User", userSchema, "user");
 
 // Code
 
+const getAllU = async () => UserModel.find();
 const createU = async (username: string, auth: Record<string, any>) =>
   UserModel.create({ username, auth });
 const deleteU = async (username: string) =>
@@ -184,6 +185,7 @@ const updateUInfo = async (username: string, userInfo: Record<string, any>) =>
 
 export {
   UserModel,
+  getAllU,
   createU,
   deleteU,
   getUbyUsername,
