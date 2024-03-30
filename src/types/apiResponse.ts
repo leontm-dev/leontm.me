@@ -1,9 +1,15 @@
 // Code
 
 type ApiResponse = {
-  status: number;
-  message: string;
-  data: Record<string, any> | null | any[];
+  responseInformation: {
+    type: "response" | "error" | "info";
+    message: string;
+    statusCode: number;
+    status: number;
+    thrownAt: Date;
+    processable: boolean;
+  };
+  responseData: Record<string, any> | "none";
 };
 
 // Exports
