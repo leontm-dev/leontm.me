@@ -4,7 +4,11 @@ import { ApiResponse } from "../types/apiResponse";
 
 // Code
 
-const sendApiResponse = (status: number, content: any): ApiResponse => {
+const sendApiResponse = (
+  status: number,
+  content: any,
+  details: string
+): ApiResponse => {
   const messages: { [key: number]: string } = {
     200: "Success",
     201: "Created",
@@ -20,9 +24,15 @@ const sendApiResponse = (status: number, content: any): ApiResponse => {
   const message = messages[status] || "Unknown";
 
   const response: ApiResponse = {
-    status,
-    message,
-    data: content,
+    responseInformation: {
+      type: status >= 200 ? "response" : status >= 300 ? "info" : "error",
+      message: details,
+      statusCode: status,
+      status: message,
+      thrownAt: new Date(),
+      processable: status >= 200 && status < 300,
+    },
+    responseData: content || "none",
   };
 
   return response;
