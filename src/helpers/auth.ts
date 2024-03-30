@@ -11,3 +11,7 @@ const auth = (salt: string, password: string) => {
     .update(<string>process.env.GLOBAL_SECRET)
     .digest("hex");
 };
+
+// Exports
+
+export { random, auth };
