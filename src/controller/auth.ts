@@ -159,3 +159,7 @@ const login = async (req: express.Request, res: express.Response) => {
       .end();
   }
 };
+
+// Exports
+
+export { register, login };
