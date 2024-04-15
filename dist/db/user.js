@@ -13,7 +13,7 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
     return (mod && mod.__esModule) ? mod : { "default": mod };
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.updateUInfo = exports.updateUServices = exports.updateUAuth = exports.getU = exports.deleteU = exports.createU = exports.UserModel = void 0;
+exports.updateUInfo = exports.updateUServices = exports.updateUAuth = exports.getUBySessionToken = exports.getUById = exports.getUbyUsername = exports.deleteU = exports.createU = exports.getAllU = exports.UserModel = void 0;
 const mongoose_1 = __importDefault(require("mongoose"));
 // Presets
 const userSchema = new mongoose_1.default.Schema({
@@ -58,10 +58,6 @@ const userSchema = new mongoose_1.default.Schema({
                 type: String,
                 required: true,
                 select: false,
-            },
-            name: {
-                type: String,
-                required: true,
             },
             key: {
                 type: String,
@@ -177,12 +173,18 @@ const userSchema = new mongoose_1.default.Schema({
 const UserModel = mongoose_1.default.model("User", userSchema, "user");
 exports.UserModel = UserModel;
 // Code
+const getAllU = () => __awaiter(void 0, void 0, void 0, function* () { return UserModel.find(); });
+exports.getAllU = getAllU;
 const createU = (username, auth) => __awaiter(void 0, void 0, void 0, function* () { return UserModel.create({ username, auth }); });
 exports.createU = createU;
 const deleteU = (username) => __awaiter(void 0, void 0, void 0, function* () { return UserModel.findOneAndDelete({ username }); });
 exports.deleteU = deleteU;
-const getU = (username) => __awaiter(void 0, void 0, void 0, function* () { return UserModel.findOne({ username }); });
-exports.getU = getU;
+const getUbyUsername = (username) => __awaiter(void 0, void 0, void 0, function* () { return UserModel.findOne({ username }); });
+exports.getUbyUsername = getUbyUsername;
+const getUBySessionToken = (sessionToken) => UserModel.findOne({ "auth.session.key": sessionToken });
+exports.getUBySessionToken = getUBySessionToken;
+const getUById = (id) => __awaiter(void 0, void 0, void 0, function* () { return UserModel.findById(id); });
+exports.getUById = getUById;
 const updateUAuth = (username, auth) => __awaiter(void 0, void 0, void 0, function* () { return UserModel.findOneAndUpdate({ username }, { auth }); });
 exports.updateUAuth = updateUAuth;
 const updateUServices = (username, services) => __awaiter(void 0, void 0, void 0, function* () { return UserModel.findOneAndUpdate({ username }, { services }); });

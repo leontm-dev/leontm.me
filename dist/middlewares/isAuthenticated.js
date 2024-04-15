@@ -13,37 +13,32 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
     return (mod && mod.__esModule) ? mod : { "default": mod };
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.createSmurf = void 0;
+const lodash_1 = require("lodash");
 // Project-Imports
-const smurf_1 = require("../db/smurf");
-const sendApiResponse_1 = __importDefault(require("../../../helpers/sendApiResponse"));
+const user_1 = require("../db/user");
+const sendApiResponse_1 = __importDefault(require("../helpers/sendApiResponse"));
 // Code
-const createSmurf = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
+const isAuthenticated = (req, res, next) => __awaiter(void 0, void 0, void 0, function* () {
     try {
-        if (!req.body)
+        const sessionToken = req.cookies["LEONTM-AUTH"];
+        if (!sessionToken) {
             return res
-                .status(400)
-                .json((0, sendApiResponse_1.default)(400, null, "Body is necessary."))
+                .status(401)
+                .json((0, sendApiResponse_1.default)(401, null, "The sessionToken is missing"))
                 .end();
-        const toBeCreated = req.body;
-        delete toBeCreated.url;
-        const smurf = yield (0, smurf_1.create)(req.body.url, toBeCreated);
-        if (!smurf)
+        }
+        const user = yield (0, user_1.getUBySessionToken)(sessionToken);
+        if (!user) {
             return res
-                .status(400)
-                .json((0, sendApiResponse_1.default)(400, null, "Check the body once more."))
+                .status(403)
+                .json((0, sendApiResponse_1.default)(403, null, "The sessionToken is invalid"))
                 .end();
-        return res
-            .status(204)
-            .json((0, sendApiResponse_1.default)(204, null, "Smurf created."))
-            .end();
+        }
+        (0, lodash_1.merge)(req, { identity: user });
+        return next();
     }
     catch (error) {
         console.error(error);
-        return res
-            .status(500)
-            .json((0, sendApiResponse_1.default)(500, null, "Internal Server Error, our bad."))
-            .end();
+        return res.status(500).json({ error: "Internal Server Error" }).end();
     }
 });
-exports.createSmurf = createSmurf;
