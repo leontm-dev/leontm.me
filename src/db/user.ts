@@ -11,24 +11,27 @@ const userSchema = new mongoose.Schema({
     unique: true,
   },
   auth: {
-    connections: [
-      {
-        salt: {
-          type: String,
-          required: true,
-          select: false,
+    connections: {
+      type: [
+        {
+          salt: {
+            type: String,
+            required: true,
+            select: false,
+          },
+          key: {
+            type: String,
+            required: true,
+            select: false,
+          },
+          name: {
+            type: String,
+            required: true,
+          },
         },
-        key: {
-          type: String,
-          required: true,
-          select: false,
-        },
-        name: {
-          type: String,
-          required: true,
-        },
-      },
-    ],
+      ],
+      default: [],
+    },
     password: {
       salt: {
         type: String,
@@ -75,22 +78,25 @@ const userSchema = new mongoose.Schema({
     ],
   },
   services: {
-    used: [
-      {
-        name: {
-          type: String,
-          required: true,
+    used: {
+      type: [
+        {
+          name: {
+            type: String,
+            required: true,
+          },
+          data: {
+            type: Object,
+            required: true,
+          },
+          first: {
+            type: Date,
+            required: true,
+          },
         },
-        data: {
-          type: Object,
-          required: true,
-        },
-        first: {
-          type: Date,
-          required: true,
-        },
-      },
-    ],
+      ],
+      default: [],
+    },
     userInfo: {
       profilePic: {
         type: String,
