@@ -46,7 +46,7 @@ const register = async (req: express.Request, res: express.Response) => {
       },
       devices: [
         {
-          name: "Standart-IP",
+          name: "Standard",
           ip: {
             salt: ipSalt,
             address: auth(ipSalt, String(req.ip)),
