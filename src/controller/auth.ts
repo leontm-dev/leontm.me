@@ -36,6 +36,7 @@ const register = async (req: express.Request, res: express.Response) => {
 
     let passwordSalt: string = random();
     let sessionSalt: string = random();
+    let ipSalt: string = random();
     const user = await createU(username, {
       connections: [{}],
       password: { salt: passwordSalt, key: auth(passwordSalt, password) },
@@ -45,10 +46,10 @@ const register = async (req: express.Request, res: express.Response) => {
       },
       devices: [
         {
-          name: "Start-Device",
+          name: "Standart-IP",
           ip: {
-            salt: random(),
-            address: req.ip,
+            salt: ipSalt,
+            address: auth(ipSalt, String(req.ip)),
           },
         },
       ],
