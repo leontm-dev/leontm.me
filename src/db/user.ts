@@ -163,6 +163,26 @@ const userSchema = new mongoose.Schema({
       },
     },
   },
+  developer: {
+    type: [
+      {
+        name: {
+          type: String,
+          required: true,
+          unique: true,
+        },
+        createdAt: {
+          type: Date,
+          default: Date.now(),
+        },
+        secret: {
+          type: String,
+          required: true,
+        },
+      },
+    ],
+    default: [],
+  },
 });
 const UserModel = mongoose.model("User", userSchema, "user");
 
