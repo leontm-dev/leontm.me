@@ -10,7 +10,6 @@ import path from "path";
 
 // Project-Imports
 
-import api from "./router/api";
 import router from "./router";
 
 // Presets
@@ -51,5 +50,4 @@ mongoose.connection.on("error", (err) => {
   console.log(`Couldn't connect to the database because of: ${err}`);
 });
 
-app.use("/api", api());
 app.use("/", router());
