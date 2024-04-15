@@ -16,17 +16,15 @@ const userSchema = new mongoose.Schema({
         {
           salt: {
             type: String,
-            required: true,
             select: false,
           },
           key: {
             type: String,
-            required: true,
+
             select: false,
           },
           name: {
             type: String,
-            required: true,
           },
         },
       ],
