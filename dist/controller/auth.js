@@ -18,10 +18,16 @@ exports.login = exports.register = void 0;
 const sendApiResponse_1 = __importDefault(require("../helpers/sendApiResponse"));
 const user_1 = require("../db/user");
 const auth_1 = require("../helpers/auth");
+const validateReq_1 = __importDefault(require("../helpers/validateReq"));
 // Code
 const register = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
     var _a, _b, _c;
     try {
+        if (!(0, validateReq_1.default)(req, 1))
+            return res
+                .status(403)
+                .json((0, sendApiResponse_1.default)(403, null, "No permissions for this request."))
+                .end();
         const { username, password } = req.body;
         if (!username || !password) {
             return res
@@ -77,6 +83,11 @@ exports.register = register;
 const login = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
     var _d, _e, _f, _g, _h, _j, _k;
     try {
+        if (!(0, validateReq_1.default)(req, 1))
+            return res
+                .status(403)
+                .json((0, sendApiResponse_1.default)(403, null, "No permissions for this request."))
+                .end();
         const { username, password } = req.body;
         if (!username || !password) {
             return res

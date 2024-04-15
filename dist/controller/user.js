@@ -17,9 +17,15 @@ exports.getAllUsers = void 0;
 // Project-Imports
 const user_1 = require("../db/user");
 const sendApiResponse_1 = __importDefault(require("../helpers/sendApiResponse"));
+const validateReq_1 = __importDefault(require("../helpers/validateReq"));
 // Code
 const getAllUsers = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
     try {
+        if (!(0, validateReq_1.default)(req, 1))
+            return res
+                .status(403)
+                .json((0, sendApiResponse_1.default)(403, null, "No permissions for this request."))
+                .end();
         const users = yield (0, user_1.getAllU)();
         res
             .status(200)
