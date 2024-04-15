@@ -14,18 +14,9 @@ const userSchema = new mongoose.Schema({
     connections: {
       type: [
         {
-          salt: {
-            type: String,
-            select: false,
-          },
-          key: {
-            type: String,
-
-            select: false,
-          },
-          name: {
-            type: String,
-          },
+          salt: String,
+          key: String,
+          ip: String,
         },
       ],
       default: [],
@@ -42,38 +33,6 @@ const userSchema = new mongoose.Schema({
         select: false,
       },
     },
-    session: {
-      salt: {
-        type: String,
-        required: true,
-        select: false,
-      },
-      key: {
-        type: String,
-        required: true,
-        select: false,
-      },
-    },
-    devices: [
-      {
-        name: {
-          type: String,
-          required: true,
-        },
-        ip: {
-          salt: {
-            type: String,
-            required: true,
-            select: false,
-          },
-          address: {
-            type: String,
-            required: true,
-            select: false,
-          },
-        },
-      },
-    ],
   },
   services: {
     used: {
