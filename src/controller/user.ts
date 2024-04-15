@@ -15,11 +15,17 @@ import {
   deleteU,
 } from "../db/user";
 import sendApiResponse from "../helpers/sendApiResponse";
+import validateReq from "../helpers/validateReq";
 
 // Code
 
 const getAllUsers = async (req: express.Request, res: express.Response) => {
   try {
+    if (!validateReq(req, 1))
+      return res
+        .status(403)
+        .json(sendApiResponse(403, null, "No permissions for this request."))
+        .end();
     const users = await getAllU();
     res
       .status(200)

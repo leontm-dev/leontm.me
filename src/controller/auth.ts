@@ -8,11 +8,17 @@ import sendApiResponse from "../helpers/sendApiResponse";
 import validateId from "../helpers/validateId";
 import { createU, getUbyUsername, UserModel } from "../db/user";
 import { auth, random } from "../helpers/auth";
+import validateReq from "../helpers/validateReq";
 
 // Code
 
 const register = async (req: express.Request, res: express.Response) => {
   try {
+    if (!validateReq(req, 1))
+      return res
+        .status(403)
+        .json(sendApiResponse(403, null, "No permissions for this request."))
+        .end();
     const { username, password } = req.body;
 
     if (!username || !password) {
@@ -88,6 +94,11 @@ const register = async (req: express.Request, res: express.Response) => {
 };
 const login = async (req: express.Request, res: express.Response) => {
   try {
+    if (!validateReq(req, 1))
+      return res
+        .status(403)
+        .json(sendApiResponse(403, null, "No permissions for this request."))
+        .end();
     const { username, password } = req.body;
     if (!username || !password) {
       return res
