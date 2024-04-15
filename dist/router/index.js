@@ -6,12 +6,21 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 Object.defineProperty(exports, "__esModule", { value: true });
 const express_1 = __importDefault(require("express"));
 // Project-Imports
-const pages_1 = require("../controller/pages");
+// API
+const auth_1 = __importDefault(require("./api/auth"));
+const user_1 = __importDefault(require("./api/user"));
+const test_1 = __importDefault(require("./api/test"));
+// Projects
+const betterTracker_1 = __importDefault(require("./api/projects/betterTracker"));
 // Presets
 const router = express_1.default.Router();
 // Code
 exports.default = () => {
-    router.get("/", pages_1.openHomePage);
-    router.get("/about", pages_1.openAboutPage);
+    // API
+    (0, auth_1.default)(router);
+    (0, user_1.default)(router);
+    (0, test_1.default)(router);
+    // Projects
+    (0, betterTracker_1.default)(router);
     return router;
 };
