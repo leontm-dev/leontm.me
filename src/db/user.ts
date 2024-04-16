@@ -49,7 +49,7 @@ const userSchema = new mongoose.Schema({
             type: Date,
             default: Date.now(),
             index: {
-              expires: "7ds",
+              expires: "7d",
             },
           },
           ip: {
