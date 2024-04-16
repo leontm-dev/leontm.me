@@ -37,6 +37,7 @@ const register = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
         }
         let passwordSalt = (0, auth_1.random)();
         let sessionSalt = (0, auth_1.random)();
+        let ipSalt = (0, auth_1.random)();
         const user = yield (0, user_1.createU)(username, {
             connections: [{}],
             password: { salt: passwordSalt, key: (0, auth_1.auth)(passwordSalt, password) },
@@ -46,10 +47,10 @@ const register = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
             },
             devices: [
                 {
-                    name: "Start-Device",
+                    name: "Standard",
                     ip: {
-                        salt: (0, auth_1.random)(),
-                        address: req.ip,
+                        salt: ipSalt,
+                        address: (0, auth_1.auth)(ipSalt, String(req.ip)),
                     },
                 },
             ],
@@ -60,13 +61,16 @@ const register = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
                 .json((0, sendApiResponse_1.default)(400, null, "Something went wrong while creating the user. The username may be unavailable."))
                 .end();
         }
-        if (((_a = user.auth) === null || _a === void 0 ? void 0 : _a.session) != null) {
-            user.auth.session.salt = (0, auth_1.random)();
-            user.auth.session.key = (0, auth_1.auth)(user.auth.session.salt, user._id.toString());
+        if (((_a = user.auth) === null || _a === void 0 ? void 0 : _a.connections) != null) {
+            user.auth.connections[0].salt = (0, auth_1.random)();
+            user.auth.connections[0].key = (0, auth_1.auth)(user.auth.connections[0].salt, user._id.toString());
+            user.auth.connections[0].ip = req.ip || "unknown";
         }
         yield user.save();
         return res
-            .cookie("LEONTM-AUTH", (_c = (_b = user.auth) === null || _b === void 0 ? void 0 : _b.session) === null || _c === void 0 ? void 0 : _c.key, { domain: "localhost" })
+            .cookie("LEONTM-AUTH", (_c = (_b = user.auth) === null || _b === void 0 ? void 0 : _b.connections[0]) === null || _c === void 0 ? void 0 : _c.key, {
+            domain: "localhost",
+        })
             .status(200)
             .json((0, sendApiResponse_1.default)(200, user, "Your user."))
             .end();
@@ -95,7 +99,9 @@ const login = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
                 .json((0, sendApiResponse_1.default)(400, null, "You forgot either username or password in the request body, please check it once more."))
                 .end();
         }
-        const user = yield user_1.UserModel.findOne({ username: username }).select("+auth.password.salt +auth.password.key");
+        const user = yield user_1.UserModel.findOne({ username: username })
+            .select("+auth.password.salt +auth.password.key")
+            .populate("auth.connections");
         if (!user) {
             return res
                 .status(400)
@@ -109,13 +115,17 @@ const login = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
                 .json((0, sendApiResponse_1.default)(403, null, "The given password is not matching with the one linked to the given username."))
                 .end();
         }
-        if (((_h = user.auth) === null || _h === void 0 ? void 0 : _h.session) != null) {
-            user.auth.session.salt = (0, auth_1.random)();
-            user.auth.session.key = (0, auth_1.auth)(user.auth.session.salt, user._id.toString());
+        if (((_h = user.auth) === null || _h === void 0 ? void 0 : _h.connections) != null) {
+            const salt = (0, auth_1.random)();
+            user.auth.connections.push({
+                salt: salt,
+                key: (0, auth_1.auth)(salt, user._id.toString()),
+                ip: req.ip,
+            });
         }
         yield user.save();
         return res
-            .cookie("LEONTM-AUTH", (_k = (_j = user.auth) === null || _j === void 0 ? void 0 : _j.session) === null || _k === void 0 ? void 0 : _k.key, {
+            .cookie("LEONTM-AUTH", (_k = (_j = user.auth) === null || _j === void 0 ? void 0 : _j.connections[user.auth.connections.length - 1]) === null || _k === void 0 ? void 0 : _k.key, {
             domain: "localhost",
         })
             .status(200)

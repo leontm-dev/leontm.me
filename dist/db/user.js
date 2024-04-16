@@ -16,6 +16,29 @@ Object.defineProperty(exports, "__esModule", { value: true });
 exports.updateUInfo = exports.updateUServices = exports.updateUAuth = exports.getUBySessionToken = exports.getUById = exports.getUbyUsername = exports.deleteU = exports.createU = exports.getAllU = exports.UserModel = void 0;
 const mongoose_1 = __importDefault(require("mongoose"));
 // Presets
+const connectionSchema = new mongoose_1.default.Schema({
+    salt: {
+        type: String,
+        required: true,
+    },
+    key: {
+        type: String,
+        required: true,
+    },
+    ip: {
+        type: String,
+        required: true,
+    },
+    user: {
+        type: mongoose_1.default.Schema.Types.ObjectId,
+        ref: "User",
+    },
+    createdAt: {
+        type: Date,
+        default: Date.now(),
+        index: { expires: "7d" },
+    },
+});
 const userSchema = new mongoose_1.default.Schema({
     username: {
         type: String,
@@ -23,24 +46,31 @@ const userSchema = new mongoose_1.default.Schema({
         unique: true,
     },
     auth: {
-        connections: [
-            {
-                salt: {
-                    type: String,
-                    required: true,
-                    select: false,
+        connections: {
+            type: [
+                {
+                    salt: {
+                        type: String,
+                        required: false,
+                    },
+                    key: {
+                        type: String,
+                        required: false,
+                    },
+                    createdAt: {
+                        type: Date,
+                        default: Date.now(),
+                        index: {
+                            expires: "7d",
+                        },
+                    },
+                    ip: {
+                        type: String,
+                        required: false,
+                    },
                 },
-                key: {
-                    type: String,
-                    required: true,
-                    select: false,
-                },
-                name: {
-                    type: String,
-                    required: true,
-                },
-            },
-        ],
+            ],
+        },
         password: {
             salt: {
                 type: String,
@@ -53,56 +83,27 @@ const userSchema = new mongoose_1.default.Schema({
                 select: false,
             },
         },
-        session: {
-            salt: {
-                type: String,
-                required: true,
-                select: false,
-            },
-            key: {
-                type: String,
-                required: true,
-                select: false,
-            },
-        },
-        devices: [
-            {
-                name: {
-                    type: String,
-                    required: true,
-                },
-                ip: {
-                    salt: {
-                        type: String,
-                        required: true,
-                        select: false,
-                    },
-                    address: {
-                        type: String,
-                        required: true,
-                        select: false,
-                    },
-                },
-            },
-        ],
     },
     services: {
-        used: [
-            {
-                name: {
-                    type: String,
-                    required: true,
+        used: {
+            type: [
+                {
+                    name: {
+                        type: String,
+                        required: true,
+                    },
+                    data: {
+                        type: Object,
+                        required: true,
+                    },
+                    first: {
+                        type: Date,
+                        required: true,
+                    },
                 },
-                data: {
-                    type: Object,
-                    required: true,
-                },
-                first: {
-                    type: Date,
-                    required: true,
-                },
-            },
-        ],
+            ],
+            default: [],
+        },
         userInfo: {
             profilePic: {
                 type: String,
@@ -168,6 +169,26 @@ const userSchema = new mongoose_1.default.Schema({
                 },
             },
         },
+    },
+    developer: {
+        type: [
+            {
+                name: {
+                    type: String,
+                    required: true,
+                    unique: true,
+                },
+                createdAt: {
+                    type: Date,
+                    default: Date.now(),
+                },
+                secret: {
+                    type: String,
+                    required: true,
+                },
+            },
+        ],
+        default: [],
     },
 });
 const UserModel = mongoose_1.default.model("User", userSchema, "user");
