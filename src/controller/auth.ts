@@ -67,15 +67,21 @@ const register = async (req: express.Request, res: express.Response) => {
         .end();
     }
 
-    if (user.auth?.session != null) {
-      user.auth.session.salt = random();
-      user.auth.session.key = auth(user.auth.session.salt, user._id.toString());
+    if (user.auth?.connections != null) {
+      user.auth.connections[0].salt = random();
+      user.auth.connections[0].key = auth(
+        user.auth.connections[0].salt,
+        user._id.toString()
+      );
+      user.auth.connections[0].ip = req.ip || "unknown";
     }
 
     await user.save();
 
     return res
-      .cookie("LEONTM-AUTH", user.auth?.session?.key, { domain: "localhost" })
+      .cookie("LEONTM-AUTH", user.auth?.connections[0]?.key, {
+        domain: "localhost",
+      })
       .status(200)
       .json(sendApiResponse(200, user, "Your user."))
       .end();
@@ -114,9 +120,9 @@ const login = async (req: express.Request, res: express.Response) => {
         .end();
     }
 
-    const user = await UserModel.findOne({ username: username }).select(
-      "+auth.password.salt +auth.password.key"
-    );
+    const user = await UserModel.findOne({ username: username })
+      .select("+auth.password.salt +auth.password.key")
+      .populate("auth.connections");
 
     if (!user) {
       return res
@@ -146,18 +152,25 @@ const login = async (req: express.Request, res: express.Response) => {
         )
         .end();
     }
-
-    if (user.auth?.session != null) {
-      user.auth.session.salt = random();
-      user.auth.session.key = auth(user.auth.session.salt, user._id.toString());
+    if (user.auth?.connections != null) {
+      const salt = random();
+      user.auth.connections.push({
+        salt: salt,
+        key: auth(salt, user._id.toString()),
+        ip: req.ip,
+      });
     }
 
     await user.save();
 
     return res
-      .cookie("LEONTM-AUTH", user.auth?.session?.key, {
-        domain: "localhost",
-      })
+      .cookie(
+        "LEONTM-AUTH",
+        user.auth?.connections[user.auth.connections.length - 1]?.key,
+        {
+          domain: "localhost",
+        }
+      )
       .status(200)
       .json(sendApiResponse(200, null, "You are now logged in."))
       .end();
