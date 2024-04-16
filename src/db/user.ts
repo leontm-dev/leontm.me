@@ -39,11 +39,11 @@ const userSchema = new mongoose.Schema({
         {
           salt: {
             type: String,
-            required: true,
+            required: false,
           },
           key: {
             type: String,
-            required: true,
+            required: false,
           },
           createdAt: {
             type: Date,
@@ -54,7 +54,7 @@ const userSchema = new mongoose.Schema({
           },
           ip: {
             type: String,
-            required: true,
+            required: false,
           },
         },
       ],
