@@ -73,7 +73,10 @@ const register = async (req: express.Request, res: express.Response) => {
         user.auth.connections[0].salt,
         user._id.toString()
       );
-      user.auth.connections[0].ip = req.ip || "unknown";
+      user.auth.connections[0].ip =
+        req.headers["x-forwarded-for"]?.toString() ||
+        req.connection.remoteAddress ||
+        "unknown";
     }
 
     await user.save();
