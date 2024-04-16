@@ -1,8 +1,31 @@
 // Imports
 
-import mongoose from "mongoose";
+import mongoose, { mongo } from "mongoose";
 
 // Presets
+const connectionSchema = new mongoose.Schema({
+  salt: {
+    type: String,
+    required: true,
+  },
+  key: {
+    type: String,
+    required: true,
+  },
+  ip: {
+    type: String,
+    required: true,
+  },
+  user: {
+    type: mongoose.Schema.Types.ObjectId,
+    ref: "User",
+  },
+  createdAt: {
+    type: Date,
+    default: Date.now(),
+    index: { expires: "7d" },
+  },
+});
 
 const userSchema = new mongoose.Schema({
   username: {
@@ -14,12 +37,23 @@ const userSchema = new mongoose.Schema({
     connections: {
       type: [
         {
-          salt: String,
-          key: String,
-          ip: String,
+          salt: {
+            type: String,
+            required: true,
+          },
+          key: {
+            type: String,
+            required: true,
+          },
+          createdAt: {
+            type: Date,
+            default: Date.now(),
+            index: {
+              expires: "7ds",
+            },
+          },
         },
       ],
-      default: [],
     },
     password: {
       salt: {
