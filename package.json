@@ -1,0 +1,38 @@
+{
+  "name": "leontm.me",
+  "version": "0.0.1",
+  "description": "The package configs for the leontm.me website.",
+  "main": "dist/server.js",
+  "scripts": {
+    "build": "yarn && npx tsc -build",
+    "start": "npm run build  && node dist/server.js",
+    "dev": "nodemon",
+    "dev-raw": "ts-node src/server.ts"
+  },
+  "author": "Leon Anneken <LeonTM> (LAnneken09@gmail.com)",
+  "license": "ISC",
+  "dependencies": {
+    "body-parser": "^1.20.2",
+    "cookie-parser": "^1.4.6",
+    "cors": "^2.8.5",
+    "dotenv": "^16.4.5",
+    "ejs": "^3.1.9",
+    "env": "^0.0.2",
+    "express": "^4.19.2",
+    "fs-extra": "^11.1.1",
+    "lodash": "^4.17.21",
+    "mongoose": "^8.2.4",
+    "nodemon": "^3.1.0",
+    "ts-node": "^10.9.2"
+  },
+  "devDependencies": {
+    "@types/body-parser": "^1.19.5",
+    "@types/cookie-parser": "^1.4.7",
+    "@types/cors": "^2.8.17",
+    "@types/express": "^4.17.21",
+    "@types/lodash": "^4.17.0",
+    "@types/mongoose": "^5.11.97",
+    "@types/node": "^20.12.7",
+    "typescript": "^5.4.3"
+  }
+}

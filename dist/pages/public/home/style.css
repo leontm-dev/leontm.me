@@ -1,0 +1,80 @@
+/* Imports */
+
+@import url("https://fonts.googleapis.com/css2?family=Architects+Daughter&family=Black+Han+Sans&family=Exo&family=Inclusive+Sans&family=Playpen+Sans&family=Varela+Round&display=swap");
+
+/* General */
+
+body {
+  box-sizing: border-box;
+  padding: 0;
+  margin: 0;
+  background: linear-gradient(125deg, red, black);
+  width: 100%;
+}
+
+/* Showcase */
+
+.showcase {
+  position: relative;
+  height: calc(100vh - 70px);
+  background-color: transparent;
+  display: flex;
+  justify-content: center;
+}
+
+/* Letters */
+
+.letters-container {
+  position: relative;
+  display: flex;
+  margin: auto;
+  justify-content: center;
+  margin: auto;
+}
+.letter {
+  animation: puff-in-right 0.5s cubic-bezier(0.47, 0, 0.745, 0.715) both;
+  font-size: 200px;
+  color: white;
+  font-family: "Inclusive Sans";
+}
+#letter1 {
+  animation-delay: 0.125s;
+}
+#letter2 {
+  animation-delay: 0.25s;
+}
+#letter3 {
+  animation-delay: 0.375s;
+}
+#letter4 {
+  animation-delay: 0.5s;
+}
+#letter5 {
+  animation-delay: 0.625s;
+}
+#letter6 {
+  animation-delay: 0.75s;
+}
+
+/* Animations */
+
+@keyframes puff-in-right {
+  0% {
+    transform: scale(2);
+    transform-origin: 100% 50%;
+    filter: blur(4px);
+    opacity: 0;
+  }
+  100% {
+    transform: scale(1);
+    transform-origin: 100% 50%;
+    filter: blur(0px);
+    opacity: 1;
+    transform: translateY(-50px);
+    transform-origin: 50% 50%;
+    text-shadow: 2px 1px 2px #cccccc, 2px 2px 2px #cccccc, 2px 3px 2px #cccccc,
+      2px 4px 2px #cccccc, 2px 5px 2px #cccccc, 2px 6px 2px #cccccc,
+      2px 7px 2px #cccccc, 2px 8px 2px #cccccc, 2px 9px 2px #cccccc,
+      0 50px 30px rgba(0, 0, 0, 0.3);
+  }
+}

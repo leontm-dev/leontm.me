@@ -1,0 +1,6 @@
+{
+  "files.exclude": {
+    "**/.git": false
+  },
+  "cSpell.words": ["LEONTM"]
+}
