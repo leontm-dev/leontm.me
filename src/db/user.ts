@@ -52,6 +52,10 @@ const userSchema = new mongoose.Schema({
               expires: "7ds",
             },
           },
+          ip: {
+            type: String,
+            required: true,
+          },
         },
       ],
     },
