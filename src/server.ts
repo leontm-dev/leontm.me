@@ -39,6 +39,7 @@ mongoose.connect(process.env.DATABASE_URL);
 
 // Code
 
+app.use("/", router());
 app.listen(process.env.PORT || 10000, () => {
   console.log(`Server running on port ${process.env.PORT || 10000}`);
 });
@@ -49,5 +50,3 @@ mongoose.connection.on("connected", () => {
 mongoose.connection.on("error", (err) => {
   console.log(`Couldn't connect to the database because of: ${err}`);
 });
-
-app.use("/", router());
