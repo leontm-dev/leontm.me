@@ -21,7 +21,7 @@ const auth_1 = require("../helpers/auth");
 const validateReq_1 = __importDefault(require("../helpers/validateReq"));
 // Code
 const register = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
-    var _a, _b, _c;
+    var _a, _b, _c, _d;
     try {
         if (!(0, validateReq_1.default)(req, 1))
             return res
@@ -64,11 +64,14 @@ const register = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
         if (((_a = user.auth) === null || _a === void 0 ? void 0 : _a.connections) != null) {
             user.auth.connections[0].salt = (0, auth_1.random)();
             user.auth.connections[0].key = (0, auth_1.auth)(user.auth.connections[0].salt, user._id.toString());
-            user.auth.connections[0].ip = req.ip || "unknown";
+            user.auth.connections[0].ip =
+                ((_b = req.headers["x-forwarded-for"]) === null || _b === void 0 ? void 0 : _b.toString()) ||
+                    req.connection.remoteAddress ||
+                    "unknown";
         }
         yield user.save();
         return res
-            .cookie("LEONTM-AUTH", (_c = (_b = user.auth) === null || _b === void 0 ? void 0 : _b.connections[0]) === null || _c === void 0 ? void 0 : _c.key, {
+            .cookie("LEONTM-AUTH", (_d = (_c = user.auth) === null || _c === void 0 ? void 0 : _c.connections[0]) === null || _d === void 0 ? void 0 : _d.key, {
             domain: "localhost",
         })
             .status(200)
@@ -85,7 +88,7 @@ const register = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
 });
 exports.register = register;
 const login = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
-    var _d, _e, _f, _g, _h, _j, _k;
+    var _e, _f, _g, _h, _j, _k, _l;
     try {
         if (!(0, validateReq_1.default)(req, 1))
             return res
@@ -108,14 +111,14 @@ const login = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
                 .json((0, sendApiResponse_1.default)(400, null, "Something went wrong with getting the user. The username may be incorrect."))
                 .end();
         }
-        if (((_e = (_d = user.auth) === null || _d === void 0 ? void 0 : _d.password) === null || _e === void 0 ? void 0 : _e.key) !==
-            (0, auth_1.auth)((_g = (_f = user.auth) === null || _f === void 0 ? void 0 : _f.password) === null || _g === void 0 ? void 0 : _g.salt, password)) {
+        if (((_f = (_e = user.auth) === null || _e === void 0 ? void 0 : _e.password) === null || _f === void 0 ? void 0 : _f.key) !==
+            (0, auth_1.auth)((_h = (_g = user.auth) === null || _g === void 0 ? void 0 : _g.password) === null || _h === void 0 ? void 0 : _h.salt, password)) {
             return res
                 .status(403)
                 .json((0, sendApiResponse_1.default)(403, null, "The given password is not matching with the one linked to the given username."))
                 .end();
         }
-        if (((_h = user.auth) === null || _h === void 0 ? void 0 : _h.connections) != null) {
+        if (((_j = user.auth) === null || _j === void 0 ? void 0 : _j.connections) != null) {
             const salt = (0, auth_1.random)();
             user.auth.connections.push({
                 salt: salt,
@@ -125,7 +128,7 @@ const login = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
         }
         yield user.save();
         return res
-            .cookie("LEONTM-AUTH", (_k = (_j = user.auth) === null || _j === void 0 ? void 0 : _j.connections[user.auth.connections.length - 1]) === null || _k === void 0 ? void 0 : _k.key, {
+            .cookie("LEONTM-AUTH", (_l = (_k = user.auth) === null || _k === void 0 ? void 0 : _k.connections[user.auth.connections.length - 1]) === null || _l === void 0 ? void 0 : _l.key, {
             domain: "localhost",
         })
             .status(200)

@@ -16,7 +16,7 @@ const router_1 = __importDefault(require("./router"));
 // Presets
 const app = (0, express_1.default)();
 // Configs
-dotenv_1.default.config({ debug: true, encoding: "UTF-8" });
+dotenv_1.default.config();
 app.use((0, cors_1.default)({
     methods: ["GET", "POST", "DELETE", "PATCH"],
 }));
@@ -31,8 +31,9 @@ if (!process.env.DATABASE_URL) {
 }
 mongoose_1.default.connect(process.env.DATABASE_URL);
 // Code
-app.listen(process.env.PORT || 3000, () => {
-    console.log(`Server running on port ${process.env.PORT || 3000}`);
+app.use("/", (0, router_1.default)());
+app.listen(process.env.PORT || 10000, () => {
+    console.log(`Server running on port ${process.env.PORT || 10000}`);
 });
 mongoose_1.default.connection.on("connected", () => {
     console.log("Database connected!");
@@ -40,4 +41,3 @@ mongoose_1.default.connection.on("connected", () => {
 mongoose_1.default.connection.on("error", (err) => {
     console.log(`Couldn't connect to the database because of: ${err}`);
 });
-app.use("/", (0, router_1.default)());
