@@ -13,6 +13,10 @@ import test from "./api/test";
 
 import betterTracker from "./api/projects/betterTracker";
 
+// Pages
+
+import pages from "./pages";
+
 // Presets
 
 const router = express.Router();
@@ -26,5 +30,7 @@ export default (): express.Router => {
   test(router);
   // Projects
   betterTracker(router);
+  // Pages
+  pages(router);
   return router;
 };
