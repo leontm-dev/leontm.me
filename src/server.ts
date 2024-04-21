@@ -18,7 +18,7 @@ const app = express();
 
 // Configs
 
-env.config({ debug: true, encoding: "UTF-8" });
+env.config();
 
 app.use(
   cors({
@@ -39,7 +39,7 @@ mongoose.connect(process.env.DATABASE_URL);
 
 // Code
 
-app.listen(process.env.PORT || 3000, () => {
+app.listen(process.env.PORT || 10000, () => {
   console.log(`Server running on port ${process.env.PORT || 3000}`);
 });
 
