@@ -13,6 +13,7 @@ const cookie_parser_1 = __importDefault(require("cookie-parser"));
 const path_1 = __importDefault(require("path"));
 // Project-Imports
 const router_1 = __importDefault(require("./router"));
+const pages_1 = __importDefault(require("./router/pages"));
 // Presets
 const app = (0, express_1.default)();
 // Configs
@@ -31,7 +32,8 @@ if (!process.env.DATABASE_URL) {
 }
 mongoose_1.default.connect(process.env.DATABASE_URL);
 // Code
-app.use("/", (0, router_1.default)());
+app.use("/api", (0, router_1.default)());
+app.use("/", (0, pages_1.default)());
 app.listen(process.env.PORT || 10000, () => {
     console.log(`Server running on port ${process.env.PORT || 10000}`);
 });

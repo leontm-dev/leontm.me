@@ -9,5 +9,5 @@ import { testResponse } from "../../controller/test";
 // Code
 
 export default (router: express.Router) => {
-  router.get("/api/test", testResponse);
+  router.get("/test", testResponse);
 };
