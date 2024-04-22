@@ -41,3 +41,7 @@ const isAuthenticated = async (
     return res.status(500).json({ error: "Internal Server Error" }).end();
   }
 };
+
+// Exports
+
+export default isAuthenticated;
