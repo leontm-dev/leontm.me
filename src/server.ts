@@ -11,6 +11,7 @@ import path from "path";
 // Project-Imports
 
 import router from "./router";
+import pages from "./router/pages";
 
 // Presets
 
@@ -39,7 +40,8 @@ mongoose.connect(process.env.DATABASE_URL);
 
 // Code
 
-app.use("/", router());
+app.use("/api", router());
+app.use("/", pages());
 app.listen(process.env.PORT || 10000, () => {
   console.log(`Server running on port ${process.env.PORT || 10000}`);
 });
