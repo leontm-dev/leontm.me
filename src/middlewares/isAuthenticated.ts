@@ -44,4 +44,4 @@ const isAuthenticated = async (
 
 // Exports
 
-export default isAuthenticated;
+export { isAuthenticated };
