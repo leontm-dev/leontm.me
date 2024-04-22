@@ -13,7 +13,7 @@ import {
   openProjectsPage,
   openRegisterPage,
 } from "../controller/pages";
-import {} from "../middlewares/isAuthenticated";
+import { isAuthenticated } from "../middlewares/isAuthenticated";
 
 // Code
 
