@@ -1,3 +1,7 @@
+## Help
+
+This project runs on port 10000, for env vars check the env.example file
+
 ## Ideas
 
 - Think of more permissions
