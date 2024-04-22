@@ -17,7 +17,9 @@ import { isAuthenticated } from "../middlewares/isAuthenticated";
 
 // Code
 
-export default (router: express.Router) => {
+const router = express.Router();
+
+export default (): express.Router => {
   router.get("/", openHomePage);
   router.get("/about", openAboutPage);
   router.get("/account", isAuthenticated, openAccountPage);
@@ -25,4 +27,5 @@ export default (router: express.Router) => {
   router.get("/app-store", openAppStorePage);
   router.get("/projects", openProjectsPage);
   router.get("/register", openRegisterPage);
+  return router;
 };
