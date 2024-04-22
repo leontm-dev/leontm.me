@@ -9,6 +9,6 @@ import { register, login } from "../../controller/auth";
 // Code
 
 export default (router: express.Router) => {
-  router.post("/api/auth/register", register);
-  router.post("/api/auth/login", login);
+  router.post("/auth/register", register);
+  router.post("/auth/login", login);
 };
