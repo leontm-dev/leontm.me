@@ -12,6 +12,8 @@ const user_1 = __importDefault(require("./api/user"));
 const test_1 = __importDefault(require("./api/test"));
 // Projects
 const betterTracker_1 = __importDefault(require("./api/projects/betterTracker"));
+// Pages
+const pages_1 = __importDefault(require("./pages"));
 // Presets
 const router = express_1.default.Router();
 // Code
@@ -22,5 +24,7 @@ exports.default = () => {
     (0, test_1.default)(router);
     // Projects
     (0, betterTracker_1.default)(router);
+    // Pages
+    (0, pages_1.default)(router);
     return router;
 };
