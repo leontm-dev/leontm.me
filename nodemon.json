@@ -1,5 +1,5 @@
 {
   "watch": "src",
   "ext": "ts,env",
-  "exec": "npm run start && git commit ./dist"
+  "exec": "npm run start && git add dist/* && git commit -m 'Ran build automatically'"
 }
