@@ -5,5 +5,5 @@ Object.defineProperty(exports, "__esModule", { value: true });
 const test_1 = require("../../controller/test");
 // Code
 exports.default = (router) => {
-    router.get("/api/test", test_1.testResponse);
+    router.get("/test", test_1.testResponse);
 };

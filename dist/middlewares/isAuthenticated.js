@@ -13,6 +13,7 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
     return (mod && mod.__esModule) ? mod : { "default": mod };
 };
 Object.defineProperty(exports, "__esModule", { value: true });
+exports.isAuthenticated = void 0;
 const lodash_1 = require("lodash");
 // Project-Imports
 const user_1 = require("../db/user");
@@ -42,3 +43,4 @@ const isAuthenticated = (req, res, next) => __awaiter(void 0, void 0, void 0, fu
         return res.status(500).json({ error: "Internal Server Error" }).end();
     }
 });
+exports.isAuthenticated = isAuthenticated;

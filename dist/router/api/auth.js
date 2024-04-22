@@ -5,6 +5,6 @@ Object.defineProperty(exports, "__esModule", { value: true });
 const auth_1 = require("../../controller/auth");
 // Code
 exports.default = (router) => {
-    router.post("/api/auth/register", auth_1.register);
-    router.post("/api/auth/login", auth_1.login);
+    router.post("/auth/register", auth_1.register);
+    router.post("/auth/login", auth_1.login);
 };
