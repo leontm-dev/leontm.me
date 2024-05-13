@@ -1,16 +1,15 @@
 .picture-half {
-  width: 60%;
+  width: calc(100% - 600px);
   background: linear-gradient(125deg, red, black);
   resize: 1;
 }
 .content-half {
-  width: 40%;
+  width: 600px;
   height: 100vh;
   display: flex;
   justify-content: center;
   align-items: center;
-  resize: 0;
-  min-width: 600px;
+  flex-shrink: 0;
 }
 
 .form {
@@ -25,7 +24,7 @@
 .form-title {
   text-align: center;
   font-size: 30px;
-  font-family: Arial, Helvetica, sans-serif;
+  font-family: "Poetsen One", sans-serif;
   margin-bottom: 20px;
 }
 .form-control {
@@ -110,4 +109,10 @@
   top: -10px;
   transform: scale(1);
   transition: all 0.5s;
+}
+@media screen and (max-width: 600px) {
+  .content-half {
+    width: 100%;
+    min-width: unset;
+  }
 }
