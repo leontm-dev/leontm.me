@@ -1,6 +1,7 @@
 .picture-half {
   width: 60%;
   background: linear-gradient(125deg, red, black);
+  resize: 1;
 }
 .content-half {
   width: 40%;
@@ -8,6 +9,8 @@
   display: flex;
   justify-content: center;
   align-items: center;
+  resize: 0;
+  min-width: 600px;
 }
 
 .form {
