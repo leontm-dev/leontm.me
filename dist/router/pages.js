@@ -17,6 +17,8 @@ exports.default = () => {
     router.get("/login", pages_1.openLoginPage);
     router.get("/app-store", pages_1.openAppStorePage);
     router.get("/projects", pages_1.openProjectsPage);
+    router.get("/projects/betterTracker", pages_1.openBetterTrackerPage);
+    router.get("/projects/learnCode", pages_1.openLearnCodePage);
     router.get("/register", pages_1.openRegisterPage);
     return router;
 };

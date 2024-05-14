@@ -1,7 +1,7 @@
 "use strict";
 // Imports
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.openAppStorePage = exports.openRegisterPage = exports.openLoginPage = exports.openProjectsPage = exports.openAccountPage = exports.openAboutPage = exports.openHomePage = void 0;
+exports.openLearnCodePage = exports.openBetterTrackerPage = exports.openAppStorePage = exports.openRegisterPage = exports.openLoginPage = exports.openProjectsPage = exports.openAccountPage = exports.openAboutPage = exports.openHomePage = void 0;
 // Code
 const openHomePage = (req, res) => {
     res.render("home");
@@ -36,3 +36,12 @@ const openAppStorePage = (req, res) => {
     res.render("app-store");
 };
 exports.openAppStorePage = openAppStorePage;
+//Projects
+const openBetterTrackerPage = (req, res) => {
+    res.render("projects/betterTracker");
+};
+exports.openBetterTrackerPage = openBetterTrackerPage;
+const openLearnCodePage = (req, res) => {
+    res.render("projects/learnCode");
+};
+exports.openLearnCodePage = openLearnCodePage;
