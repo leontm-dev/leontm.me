@@ -29,6 +29,13 @@ const openRegisterPage = (req: express.Request, res: express.Response) => {
 const openAppStorePage = (req: express.Request, res: express.Response) => {
   res.render("app-store");
 };
+//Projects
+const openBetterTrackerPage = (req: express.Request, res: express.Response) => {
+  res.render("projects/betterTracker");
+};
+const openLearnCodePage = (req: express.Request, res: express.Response) => {
+  res.render("projects/learnCode");
+};
 
 // Exports
 
@@ -40,4 +47,6 @@ export {
   openLoginPage,
   openRegisterPage,
   openAppStorePage,
+  openBetterTrackerPage,
+  openLearnCodePage,
 };
