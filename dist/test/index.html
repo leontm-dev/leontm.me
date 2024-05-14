@@ -13,6 +13,14 @@
       rel="stylesheet"
       href="/dist/pages/public/projects/learnCode/style.css"
     />
+    <link
+      rel="stylesheet"
+      href="/dist/pages/public/projects/learnCode/fireButton.css"
+    />
+    <link
+      rel="stylesheet"
+      href="/dist/pages/public/projects/learnCode/button.css"
+    />
   </head>
   <body>
     <div class="loader" id="loader">
@@ -42,10 +50,41 @@
       </div>
     </div>
     <div class="page-container" id="page-container">
-      <nav class="navbar"></nav>
+      <nav class="navbar">
+        <div class="nav-item">LearnCode</div>
+        <button class="ui-btn nav-button">
+          <span> Load code </span>
+        </button>
+      </nav>
       <div class="content-container">
-        <section id="start"></section>
-        <section id="code"></section>
+        <section id="start">
+          <div class="start-contents">
+            <button class=""></button>
+          </div>
+        </section>
+        <section id="code">
+          <div class="code-container">
+            <div class="code-nav">
+              <button class="ui-btn">
+                <span> Run (strg + R) </span>
+              </button>
+            </div>
+            <textarea
+              placeholder="Schreibe deinen Code hier..."
+              name=""
+              id="codeplace"
+            ></textarea>
+          </div>
+          <div class="output-window">
+            <div class="output-header">Ausgabe</div>
+            <div class="output">
+              <div class="output-line">
+                <div class="output-line-index">1</div>
+                <div class="output-line-content">Hallo</div>
+              </div>
+            </div>
+          </div>
+        </section>
       </div>
     </div>
     <script src="/dist/pages/public/projects/learnCode/script.js"></script>
