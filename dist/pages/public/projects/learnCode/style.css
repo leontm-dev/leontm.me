@@ -35,6 +35,21 @@ nav {
   font-weight: 600;
   font-family: "Indie Flower", sans-serif;
 }
+.nav-buttons {
+  margin: 0 10px;
+  height: 50px;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+}
+.nav-button {
+  height: 40px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: 0 10px;
+}
 .content-container {
   display: flex;
   justify-content: center;
