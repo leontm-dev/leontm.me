@@ -12,6 +12,8 @@ import {
   openAppStorePage,
   openProjectsPage,
   openRegisterPage,
+  openBetterTrackerPage,
+  openLearnCodePage,
 } from "../controller/pages";
 import { isAuthenticated } from "../middlewares/isAuthenticated";
 
@@ -26,6 +28,8 @@ export default (): express.Router => {
   router.get("/login", openLoginPage);
   router.get("/app-store", openAppStorePage);
   router.get("/projects", openProjectsPage);
+  router.get("/projects/betterTracker", openBetterTrackerPage);
+  router.get("/projects/learnCode", openLearnCodePage);
   router.get("/register", openRegisterPage);
   return router;
 };
