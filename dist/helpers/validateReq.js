@@ -8,10 +8,20 @@ const dotenv_1 = __importDefault(require("dotenv"));
 // Code
 dotenv_1.default.config();
 const validateReq = (req, tier) => {
-    const result1 = req.url.startsWith("https://leontm.me") ||
-        req.headers["leontm-auth"] == `DEV ${process.env.ADMIN_KEY}`;
-    const result = result1;
-    return result;
+    let tier3 = false;
+    if (tier === 3) {
+        if (req.baseUrl === "leontm.me") {
+            tier3 = true;
+        }
+        else if (req.headers.authorization === `Authorization ${process.env.ADMIN_KEY}`) {
+            tier3 = true;
+        }
+    }
+    else if (tier === 2) {
+    }
+    else if (tier === 1) {
+    }
+    return true;
 };
 // Exports
 exports.default = validateReq;
