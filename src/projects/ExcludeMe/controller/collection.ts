@@ -200,6 +200,68 @@ const updateCollectionByName = async (
       .end();
   }
 };
+const deleteCollectionById = async (
+  req: express.Request,
+  res: express.Response
+) => {
+  try {
+    const { id } = req.params;
+    if (!id) {
+      return res
+        .status(400)
+        .json(sendApiResponse(400, null, "Missing required fields"))
+        .end();
+    }
+    const collection = await deleteCById(id);
+    if (!collection) {
+      return res
+        .status(404)
+        .json(sendApiResponse(404, null, "Collection not found"))
+        .end();
+    }
+    return res
+      .status(200)
+      .json(sendApiResponse(200, collection, "Collection deleted"))
+      .end();
+  } catch (error) {
+    console.log(error);
+    return res
+      .status(500)
+      .json(sendApiResponse(500, null, "Internal Server Error"))
+      .end();
+  }
+};
+const deleteCollectionByName = async (
+  req: express.Request,
+  res: express.Response
+) => {
+  try {
+    const { name } = req.body;
+    if (!name) {
+      return res
+        .status(400)
+        .json(sendApiResponse(400, null, "Missing required fields"))
+        .end();
+    }
+    const collection = await deleteCByName(name);
+    if (!collection) {
+      return res
+        .status(404)
+        .json(sendApiResponse(404, null, "Collection not found"))
+        .end();
+    }
+    return res
+      .status(200)
+      .json(sendApiResponse(200, collection, "Collection deleted"))
+      .end();
+  } catch (error) {
+    console.log(error);
+    return res
+      .status(500)
+      .json(sendApiResponse(500, null, "Internal Server Error"))
+      .end();
+  }
+};
 
 // Exports
 
@@ -210,6 +272,8 @@ export {
   getCollectionByName,
   updateCollectionById,
   updateCollectionByName,
+  deleteCollectionById,
+  deleteCollectionByName,
 };
 
 // Path: src/db/collection.ts
