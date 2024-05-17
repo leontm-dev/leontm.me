@@ -56,6 +56,6 @@ const getAllCollections = async (
 
 // Exports
 
-export { createCollection };
+export { createCollection, getAllCollections };
 
 // Path: src/db/collection.ts
