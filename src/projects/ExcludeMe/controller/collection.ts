@@ -91,6 +91,71 @@ const getCollectionByName = async (
     return sendApiResponse(500, null, "Internal Server Error");
   }
 };
+const updateCollectionById = async (
+  req: express.Request,
+  res: express.Response
+) => {
+  try {
+    const { id } = req.params;
+    const { websites } = req.body;
+    if (!id || !websites) {
+      return res
+        .status(400)
+        .json(sendApiResponse(400, null, "Missing required fields"))
+        .end();
+    }
+    const collection = await updateCById(id, websites);
+    if (!collection) {
+      return res
+        .status(404)
+        .json(sendApiResponse(404, null, "Collection not found"))
+        .end();
+    }
+    return res
+      .status(200)
+      .json(sendApiResponse(200, collection, "Collection updated"))
+      .end();
+  } catch (error) {
+    console.log(error);
+    return res
+      .status(500)
+      .json(sendApiResponse(500, null, "Internal Server Error"))
+      .end();
+  }
+};
+const updateCollectionByName = async (
+  req: express.Request,
+  res: express.Response
+) => {
+  try {
+    const { name } = req.body;
+    const { websites } = req.body;
+    if (!name || !websites) {
+      return res
+        .status(400)
+        .json(sendApiResponse(400, null, "Missing required fields"))
+        .end();
+    }
+    const collection = await updateCByName(name, websites);
+    if (!collection) {
+      return res
+        .status(404)
+        .json(sendApiResponse(404, null, "Collection not found"))
+        .end();
+    }
+    return res
+      .status(200)
+      .json(sendApiResponse(200, collection, "Collection updated"))
+      .end();
+  } catch (error) {
+    console.log(error);
+    return res
+      .status(500)
+      .json(sendApiResponse(500, null, "Internal Server Error"))
+      .end();
+  }
+};
+
 // Exports
 
 export {
@@ -98,6 +163,8 @@ export {
   getAllCollections,
   getCollectionById,
   getCollectionByName,
+  updateCollectionById,
+  updateCollectionByName,
 };
 
 // Path: src/db/collection.ts
