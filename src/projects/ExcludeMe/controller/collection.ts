@@ -26,16 +26,28 @@ const createCollection = async (
   try {
     const { name, creator, websites } = req.body;
     if (!name || !creator || !websites) {
-      return sendApiResponse(400, null, "Missing required fields");
+      return res
+        .status(400)
+        .json(sendApiResponse(400, null, "Missing required fields"))
+        .end();
     }
     const collection = await createC(name, creator, websites);
     if (!collection) {
-      return sendApiResponse(500, null, "Something went wrong");
+      return res
+        .status(500)
+        .json(sendApiResponse(500, null, "Something went wrong"))
+        .end();
     }
-    return sendApiResponse(201, collection, "Collection created");
+    return res
+      .status(201)
+      .json(sendApiResponse(201, collection, "Collection created"))
+      .end();
   } catch (error) {
     console.log(error);
-    return sendApiResponse(500, null, "Internal Server Error");
+    return res
+      .status(500)
+      .json(sendApiResponse(500, null, "Internal Server Error"))
+      .end();
   }
 };
 const getAllCollections = async (
@@ -45,12 +57,21 @@ const getAllCollections = async (
   try {
     const collections = await getAllC();
     if (!collections) {
-      return sendApiResponse(500, null, "Something went wrong");
+      return res
+        .status(500)
+        .json(sendApiResponse(500, null, "Something went wrong"))
+        .end();
     }
-    return sendApiResponse(200, collections, "Collections fetched");
+    return res
+      .status(200)
+      .json(sendApiResponse(200, collections, "Collections fetched"))
+      .end();
   } catch (error) {
     console.log(error);
-    return sendApiResponse(500, null, "Internal Server Error");
+    return res
+      .status(500)
+      .json(sendApiResponse(500, null, "Internal Server Error"))
+      .end();
   }
 };
 const getCollectionById = async (
@@ -60,16 +81,28 @@ const getCollectionById = async (
   try {
     const { id } = req.params;
     if (id == "") {
-      return sendApiResponse(400, null, "Missing required fields");
+      return res
+        .status(400)
+        .json(sendApiResponse(400, null, "Missing required fields"))
+        .end();
     }
     const collection = await getCById(id);
     if (!collection) {
-      return sendApiResponse(404, null, "Collection not found");
+      return res
+        .status(404)
+        .json(sendApiResponse(404, null, "Collection not found"))
+        .end();
     }
-    return sendApiResponse(200, collection, "Collection fetched");
+    return res
+      .status(200)
+      .json(sendApiResponse(200, collection, "Collection fetched"))
+      .end();
   } catch (error) {
     console.log(error);
-    return sendApiResponse(500, null, "Internal Server Error");
+    return res
+      .status(500)
+      .json(sendApiResponse(500, null, "Internal Server Error"))
+      .end();
   }
 };
 const getCollectionByName = async (
@@ -79,16 +112,28 @@ const getCollectionByName = async (
   try {
     const { name } = req.body;
     if (!name) {
-      return sendApiResponse(400, null, "Missing required fields");
+      return res
+        .status(400)
+        .json(sendApiResponse(400, null, "Missing required fields"))
+        .end();
     }
     const collection = await getCByName(name);
     if (!collection) {
-      return sendApiResponse(404, null, "Collection not found");
+      return res
+        .status(404)
+        .json(sendApiResponse(404, null, "Collection not found"))
+        .end();
     }
-    return sendApiResponse(200, collection, "Collection fetched");
+    return res
+      .status(200)
+      .json(sendApiResponse(200, collection, "Collection fetched"))
+      .end();
   } catch (error) {
     console.log(error);
-    return sendApiResponse(500, null, "Internal Server Error");
+    return res
+      .status(500)
+      .json(sendApiResponse(500, null, "Internal Server Error"))
+      .end();
   }
 };
 const updateCollectionById = async (
