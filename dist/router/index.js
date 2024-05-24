@@ -12,6 +12,7 @@ const user_1 = __importDefault(require("./api/user"));
 const test_1 = __importDefault(require("./api/test"));
 // Projects
 const betterTracker_1 = __importDefault(require("./api/projects/betterTracker"));
+const excludeMe_1 = __importDefault(require("./api/projects/excludeMe"));
 // Presets
 const router = express_1.default.Router();
 // Code
@@ -22,5 +23,6 @@ exports.default = () => {
     (0, test_1.default)(router);
     // Projects
     (0, betterTracker_1.default)(router);
+    (0, excludeMe_1.default)(router);
     return router;
 };

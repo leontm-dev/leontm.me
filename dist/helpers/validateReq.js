@@ -9,19 +9,32 @@ const dotenv_1 = __importDefault(require("dotenv"));
 dotenv_1.default.config();
 const validateReq = (req, tier) => {
     let tier3 = false;
+    let tier2 = false;
+    let tier1 = false;
     if (tier === 3) {
         if (req.baseUrl === "leontm.me") {
             tier3 = true;
         }
-        else if (req.headers.authorization === `Authorization ${process.env.ADMIN_KEY}`) {
-            tier3 = true;
-        }
     }
     else if (tier === 2) {
+        if (req.headers.authorization === `DEV ${process.env.DEV_TOKEN}`) {
+            tier2 = true;
+        }
     }
     else if (tier === 1) {
     }
-    return true;
+    if (tier === 3 && tier3) {
+        return true;
+    }
+    else if ((tier === 2 && tier2) || tier3) {
+        return true;
+    }
+    else if ((tier === 1 && tier1) || (tier2 && tier2) || (tier3 && tier3)) {
+        return true;
+    }
+    else {
+        return false;
+    }
 };
 // Exports
 exports.default = validateReq;
