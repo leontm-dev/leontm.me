@@ -12,6 +12,7 @@ import test from "./api/test";
 // Projects
 
 import betterTracker from "./api/projects/betterTracker";
+import excludeMe from "./api/projects/excludeMe";
 
 // Presets
 
@@ -26,5 +27,6 @@ export default (): express.Router => {
   test(router);
   // Projects
   betterTracker(router);
+  excludeMe(router);
   return router;
 };
