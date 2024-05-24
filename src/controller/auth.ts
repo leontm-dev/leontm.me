@@ -14,7 +14,7 @@ import validateReq from "../helpers/validateReq";
 
 const register = async (req: express.Request, res: express.Response) => {
   try {
-    if (!validateReq(req, 1))
+    if (!validateReq(req, 3))
       return res
         .status(403)
         .json(sendApiResponse(403, null, "No permissions for this request."))
@@ -104,7 +104,7 @@ const register = async (req: express.Request, res: express.Response) => {
 };
 const login = async (req: express.Request, res: express.Response) => {
   try {
-    if (!validateReq(req, 1))
+    if (!validateReq(req, 3))
       return res
         .status(403)
         .json(sendApiResponse(403, null, "No permissions for this request."))
