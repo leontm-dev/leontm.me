@@ -27,6 +27,26 @@ const createCollection = (req, res) => __awaiter(void 0, void 0, void 0, functio
                 .json((0, sendApiResponse_1.default)(400, null, "Missing required fields"))
                 .end();
         }
+        if (name.length === 0) {
+            return res
+                .status(400)
+                .json((0, sendApiResponse_1.default)(400, null, "Name can't be empty"))
+                .end();
+        }
+        if (websites.length === 0) {
+            return res
+                .status(400)
+                .json((0, sendApiResponse_1.default)(400, null, "You must at least provide one website"))
+                .end();
+        }
+        for (let website in websites) {
+            if (website == "") {
+                return res
+                    .status(400)
+                    .json((0, sendApiResponse_1.default)(400, null, "You included an empty website"))
+                    .end();
+            }
+        }
         const collection = yield (0, collection_1.createC)(name, creator, websites);
         if (!collection) {
             return res
