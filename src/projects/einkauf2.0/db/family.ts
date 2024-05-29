@@ -53,7 +53,7 @@ const familySchema = new mongoose.Schema({
 });
 
 const FamilyModel = mongoose.model(
-  "Family",
+  "einkauf2-0_Family",
   familySchema,
   "einkauf2-0_Families"
 );
