@@ -66,3 +66,17 @@ const ListModel = mongoose.model(
   listSchema,
   "einkauf2-0_Lists"
 );
+const createL = async (name: string, creator: string) =>
+  await ListModel.create({ name, creator });
+const getAllL = async () => await ListModel.find();
+const deleteLById = async (id: string) => await ListModel.findByIdAndDelete(id);
+const getLById = async (id: string) => await ListModel.findById(id);
+const updateLById = async (id: string, items: any[]) =>
+  await ListModel.findByIdAndUpdate(id, {
+    items,
+    lastUpdated: Date.now(),
+  });
+
+// Exports
+
+export { ListModel, createL, getAllL, deleteLById, getLById, updateLById };
