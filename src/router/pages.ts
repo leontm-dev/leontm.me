@@ -30,6 +30,6 @@ export default (): express.Router => {
   router.get("/projects", openProjectsPage);
   router.get("/projects/betterTracker", openBetterTrackerPage);
   router.get("/projects/learnCode", openLearnCodePage);
-  router.get("/register", openRegisterPage);
+  router.get("/signup", openRegisterPage);
   return router;
 };
