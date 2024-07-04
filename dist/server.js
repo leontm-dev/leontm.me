@@ -32,17 +32,17 @@ if (!process.env.DATABASE_URL) {
     console.log("Please provide a database URL!");
     process.exit(1);
 }
-mongoose_1.default.connect(process.env.DATABASE_URL);
+mongoose_1.default.connect(process.env.DATABASE_URL).then((err) => {
+    if (err) {
+        console.error("Error connecting to the database:", err);
+        process.exit(1);
+    }
+    console.log("Connected to the database.");
+});
 // Code
 app.use("/api", (0, router_1.default)());
 app.use("/", (0, pages_1.default)());
 app.listen(process.env.PORT || 10000, () => {
     console.log(`Server running on port ${process.env.PORT || 10000}`);
-});
-mongoose_1.default.connection.on("connected", () => {
-    console.log("Database connected!");
-});
-mongoose_1.default.connection.on("error", (err) => {
-    console.log(`Couldn't connect to the database because of: ${err}`);
 });
 (0, repoLoader_1.default)("https://github.com/leontm-dev/LTM_Logs", "logs");
