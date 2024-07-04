@@ -17,8 +17,8 @@ const child_process_1 = require("child_process");
 const path_1 = __importDefault(require("path"));
 const fs_extra_1 = __importDefault(require("fs-extra"));
 // Code
-function loadRepo(repoUrl, repoPath) {
-    const fullPath = path_1.default.join("/runnableProjects", repoPath);
+function loadRepo(repo) {
+    const fullPath = path_1.default.join(__dirname.replace("helpers", "runnableProjects"), repo.fileName);
     // Prüfen, ob das Verzeichnis existiert
     if (fs_extra_1.default.existsSync(fullPath)) {
         // Aktuellen lokalen Commit-Hash abrufen
@@ -28,7 +28,7 @@ function loadRepo(repoUrl, repoPath) {
                 return;
             }
             // Neuesten Remote-Commit-Hash abrufen
-            (0, child_process_1.exec)(`git ls-remote ${repoUrl} HEAD`, (error, remoteHash) => {
+            (0, child_process_1.exec)(`git ls-remote ${repo.url} HEAD`, (error, remoteHash) => {
                 if (error) {
                     console.error("Fehler beim Abrufen des Remote-Commit-Hash:", error);
                     return;
@@ -45,7 +45,7 @@ function loadRepo(repoUrl, repoPath) {
     }
     else {
         console.log("Repository existiert nicht. Klone...");
-        cloneRepo(repoUrl, fullPath);
+        cloneRepo(repo.url, fullPath);
     }
 }
 function cloneRepo(repoUrl, fullPath) {
