@@ -3,11 +3,15 @@
 import { exec } from "child_process";
 import path from "path";
 import fs from "fs-extra";
+import { importableRepo } from "../types/repo";
 
 // Code
 
-function loadRepo(repoUrl: string, repoPath: string) {
-  const fullPath = path.join("/runnableProjects", repoPath);
+function loadRepo(repo: importableRepo) {
+  const fullPath = path.join(
+    __dirname.replace("helpers", "runnableProjects"),
+    repo.fileName
+  );
 
   // Prüfen, ob das Verzeichnis existiert
   if (fs.existsSync(fullPath)) {
@@ -19,7 +23,7 @@ function loadRepo(repoUrl: string, repoPath: string) {
       }
 
       // Neuesten Remote-Commit-Hash abrufen
-      exec(`git ls-remote ${repoUrl} HEAD`, (error, remoteHash) => {
+      exec(`git ls-remote ${repo.url} HEAD`, (error, remoteHash) => {
         if (error) {
           console.error("Fehler beim Abrufen des Remote-Commit-Hash:", error);
           return;
@@ -37,7 +41,7 @@ function loadRepo(repoUrl: string, repoPath: string) {
     });
   } else {
     console.log("Repository existiert nicht. Klone...");
-    cloneRepo(repoUrl, fullPath);
+    cloneRepo(repo.url, fullPath);
   }
 }
 
