@@ -103,7 +103,11 @@ const updateV = async (version: string) =>
     { findMe: "default" },
     { version, lastModifiedAt: Date.now() }
   );
+const getV = async () => {
+  const config = await Config.findOne({ findMe: "default" });
+  return config?.version;
+};
 
 // Exports
 
-export { Config, addIR, removeIR, editIR, getC, createC, updateV };
+export { Config, addIR, removeIR, editIR, getC, createC, updateV, getV };
