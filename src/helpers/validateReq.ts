@@ -17,7 +17,10 @@ const validateReq = (
   let tier2 = false;
   let tier1 = false;
   if (tier === 5) {
-    if (req.baseUrl === "leontm.me") {
+    if (
+      req.baseUrl === "leontm.me" &&
+      req.headers.authorization === `DEV ${process.env.DEV_TOKEN}`
+    ) {
       tier5 = true;
     }
   } else if (tier === 4) {
