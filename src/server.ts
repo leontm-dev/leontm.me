@@ -16,6 +16,7 @@ import pages from "./router/pages";
 // Presets
 
 const app = express();
+const version = "v0.0.1";
 
 // Configs
 
