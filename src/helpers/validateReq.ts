@@ -9,14 +9,23 @@ dotenv.config();
 
 const validateReq = (
   req: express.Request,
-  tier: 1 | 2 | 3 | 4 | 5
+  tier: 1 | 2 | 3 | 4 | 5 | 6
 ): boolean => {
+  let tier6 = false;
   let tier5 = false;
   let tier4 = false;
   let tier3 = false;
   let tier2 = false;
   let tier1 = false;
-  if (tier === 5) {
+  if (tier === 6) {
+    if (
+      req.headers.authorization === `DEV ${process.env.DEV_TOKEN}` &&
+      req.headers["x-leontm-tier"] === "6" &&
+      req.headers["x-leontm-auth"] === process.env.ADMIN_TOKEN
+    ) {
+      tier6 = true;
+    }
+  } else if (tier === 5) {
     if (
       req.baseUrl === "leontm.me" &&
       req.headers.authorization === `DEV ${process.env.DEV_TOKEN}`
@@ -35,7 +44,9 @@ const validateReq = (
   } else if (tier === 2) {
   } else if (tier === 1) {
   }
-  if (tier === 5 && tier5) {
+  if (tier6) {
+    return true;
+  } else if (tier === 5 && tier5) {
     return true;
   } else if ((tier === 4 && tier4) || tier5) {
     return true;
