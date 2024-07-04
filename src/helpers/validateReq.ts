@@ -25,6 +25,10 @@ const validateReq = (
       tier4 = true;
     }
   } else if (tier === 3) {
+    const websites: string[] = [];
+    if (websites.includes(req.baseUrl)) {
+      tier3 = true;
+    }
   } else if (tier === 2) {
   } else if (tier === 1) {
   }
