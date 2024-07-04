@@ -21,7 +21,7 @@ const validateReq = (
     if (
       req.headers.authorization === `DEV ${process.env.DEV_TOKEN}` &&
       req.headers["x-leontm-tier"] === "6" &&
-      req.headers["x-leontm-auth"] === process.env.ADMIN_TOKEN
+      req.headers["x-leontm-auth"] === process.env.ADMIN_KEY
     ) {
       tier6 = true;
     }
