@@ -20,7 +20,6 @@ import validateReq from "../helpers/validateReq";
 
 const createConfig = async (req: express.Request, res: express.Response) => {
   try {
-    console.log(req.headers);
     if (!validateReq(req, 6))
       return res
         .status(401)
