@@ -21,7 +21,7 @@ import validateReq from "../helpers/validateReq";
 
 const getAllUsers = async (req: express.Request, res: express.Response) => {
   try {
-    if (!validateReq(req, 1))
+    if (!validateReq(req, 1).p)
       return res
         .status(403)
         .json(sendApiResponse(403, null, "No permissions for this request."))
@@ -33,7 +33,7 @@ const getAllUsers = async (req: express.Request, res: express.Response) => {
       .end();
   } catch (error) {
     console.error(error);
-    res.status(500).json({ error: "Internal Server Error, our bad." }).end();
+    res.status(500).json().end();
   }
 };
 

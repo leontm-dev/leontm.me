@@ -20,7 +20,7 @@ import validateReq from "../helpers/validateReq";
 
 const createConfig = async (req: express.Request, res: express.Response) => {
   try {
-    if (!validateReq(req, 6))
+    if (!validateReq(req, 6).p)
       return res
         .status(401)
         .json(sendApiResponse(401, null, "You have to have a higher tier"))
@@ -49,7 +49,7 @@ const createConfig = async (req: express.Request, res: express.Response) => {
 };
 const getConfig = async (req: express.Request, res: express.Response) => {
   try {
-    if (!validateReq(req, 3))
+    if (!validateReq(req, 3).p)
       return res
         .status(401)
         .json(sendApiResponse(401, null, "You have to have a higher tier"))
@@ -91,7 +91,7 @@ const getVersion = async (req: express.Request, res: express.Response) => {
 };
 const updateVersion = async (req: express.Request, res: express.Response) => {
   try {
-    if (!validateReq(req, 6))
+    if (!validateReq(req, 6).p)
       return res
         .status(401)
         .json(sendApiResponse(401, null, "You have to have a higher tier"))
@@ -124,7 +124,7 @@ const addImportableRepo = async (
   res: express.Response
 ) => {
   try {
-    if (!validateReq(req, 6))
+    if (!validateReq(req, 6).p)
       return res
         .status(401)
         .json(sendApiResponse(401, null, "You have to have a higher tier"))
@@ -157,7 +157,7 @@ const removeImportableRepo = async (
   res: express.Response
 ) => {
   try {
-    if (!validateReq(req, 6))
+    if (!validateReq(req, 6).p)
       return res
         .status(401)
         .json(sendApiResponse(401, null, "You have to have a higher tier"))
@@ -190,7 +190,7 @@ const editImportableRepo = async (
   res: express.Response
 ) => {
   try {
-    if (!validateReq(req, 6))
+    if (!validateReq(req, 6).p)
       return res
         .status(401)
         .json(sendApiResponse(401, null, "You have to have a higher tier"))
@@ -223,7 +223,7 @@ const getImportableRepos = async (
   res: express.Response
 ) => {
   try {
-    if (!validateReq(req, 3))
+    if (!validateReq(req, 3).p)
       return res
         .status(401)
         .json(sendApiResponse(401, null, "You have to have a higher tier"))

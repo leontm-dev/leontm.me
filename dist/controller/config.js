@@ -21,7 +21,7 @@ const validateReq_1 = __importDefault(require("../helpers/validateReq"));
 // Code
 const createConfig = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
     try {
-        if (!(0, validateReq_1.default)(req, 6))
+        if (!(0, validateReq_1.default)(req, 6).p)
             return res
                 .status(401)
                 .json((0, sendApiResponse_1.default)(401, null, "You have to have a higher tier"))
@@ -50,7 +50,7 @@ const createConfig = (req, res) => __awaiter(void 0, void 0, void 0, function* (
 exports.createConfig = createConfig;
 const getConfig = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
     try {
-        if (!(0, validateReq_1.default)(req, 3))
+        if (!(0, validateReq_1.default)(req, 3).p)
             return res
                 .status(401)
                 .json((0, sendApiResponse_1.default)(401, null, "You have to have a higher tier"))
@@ -93,7 +93,7 @@ const getVersion = (req, res) => __awaiter(void 0, void 0, void 0, function* () 
 exports.getVersion = getVersion;
 const updateVersion = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
     try {
-        if (!(0, validateReq_1.default)(req, 6))
+        if (!(0, validateReq_1.default)(req, 6).p)
             return res
                 .status(401)
                 .json((0, sendApiResponse_1.default)(401, null, "You have to have a higher tier"))
@@ -122,7 +122,7 @@ const updateVersion = (req, res) => __awaiter(void 0, void 0, void 0, function* 
 exports.updateVersion = updateVersion;
 const addImportableRepo = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
     try {
-        if (!(0, validateReq_1.default)(req, 6))
+        if (!(0, validateReq_1.default)(req, 6).p)
             return res
                 .status(401)
                 .json((0, sendApiResponse_1.default)(401, null, "You have to have a higher tier"))
@@ -151,7 +151,7 @@ const addImportableRepo = (req, res) => __awaiter(void 0, void 0, void 0, functi
 exports.addImportableRepo = addImportableRepo;
 const removeImportableRepo = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
     try {
-        if (!(0, validateReq_1.default)(req, 6))
+        if (!(0, validateReq_1.default)(req, 6).p)
             return res
                 .status(401)
                 .json((0, sendApiResponse_1.default)(401, null, "You have to have a higher tier"))
@@ -180,7 +180,7 @@ const removeImportableRepo = (req, res) => __awaiter(void 0, void 0, void 0, fun
 exports.removeImportableRepo = removeImportableRepo;
 const editImportableRepo = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
     try {
-        if (!(0, validateReq_1.default)(req, 6))
+        if (!(0, validateReq_1.default)(req, 6).p)
             return res
                 .status(401)
                 .json((0, sendApiResponse_1.default)(401, null, "You have to have a higher tier"))
@@ -209,7 +209,7 @@ const editImportableRepo = (req, res) => __awaiter(void 0, void 0, void 0, funct
 exports.editImportableRepo = editImportableRepo;
 const getImportableRepos = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
     try {
-        if (!(0, validateReq_1.default)(req, 3))
+        if (!(0, validateReq_1.default)(req, 3).p)
             return res
                 .status(401)
                 .json((0, sendApiResponse_1.default)(401, null, "You have to have a higher tier"))

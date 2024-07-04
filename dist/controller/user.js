@@ -21,7 +21,7 @@ const validateReq_1 = __importDefault(require("../helpers/validateReq"));
 // Code
 const getAllUsers = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
     try {
-        if (!(0, validateReq_1.default)(req, 1))
+        if (!(0, validateReq_1.default)(req, 1).p)
             return res
                 .status(403)
                 .json((0, sendApiResponse_1.default)(403, null, "No permissions for this request."))
@@ -34,7 +34,7 @@ const getAllUsers = (req, res) => __awaiter(void 0, void 0, void 0, function* ()
     }
     catch (error) {
         console.error(error);
-        res.status(500).json({ error: "Internal Server Error, our bad." }).end();
+        res.status(500).json().end();
     }
 });
 exports.getAllUsers = getAllUsers;
