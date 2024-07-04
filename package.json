@@ -1,6 +1,6 @@
 {
   "name": "leontm.me",
-  "version": "0.0.3",
+  "version": "0.0.4",
   "description": "The package configs for the leontm.me website.",
   "main": "dist/server.js",
   "scripts": {
