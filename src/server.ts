@@ -21,7 +21,7 @@ const version = "v0.0.1";
 
 // Configs
 
-env.config({ debug: true, encoding: "UTF-8" });
+env.config({ encoding: "UTF-8" });
 
 app.use(
   cors({
@@ -57,3 +57,7 @@ app.listen(process.env.PORT || 10000, () => {
 });
 
 loadRepo("https://github.com/leontm-dev/LTM_Logs", "logs");
+
+// Exports
+
+export { version };
