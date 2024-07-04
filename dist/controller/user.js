@@ -13,7 +13,7 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
     return (mod && mod.__esModule) ? mod : { "default": mod };
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.getAllUsers = void 0;
+exports.deleteUser = exports.updateUserServices = exports.updateUserInfo = exports.updateUserAuth = exports.getUserBySessionToken = exports.getUserById = exports.getUserByUsername = exports.getAllUsers = void 0;
 // Project-Imports
 const user_1 = require("../db/user");
 const sendApiResponse_1 = __importDefault(require("../helpers/sendApiResponse"));
@@ -34,7 +34,199 @@ const getAllUsers = (req, res) => __awaiter(void 0, void 0, void 0, function* ()
     }
     catch (error) {
         console.error(error);
-        res.status(500).json().end();
+        res
+            .status(500)
+            .json((0, sendApiResponse_1.default)(500, { error }, "Internal error"))
+            .end();
     }
 });
 exports.getAllUsers = getAllUsers;
+const getUserByUsername = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
+    try {
+        if (!(0, validateReq_1.default)(req, 1).p)
+            return res
+                .status(403)
+                .json((0, sendApiResponse_1.default)(403, null, "No permissions for this request."))
+                .end();
+        const user = yield (0, user_1.getUbyUsername)(req.params.username);
+        if (!user)
+            return res
+                .status(404)
+                .json((0, sendApiResponse_1.default)(404, null, "User not found"))
+                .end();
+        res
+            .status(200)
+            .json((0, sendApiResponse_1.default)(200, user, "The resource you requested."))
+            .end();
+    }
+    catch (error) {
+        console.error(error);
+        res
+            .status(500)
+            .json((0, sendApiResponse_1.default)(500, { error }, "Internal error"))
+            .end();
+    }
+});
+exports.getUserByUsername = getUserByUsername;
+const getUserById = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
+    try {
+        if (!(0, validateReq_1.default)(req, 1).p)
+            return res
+                .status(403)
+                .json((0, sendApiResponse_1.default)(403, null, "No permissions for this request."))
+                .end();
+        const user = yield (0, user_1.getUById)(req.params.id);
+        if (!user)
+            return res
+                .status(404)
+                .json((0, sendApiResponse_1.default)(404, null, "User not found"))
+                .end();
+        res
+            .status(200)
+            .json((0, sendApiResponse_1.default)(200, user, "The resource you requested."))
+            .end();
+    }
+    catch (error) {
+        console.error(error);
+        res
+            .status(500)
+            .json((0, sendApiResponse_1.default)(500, { error }, "Internal error"))
+            .end();
+    }
+});
+exports.getUserById = getUserById;
+const getUserBySessionToken = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
+    try {
+        if (!(0, validateReq_1.default)(req, 1).p)
+            return res
+                .status(403)
+                .json((0, sendApiResponse_1.default)(403, null, "No permissions for this request."))
+                .end();
+        const user = yield (0, user_1.getUBySessionToken)(req.params.token);
+        if (!user)
+            return res
+                .status(404)
+                .json((0, sendApiResponse_1.default)(404, null, "User not found"))
+                .end();
+        res
+            .status(200)
+            .json((0, sendApiResponse_1.default)(200, user, "The resource you requested."))
+            .end();
+    }
+    catch (error) {
+        console.error(error);
+        res
+            .status(500)
+            .json((0, sendApiResponse_1.default)(500, { error }, "Internal error"))
+            .end();
+    }
+});
+exports.getUserBySessionToken = getUserBySessionToken;
+const updateUserAuth = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
+    try {
+        if (!(0, validateReq_1.default)(req, 2).p)
+            return res
+                .status(403)
+                .json((0, sendApiResponse_1.default)(403, null, "No permissions for this request."))
+                .end();
+        const user = yield (0, user_1.updateUAuth)(req.params.id, req.body);
+        if (!user)
+            return res
+                .status(404)
+                .json((0, sendApiResponse_1.default)(404, null, "User not found"))
+                .end();
+        res
+            .status(200)
+            .json((0, sendApiResponse_1.default)(200, user, "The resource you requested."))
+            .end();
+    }
+    catch (error) {
+        console.error(error);
+        res
+            .status(500)
+            .json((0, sendApiResponse_1.default)(500, { error }, "Internal error"))
+            .end();
+    }
+});
+exports.updateUserAuth = updateUserAuth;
+const updateUserInfo = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
+    try {
+        if (!(0, validateReq_1.default)(req, 2).p)
+            return res
+                .status(403)
+                .json((0, sendApiResponse_1.default)(403, null, "No permissions for this request."))
+                .end();
+        const user = yield (0, user_1.updateUInfo)(req.params.id, req.body);
+        if (!user)
+            return res
+                .status(404)
+                .json((0, sendApiResponse_1.default)(404, null, "User not found"))
+                .end();
+        res
+            .status(200)
+            .json((0, sendApiResponse_1.default)(200, user, "The resource you requested."))
+            .end();
+    }
+    catch (error) {
+        console.error(error);
+        res
+            .status(500)
+            .json((0, sendApiResponse_1.default)(500, { error }, "Internal error"))
+            .end();
+    }
+});
+exports.updateUserInfo = updateUserInfo;
+const updateUserServices = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
+    try {
+        if (!(0, validateReq_1.default)(req, 2).p)
+            return res
+                .status(403)
+                .json((0, sendApiResponse_1.default)(403, null, "No permissions for this request."))
+                .end();
+        const user = yield (0, user_1.updateUServices)(req.params.id, req.body);
+        if (!user)
+            return res
+                .status(404)
+                .json((0, sendApiResponse_1.default)(404, null, "User not found"))
+                .end();
+        res
+            .status(200)
+            .json((0, sendApiResponse_1.default)(200, user, "The resource you requested."))
+            .end();
+    }
+    catch (error) {
+        console.error(error);
+        res
+            .status(500)
+            .json((0, sendApiResponse_1.default)(500, { error }, "Internal error"))
+            .end();
+    }
+});
+exports.updateUserServices = updateUserServices;
+const deleteUser = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
+    try {
+        if (!(0, validateReq_1.default)(req, 4).p)
+            return res
+                .status(403)
+                .json((0, sendApiResponse_1.default)(403, null, "No permissions for this request."))
+                .end();
+        const user = yield (0, user_1.deleteU)(req.params.id);
+        if (!user)
+            return res
+                .status(404)
+                .json((0, sendApiResponse_1.default)(404, null, "User not found"))
+                .end();
+        res
+            .status(200)
+            .json((0, sendApiResponse_1.default)(200, user, "The resource you requested."))
+            .end();
+    }
+    catch (error) {
+        console.error(error);
+        res
+            .status(500)
+            .json((0, sendApiResponse_1.default)(500, { error }, "Internal error"))
+            .end();
+    }
+});
+exports.deleteUser = deleteUser;
