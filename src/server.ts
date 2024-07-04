@@ -38,13 +38,15 @@ if (!process.env.DATABASE_URL) {
   console.log("Please provide a database URL!");
   process.exit(1);
 }
-mongoose.connect(process.env.DATABASE_URL).then((err) => {
-  if (err) {
-    console.error("Error connecting to the database:", err);
+mongoose
+  .connect(process.env.DATABASE_URL)
+  .then((onfulfilled) => {
+    console.log("Connected to database!");
+  })
+  .catch((onrejected) => {
+    console.log("Failed to connect to database!");
     process.exit(1);
-  }
-  console.log("Connected to the database.");
-});
+  });
 
 // Code
 
