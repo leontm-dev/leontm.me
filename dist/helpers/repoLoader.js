@@ -19,76 +19,64 @@ const fs_extra_1 = __importDefault(require("fs-extra"));
 // Code
 function loadRepo(repo) {
     const fullPath = path_1.default.join(__dirname.replace("helpers", "runnableProjects"), repo.fileName);
-    // Prüfen, ob das Verzeichnis existiert
     if (fs_extra_1.default.existsSync(fullPath)) {
-        // Aktuellen lokalen Commit-Hash abrufen
+        console.log(`${repo._id} | Repository existiert. Prüfe auf Aktualisierungen...`);
         (0, child_process_1.exec)(`git -C ${fullPath} rev-parse HEAD`, (error, localHash) => {
             if (error) {
-                console.error("Fehler beim Abrufen des lokalen Commit-Hash:", error);
+                console.error(`${repo._id} | Fehler beim Abrufen des lokalen Commit-Hash:`, error);
                 return;
             }
-            // Neuesten Remote-Commit-Hash abrufen
             (0, child_process_1.exec)(`git ls-remote ${repo.url} HEAD`, (error, remoteHash) => {
                 if (error) {
-                    console.error("Fehler beim Abrufen des Remote-Commit-Hash:", error);
+                    console.error(`${repo._id} | Fehler beim Abrufen des Remote-Commit-Hash:`, error);
                     return;
                 }
                 if (localHash.split(" ")[0] !== remoteHash.split("\t")[0]) {
-                    console.log("Neuere Version des Repositories verfügbar. Aktualisiere...");
-                    updateRepo(fullPath);
+                    console.log(`${repo._id} | Neuere Version des Repositories verfügbar. Aktualisiere...`);
+                    updateRepo(repo, fullPath);
                 }
                 else {
-                    console.log("Aktuellste Version bereits vorhanden.");
+                    console.log(`${repo._id} | Aktuellste Version bereits vorhanden.`);
                 }
             });
         });
     }
     else {
-        console.log("Repository existiert nicht. Klone...");
-        cloneRepo(repo.url, fullPath);
+        console.log(`${repo._id} | Lokale Kopie existiert nicht. Klone...`);
+        cloneRepo(repo, fullPath);
     }
 }
-function cloneRepo(repoUrl, fullPath) {
-    (0, child_process_1.exec)(`git clone ${repoUrl} ${fullPath}`, (error) => {
+function cloneRepo(repo, fullPath) {
+    (0, child_process_1.exec)(`git clone ${repo.url} ${fullPath}`, (error) => {
         if (error) {
-            console.error("Fehler beim Klonen des Repositories:", error);
+            console.error(`${repo._id} | Fehler beim Klonen des Repositories:`, error);
             return;
         }
-        console.log("Repository erfolgreich geklont.");
+        console.log(`${repo._id} | Repository erfolgreich geklont.`);
         (0, child_process_1.exec)(`cd ${fullPath} && yarn`, (installError) => __awaiter(this, void 0, void 0, function* () {
             if (installError) {
-                console.error("Fehler bei der Installation der Abhängigkeiten:", installError);
+                console.error(`${repo._id} | Fehler bei der Installation der Abhängigkeiten:`, installError);
                 return;
             }
-            console.log("Abhängigkeiten installiert.");
-            runRepo(fullPath);
+            console.log(`${repo._id} | Abhängigkeiten installiert.`);
         }));
     });
 }
-function updateRepo(fullPath) {
+function updateRepo(repo, fullPath) {
     (0, child_process_1.exec)(`git -C ${fullPath} pull`, (error) => {
         if (error) {
-            console.error("Fehler beim Aktualisieren des Repositories:", error);
+            console.error(`${repo._id} | Fehler beim Aktualisieren der lokalen Kopie:`, error);
             return;
         }
-        console.log("Repository erfolgreich aktualisiert.");
+        console.log(`${repo._id} | Lokale Kopie erfolgreich aktualisiert.`);
         (0, child_process_1.exec)(`cd ${fullPath} && yarn`, (installError) => __awaiter(this, void 0, void 0, function* () {
             if (installError) {
-                console.error("Fehler bei der Installation der Abhängigkeiten:", installError);
+                console.error(`${repo._id} | Fehler bei der Installation der Abhängigkeiten:`, installError);
                 return;
             }
-            console.log("Abhängigkeiten installiert.");
-            runRepo(fullPath);
+            console.log(`${repo._id} | Abhängigkeiten installiert.`);
         }));
     });
-}
-function runRepo(fullPath) {
-    try {
-        (0, child_process_1.exec)(`cd ${fullPath} && yarn run start`);
-    }
-    catch (importError) {
-        console.error("Fehler beim Starten des Projekts: ", importError);
-    }
 }
 // Exports
 exports.default = loadRepo;
