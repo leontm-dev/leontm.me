@@ -17,7 +17,7 @@ import loadRepo from "./helpers/repoLoader";
 // Presets
 
 const app = express();
-const version = "v0.0.3";
+const version = "v0.0.4";
 
 // Configs
 

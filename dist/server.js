@@ -17,7 +17,7 @@ const router_1 = __importDefault(require("./router"));
 const pages_1 = __importDefault(require("./router/pages"));
 // Presets
 const app = (0, express_1.default)();
-const version = "v0.0.3";
+const version = "v0.0.4";
 exports.version = version;
 // Configs
 dotenv_1.default.config({ encoding: "UTF-8" });
