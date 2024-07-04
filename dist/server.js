@@ -4,7 +4,6 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
     return (mod && mod.__esModule) ? mod : { "default": mod };
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.version = void 0;
 const express_1 = __importDefault(require("express"));
 const mongoose_1 = __importDefault(require("mongoose"));
 const cors_1 = __importDefault(require("cors"));
@@ -17,8 +16,6 @@ const router_1 = __importDefault(require("./router"));
 const pages_1 = __importDefault(require("./router/pages"));
 // Presets
 const app = (0, express_1.default)();
-const version = "v0.0.4";
-exports.version = version;
 // Configs
 dotenv_1.default.config({ encoding: "UTF-8" });
 app.use((0, cors_1.default)({
