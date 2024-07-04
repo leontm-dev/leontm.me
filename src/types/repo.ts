@@ -2,9 +2,9 @@
 
 type importableRepo = {
   fileName: string;
-  runCommand: string;
-  repoName: string;
-  repoUrl: string;
+  command: string;
+  name: string;
+  url: string;
 };
 
 // Exports
