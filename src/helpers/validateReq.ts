@@ -5,7 +5,7 @@ import dotenv from "dotenv";
 
 // Code
 
-dotenv.config();
+dotenv.config({ encoding: "utf-8" });
 
 const validateReq = (
   req: express.Request,
@@ -17,6 +17,7 @@ const validateReq = (
   let tier3 = false;
   let tier2 = false;
   let tier1 = false;
+  console.log(req.headers);
   if (tier === 6) {
     if (
       req.headers.authorization === `DEV ${process.env.DEV_TOKEN}` &&

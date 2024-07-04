@@ -6,7 +6,7 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 Object.defineProperty(exports, "__esModule", { value: true });
 const dotenv_1 = __importDefault(require("dotenv"));
 // Code
-dotenv_1.default.config();
+dotenv_1.default.config({ encoding: "utf-8" });
 const validateReq = (req, tier) => {
     let tier6 = false;
     let tier5 = false;
@@ -14,6 +14,7 @@ const validateReq = (req, tier) => {
     let tier3 = false;
     let tier2 = false;
     let tier1 = false;
+    console.log(req.headers);
     if (tier === 6) {
         if (req.headers.authorization === `DEV ${process.env.DEV_TOKEN}` &&
             req.headers["x-leontm-tier"] === "6" &&
