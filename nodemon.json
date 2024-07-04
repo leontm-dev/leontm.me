@@ -1,5 +1,6 @@
 {
-  "watch": "",
+  "watch": ["src/"],
   "ext": "ts,env,json",
-  "exec": "npm run start"
+  "exec": "npm run start",
+  "ignore": ["dist/"]
 }
