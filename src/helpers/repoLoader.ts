@@ -7,7 +7,7 @@ import fs from "fs-extra";
 // Code
 
 function loadRepo(repoUrl: string, repoPath: string) {
-  const fullPath = path.join("runnableProjects", repoPath);
+  const fullPath = path.join("/runnableProjects", repoPath);
 
   // Prüfen, ob das Verzeichnis existiert
   if (fs.existsSync(fullPath)) {
@@ -50,7 +50,7 @@ function cloneRepo(repoUrl: string, fullPath: string) {
 
     console.log("Repository erfolgreich geklont.");
 
-    exec(`cd ${fullPath} && npm install`, async (installError) => {
+    exec(`cd ${fullPath} && yarn`, async (installError) => {
       if (installError) {
         console.error(
           "Fehler bei der Installation der Abhängigkeiten:",
@@ -75,7 +75,7 @@ function updateRepo(fullPath: string) {
 
     console.log("Repository erfolgreich aktualisiert.");
 
-    exec(`cd ${fullPath} && npm install`, async (installError) => {
+    exec(`cd ${fullPath} && yarn`, async (installError) => {
       if (installError) {
         console.error(
           "Fehler bei der Installation der Abhängigkeiten:",
