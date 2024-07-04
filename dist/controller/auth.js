@@ -23,7 +23,7 @@ const validateReq_1 = __importDefault(require("../helpers/validateReq"));
 const register = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
     var _a, _b, _c, _d;
     try {
-        if (!(0, validateReq_1.default)(req, 3))
+        if (!(0, validateReq_1.default)(req, 5))
             return res
                 .status(403)
                 .json((0, sendApiResponse_1.default)(403, null, "No permissions for this request."))
@@ -90,7 +90,7 @@ exports.register = register;
 const login = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
     var _e, _f, _g, _h, _j, _k, _l;
     try {
-        if (!(0, validateReq_1.default)(req, 3))
+        if (!(0, validateReq_1.default)(req, 5))
             return res
                 .status(403)
                 .json((0, sendApiResponse_1.default)(403, null, "No permissions for this request."))
