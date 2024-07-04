@@ -15,10 +15,9 @@ const path_1 = __importDefault(require("path"));
 // Project-Imports
 const router_1 = __importDefault(require("./router"));
 const pages_1 = __importDefault(require("./router/pages"));
-const repoLoader_1 = __importDefault(require("./helpers/repoLoader"));
 // Presets
 const app = (0, express_1.default)();
-const version = "v0.0.1";
+const version = "v0.0.3";
 exports.version = version;
 // Configs
 dotenv_1.default.config({ encoding: "UTF-8" });
@@ -49,4 +48,3 @@ app.use("/", (0, pages_1.default)());
 app.listen(process.env.PORT || 10000, () => {
     console.log(`Server running on port ${process.env.PORT || 10000}`);
 });
-(0, repoLoader_1.default)("https://github.com/leontm-dev/LTM_Logs", "logs");

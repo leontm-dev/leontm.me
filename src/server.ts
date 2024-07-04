@@ -17,7 +17,7 @@ import loadRepo from "./helpers/repoLoader";
 // Presets
 
 const app = express();
-const version = "v0.0.1";
+const version = "v0.0.3";
 
 // Configs
 
@@ -55,8 +55,6 @@ app.use("/", pages());
 app.listen(process.env.PORT || 10000, () => {
   console.log(`Server running on port ${process.env.PORT || 10000}`);
 });
-
-loadRepo("https://github.com/leontm-dev/LTM_Logs", "logs");
 
 // Exports
 
