@@ -21,6 +21,7 @@ const validateReq_1 = __importDefault(require("../helpers/validateReq"));
 // Code
 const createConfig = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
     try {
+        console.log(req.headers);
         if (!(0, validateReq_1.default)(req, 6))
             return res
                 .status(401)

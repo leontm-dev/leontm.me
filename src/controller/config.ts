@@ -20,12 +20,12 @@ import validateReq from "../helpers/validateReq";
 
 const createConfig = async (req: express.Request, res: express.Response) => {
   try {
+    console.log(req.headers);
     if (!validateReq(req, 6))
       return res
         .status(401)
         .json(sendApiResponse(401, null, "You have to have a higher tier"))
         .end();
-
     if (!req.body.version)
       return res
         .status(400)
