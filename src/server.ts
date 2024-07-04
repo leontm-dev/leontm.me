@@ -12,7 +12,6 @@ import path from "path";
 
 import router from "./router";
 import pages from "./router/pages";
-import loadRepo from "./helpers/repoLoader";
 
 // Presets
 
