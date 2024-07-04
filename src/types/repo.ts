@@ -9,7 +9,7 @@ type importableRepo = {
   command: string;
   name: string;
   url: string;
-  _id: mongoose.ObjectId;
+  _id: mongoose.Types.ObjectId;
 };
 
 // Exports
