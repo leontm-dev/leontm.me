@@ -18,7 +18,7 @@ const path_1 = __importDefault(require("path"));
 const fs_extra_1 = __importDefault(require("fs-extra"));
 // Code
 function loadRepo(repoUrl, repoPath) {
-    const fullPath = path_1.default.join("runnableProjects", repoPath);
+    const fullPath = path_1.default.join("/runnableProjects", repoPath);
     // Prüfen, ob das Verzeichnis existiert
     if (fs_extra_1.default.existsSync(fullPath)) {
         // Aktuellen lokalen Commit-Hash abrufen
@@ -55,7 +55,7 @@ function cloneRepo(repoUrl, fullPath) {
             return;
         }
         console.log("Repository erfolgreich geklont.");
-        (0, child_process_1.exec)(`cd ${fullPath} && npm install`, (installError) => __awaiter(this, void 0, void 0, function* () {
+        (0, child_process_1.exec)(`cd ${fullPath} && yarn`, (installError) => __awaiter(this, void 0, void 0, function* () {
             if (installError) {
                 console.error("Fehler bei der Installation der Abhängigkeiten:", installError);
                 return;
@@ -72,7 +72,7 @@ function updateRepo(fullPath) {
             return;
         }
         console.log("Repository erfolgreich aktualisiert.");
-        (0, child_process_1.exec)(`cd ${fullPath} && npm install`, (installError) => __awaiter(this, void 0, void 0, function* () {
+        (0, child_process_1.exec)(`cd ${fullPath} && yarn`, (installError) => __awaiter(this, void 0, void 0, function* () {
             if (installError) {
                 console.error("Fehler bei der Installation der Abhängigkeiten:", installError);
                 return;
