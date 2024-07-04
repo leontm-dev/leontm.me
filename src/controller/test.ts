@@ -10,7 +10,7 @@ import sendApiResponse from "../helpers/sendApiResponse";
 
 const testResponse = async (req: express.Request, res: express.Response) => {
   res
-    .status(200)
+    .status(parseInt(<string>req.query.code))
     .json(
       sendApiResponse(parseInt(<string>req.query.code), null, "Test successful")
     )

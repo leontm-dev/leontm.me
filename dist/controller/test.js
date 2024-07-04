@@ -19,7 +19,7 @@ const sendApiResponse_1 = __importDefault(require("../helpers/sendApiResponse"))
 // Code
 const testResponse = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
     res
-        .status(200)
+        .status(parseInt(req.query.code))
         .json((0, sendApiResponse_1.default)(parseInt(req.query.code), null, "Test successful"))
         .end();
 });
