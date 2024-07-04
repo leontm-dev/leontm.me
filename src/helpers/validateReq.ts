@@ -10,7 +10,7 @@ dotenv.config({ encoding: "utf-8" });
 const validateReq = (
   req: express.Request,
   tier: 1 | 2 | 3 | 4 | 5 | 6
-): boolean => {
+): { p: boolean; requestedTier: number; currentTier: number } => {
   let tier6 = false;
   let tier5 = false;
   let tier4 = false;
@@ -18,6 +18,11 @@ const validateReq = (
   let tier2 = false;
   let tier1 = false;
   console.log(req.headers);
+  const returnObj = {
+    p: false,
+    requestedTier: tier,
+    currentTier: 0,
+  };
   if (tier === 6) {
     if (
       req.headers.authorization === `DEV ${process.env.DEV_TOKEN}` &&
@@ -45,16 +50,34 @@ const validateReq = (
   } else if (tier === 2) {
   } else if (tier === 1) {
   }
+  if (tier1) {
+    returnObj.currentTier = 1;
+  }
+  if (tier2) {
+    returnObj.currentTier = 2;
+  }
+  if (tier3) {
+    returnObj.currentTier = 3;
+  }
+  if (tier4) {
+    returnObj.currentTier = 4;
+  }
+  if (tier5) {
+    returnObj.currentTier = 5;
+  }
+  if (tier6) {
+    returnObj.currentTier = 6;
+  }
   if (tier === 6 && tier6) {
-    return true;
+    returnObj.p = true;
   } else if ((tier === 5 && tier5) || tier6) {
-    return true;
+    returnObj.p = true;
   } else if ((tier === 4 && tier4) || tier5 || tier6) {
-    return true;
+    returnObj.p = true;
   } else if ((tier === 3 && tier3) || tier4 || tier5 || tier6) {
-    return true;
+    returnObj.p = true;
   } else if ((tier === 2 && tier2) || tier3 || tier4 || tier5 || tier6) {
-    return true;
+    returnObj.p = true;
   } else if (
     (tier === 1 && tier1) ||
     tier2 ||
@@ -63,9 +86,10 @@ const validateReq = (
     tier5 ||
     tier6
   ) {
-    return true;
+    returnObj.p = true;
   }
-  return false;
+  returnObj.p = false;
+  return returnObj;
 };
 
 // Exports
