@@ -14,12 +14,12 @@ const path_1 = __importDefault(require("path"));
 // Project-Imports
 const router_1 = __importDefault(require("./router"));
 const pages_1 = __importDefault(require("./router/pages"));
-const repoLoader_1 = require("./helpers/repoLoader");
+const repoLoader_1 = __importDefault(require("./helpers/repoLoader"));
 // Presets
 const app = (0, express_1.default)();
 const version = "v0.0.1";
 // Configs
-dotenv_1.default.config();
+dotenv_1.default.config({ debug: true, encoding: "UTF-8" });
 app.use((0, cors_1.default)({
     methods: ["GET", "POST", "DELETE", "PATCH"],
 }));
@@ -45,4 +45,4 @@ mongoose_1.default.connection.on("connected", () => {
 mongoose_1.default.connection.on("error", (err) => {
     console.log(`Couldn't connect to the database because of: ${err}`);
 });
-(0, repoLoader_1.loadRepo)("https://github.com/leontm-dev/LTM_Logs", "logs");
+(0, repoLoader_1.default)("https://github.com/leontm-dev/LTM_Logs", "logs");
