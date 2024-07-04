@@ -69,24 +69,20 @@ const validateReq = (req, tier) => {
     if (tier === 6 && tier6) {
         returnObj.p = true;
     }
-    else if ((tier === 5 && tier5) || tier6) {
+    else if (tier === 5 && (tier5 || tier6)) {
         returnObj.p = true;
     }
-    else if ((tier === 4 && tier4) || tier5 || tier6) {
+    else if (tier === 4 && (tier4 || tier5 || tier6)) {
         returnObj.p = true;
     }
-    else if ((tier === 3 && tier3) || tier4 || tier5 || tier6) {
+    else if (tier === 3 && (tier3 || tier4 || tier5 || tier6)) {
         returnObj.p = true;
     }
-    else if ((tier === 2 && tier2) || tier3 || tier4 || tier5 || tier6) {
+    else if (tier === 2 && (tier2 || tier3 || tier4 || tier5 || tier6)) {
         returnObj.p = true;
     }
-    else if ((tier === 1 && tier1) ||
-        tier2 ||
-        tier3 ||
-        tier4 ||
-        tier5 ||
-        tier6) {
+    else if (tier === 1 &&
+        (tier1 || tier2 || tier3 || tier4 || tier5 || tier6)) {
         returnObj.p = true;
     }
     returnObj.p = false;
