@@ -23,7 +23,7 @@ env.config({ encoding: "UTF-8" });
 
 app.use(
   cors({
-    methods: ["GET", "POST", "DELETE", "PATCH"],
+    methods: ["GET", "POST", "DELETE", "PUT"],
   })
 );
 app.use(bodyParser.json());

@@ -19,7 +19,7 @@ const app = (0, express_1.default)();
 // Configs
 dotenv_1.default.config({ encoding: "UTF-8" });
 app.use((0, cors_1.default)({
-    methods: ["GET", "POST", "DELETE", "PATCH"],
+    methods: ["GET", "POST", "DELETE", "PUT"],
 }));
 app.use(body_parser_1.default.json());
 app.use((0, cookie_parser_1.default)());
