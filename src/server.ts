@@ -12,6 +12,7 @@ import path from "path";
 
 import router from "./router";
 import pages from "./router/pages";
+import loadRepo from "./helpers/repoLoader";
 
 // Presets
 
@@ -20,7 +21,7 @@ const version = "v0.0.1";
 
 // Configs
 
-env.config();
+env.config({ debug: true, encoding: "UTF-8" });
 
 app.use(
   cors({
@@ -37,7 +38,13 @@ if (!process.env.DATABASE_URL) {
   console.log("Please provide a database URL!");
   process.exit(1);
 }
-mongoose.connect(process.env.DATABASE_URL);
+mongoose.connect(process.env.DATABASE_URL).then((err) => {
+  if (err) {
+    console.error("Error connecting to the database:", err);
+    process.exit(1);
+  }
+  console.log("Connected to the database.");
+});
 
 // Code
 
@@ -47,9 +54,4 @@ app.listen(process.env.PORT || 10000, () => {
   console.log(`Server running on port ${process.env.PORT || 10000}`);
 });
 
-mongoose.connection.on("connected", () => {
-  console.log("Database connected!");
-});
-mongoose.connection.on("error", (err) => {
-  console.log(`Couldn't connect to the database because of: ${err}`);
-});
+loadRepo("https://github.com/leontm-dev/LTM_Logs", "logs");
