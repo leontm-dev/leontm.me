@@ -5,7 +5,7 @@
   "main": "dist/server.js",
   "scripts": {
     "build": "yarn && npx tsc -build",
-    "start": "npm run build  && node dist/server.js",
+    "start": "yarn dist/server.js",
     "dev": "nodemon",
     "dev-raw": "ts-node src/server.ts"
   },
