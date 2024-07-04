@@ -7,7 +7,8 @@
     "build": "yarn && npx tsc -build",
     "start": "node dist/server.js",
     "dev": "nodemon",
-    "dev-raw": "ts-node src/server.ts"
+    "dev-raw": "ts-node src/server.ts",
+    "load-repos": "ts-node src/admin/run.ts"
   },
   "author": "Leon Anneken <LeonTM> (LAnneken09@gmail.com)",
   "license": "ISC",
