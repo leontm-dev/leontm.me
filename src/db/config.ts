@@ -60,7 +60,10 @@ const addIR = async (repo: importableRepo) => {
   const config = await Config.findOne({ findMe: "default" });
   return Config.updateOne(
     { findMe: "default" },
-    { importableRepos: config?.importableRepos.push(repo) }
+    {
+      importableRepos: config?.importableRepos.push(repo),
+      lastModifiedAt: Date.now(),
+    }
   );
 };
 const removeIR = async (repo: importableRepo) => {
@@ -73,6 +76,7 @@ const removeIR = async (repo: importableRepo) => {
           return r._id !== repo._id;
         }
       }),
+      lastModifiedAt: Date.now(),
     }
   );
 };
@@ -87,11 +91,19 @@ const editIR = async (repo: importableRepo) => {
         }
         return r;
       }),
+      lastModifiedAt: Date.now(),
     }
   );
 };
-const getConfig = async () => Config.findOne({ findMe: "default" });
+const getC = async () => Config.findOne({ findMe: "default" });
+const createC = async (version: string) =>
+  Config.create({ findMe: "default", version, importableRepos: [] });
+const updateV = async (version: string) =>
+  Config.updateOne(
+    { findMe: "default" },
+    { version, lastModifiedAt: Date.now() }
+  );
 
 // Exports
 
-export { Config, addIR, removeIR, editIR, getConfig };
+export { Config, addIR, removeIR, editIR, getC, createC, updateV };
