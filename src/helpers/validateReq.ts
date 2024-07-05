@@ -5,19 +5,14 @@ import dotenv from "dotenv";
 
 // Code
 
-dotenv.config({ encoding: "utf-8" });
+dotenv.config();
 
 const validateReq = (
   req: express.Request,
   tier: 1 | 2 | 3 | 4 | 5 | 6
 ): { p: boolean; requestedTier: number; currentTier: number } => {
-  let tier6 = false;
-  let tier5 = false;
-  let tier4 = false;
-  let tier3 = false;
-  let tier2 = false;
-  let tier1 = false;
   console.log(req.headers);
+  console.log(process.env);
   let returnObj: { p: boolean; requestedTier: number; currentTier: number } = {
     p: false,
     requestedTier: tier,

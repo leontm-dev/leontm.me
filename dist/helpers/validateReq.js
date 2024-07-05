@@ -6,15 +6,10 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 Object.defineProperty(exports, "__esModule", { value: true });
 const dotenv_1 = __importDefault(require("dotenv"));
 // Code
-dotenv_1.default.config({ encoding: "utf-8" });
+dotenv_1.default.config();
 const validateReq = (req, tier) => {
-    let tier6 = false;
-    let tier5 = false;
-    let tier4 = false;
-    let tier3 = false;
-    let tier2 = false;
-    let tier1 = false;
     console.log(req.headers);
+    console.log(process.env);
     let returnObj = {
         p: false,
         requestedTier: tier,
