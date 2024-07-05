@@ -20,72 +20,47 @@ const validateReq = (req, tier) => {
         requestedTier: tier,
         currentTier: 0,
     };
-    if (tier === 6) {
-        if (req.headers.authorization == `DEV ${process.env.DEV_TOKEN}` &&
-            req.headers["x-leontm-tier"] == "6" &&
-            req.headers["x-leontm-auth"] == process.env.ADMIN_KEY) {
-            tier6 = true;
-        }
+    switch (tier) {
+        case 6:
+            if (req.headers.authorization === `DEV ${process.env.DEV_TOKEN}` &&
+                req.headers["x-leontm-tier"] === "6" &&
+                req.headers["x-leontm-auth"] === process.env.ADMIN_KEY) {
+                returnObj.p = true;
+                returnObj.currentTier = 6;
+            }
+            break;
+        case 5:
+            if (req.baseUrl === "leontm.me" &&
+                req.headers.authorization === `DEV ${process.env.DEV_TOKEN}`) {
+                returnObj.p = true;
+                returnObj.currentTier = 5;
+            }
+            break;
+        case 4:
+            if (req.headers.authorization === `DEV ${process.env.DEV_TOKEN}`) {
+                returnObj.p = true;
+                returnObj.currentTier = 4;
+            }
+            break;
+        case 3:
+            // Hier können Sie die Bedingungen für Stufe 3 hinzufügen
+            // Beispiel:
+            // if (/* Bedingung für Stufe 3 */) {
+            //   returnObj.p = true;
+            //   returnObj.currentTier = 3;
+            // }
+            break;
+        case 2:
+            // Hier können Sie die Bedingungen für Stufe 2 hinzufügen
+            break;
+        case 1:
+            // Hier können Sie die Bedingungen für Stufe 1 hinzufügen
+            break;
+        default:
+            returnObj.p = false;
+            returnObj.currentTier = NaN;
+            break;
     }
-    else if (tier === 5) {
-        if (req.baseUrl === "leontm.me" &&
-            req.headers.authorization == `DEV ${process.env.DEV_TOKEN}`) {
-            tier5 = true;
-        }
-    }
-    else if (tier === 4) {
-        if (req.headers.authorization == `DEV ${process.env.DEV_TOKEN}`) {
-            tier4 = true;
-        }
-    }
-    else if (tier === 3) {
-        const websites = [];
-        if (websites.includes(req.baseUrl)) {
-            tier3 = true;
-        }
-    }
-    else if (tier === 2) {
-    }
-    else if (tier === 1) {
-    }
-    if (tier1) {
-        returnObj.currentTier = 1;
-    }
-    if (tier2) {
-        returnObj.currentTier = 2;
-    }
-    if (tier3) {
-        returnObj.currentTier = 3;
-    }
-    if (tier4) {
-        returnObj.currentTier = 4;
-    }
-    if (tier5) {
-        returnObj.currentTier = 5;
-    }
-    if (tier6) {
-        returnObj.currentTier = 6;
-    }
-    if (tier === 6 && tier6) {
-        returnObj.p = true;
-    }
-    else if (tier === 5 && (tier5 || tier6)) {
-        returnObj.p = true;
-    }
-    else if (tier === 4 && (tier4 || tier5 || tier6)) {
-        returnObj.p = true;
-    }
-    else if (tier === 3 && (tier3 || tier4 || tier5 || tier6)) {
-        returnObj.p = true;
-    }
-    else if (tier === 2 && (tier2 || tier3 || tier4 || tier5 || tier6)) {
-        returnObj.p = true;
-    }
-    else if (tier === 1 &&
-        (tier1 || tier2 || tier3 || tier4 || tier5 || tier6)) {
-        returnObj.p = true;
-    }
-    returnObj.p = false;
     return returnObj;
 };
 // Exports
