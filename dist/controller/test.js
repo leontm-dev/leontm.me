@@ -16,11 +16,12 @@ Object.defineProperty(exports, "__esModule", { value: true });
 exports.testResponse = void 0;
 // Project-Imports
 const sendApiResponse_1 = __importDefault(require("../helpers/sendApiResponse"));
+const validateReq_1 = __importDefault(require("../helpers/validateReq"));
 // Code
 const testResponse = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
     res
         .status(parseInt(req.query.code))
-        .json((0, sendApiResponse_1.default)(parseInt(req.query.code), null, "Test successful"))
+        .json((0, sendApiResponse_1.default)(parseInt(req.query.code), (0, validateReq_1.default)(req, 6), "Test successful"))
         .end();
 });
 exports.testResponse = testResponse;
