@@ -109,7 +109,8 @@ const updateVersion = (req, res) => __awaiter(void 0, void 0, void 0, function* 
                 .status(500)
                 .json((0, sendApiResponse_1.default)(500, null, "Failed to update version"))
                 .end();
-        res.status(200).json((0, sendApiResponse_1.default)(200, version, "OK")).end();
+        const newVersion = yield (0, config_1.getV)();
+        res.status(200).json((0, sendApiResponse_1.default)(200, { newVersion }, "OK")).end();
     }
     catch (error) {
         console.log(error);

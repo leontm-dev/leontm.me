@@ -109,8 +109,8 @@ const updateVersion = async (req: express.Request, res: express.Response) => {
         .status(500)
         .json(sendApiResponse(500, null, "Failed to update version"))
         .end();
-
-    res.status(200).json(sendApiResponse(200, version, "OK")).end();
+    const newVersion = await getV();
+    res.status(200).json(sendApiResponse(200, { newVersion }, "OK")).end();
   } catch (error) {
     console.log(error);
     res
