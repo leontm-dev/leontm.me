@@ -18,28 +18,28 @@ const validateReq = (
   let tier2 = false;
   let tier1 = false;
   console.log(req.headers);
-  const returnObj = {
+  let returnObj: { p: boolean; requestedTier: number; currentTier: number } = {
     p: false,
     requestedTier: tier,
     currentTier: 0,
   };
   if (tier === 6) {
     if (
-      req.headers.authorization === `DEV ${process.env.DEV_TOKEN}` &&
-      req.headers["x-leontm-tier"] === "6" &&
-      req.headers["x-leontm-auth"] === process.env.ADMIN_KEY
+      req.headers.authorization == `DEV ${process.env.DEV_TOKEN}` &&
+      req.headers["x-leontm-tier"] == "6" &&
+      req.headers["x-leontm-auth"] == process.env.ADMIN_KEY
     ) {
       tier6 = true;
     }
   } else if (tier === 5) {
     if (
       req.baseUrl === "leontm.me" &&
-      req.headers.authorization === `DEV ${process.env.DEV_TOKEN}`
+      req.headers.authorization == `DEV ${process.env.DEV_TOKEN}`
     ) {
       tier5 = true;
     }
   } else if (tier === 4) {
-    if (req.headers.authorization === `DEV ${process.env.DEV_TOKEN}`) {
+    if (req.headers.authorization == `DEV ${process.env.DEV_TOKEN}`) {
       tier4 = true;
     }
   } else if (tier === 3) {
