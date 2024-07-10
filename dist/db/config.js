@@ -25,13 +25,10 @@ const importableRepoSchema = new mongoose_1.default.Schema({
         type: String,
         required: true,
     },
-    repoUrl: {
-        type: String,
-        required: true,
-    },
     name: {
         type: String,
         required: true,
+        unique: true,
     },
     lastModifiedAt: {
         type: Date,
@@ -75,8 +72,8 @@ const removeIR = (repo) => __awaiter(void 0, void 0, void 0, function* () {
     const config = yield Config.findOne({ findMe: "default" });
     return Config.updateOne({ findMe: "default" }, {
         importableRepos: config === null || config === void 0 ? void 0 : config.importableRepos.filter((r) => {
-            if (r._id) {
-                return r._id !== repo._id;
+            if (r.name) {
+                return r.name !== repo.name;
             }
         }),
         lastModifiedAt: Date.now(),
@@ -87,7 +84,7 @@ const editIR = (repo) => __awaiter(void 0, void 0, void 0, function* () {
     const config = yield Config.findOne({ findMe: "default" });
     return Config.updateOne({ findMe: "default" }, {
         importableRepos: config === null || config === void 0 ? void 0 : config.importableRepos.map((r) => {
-            if (r._id === repo._id) {
+            if (r.name === repo.name) {
                 return repo;
             }
             return r;

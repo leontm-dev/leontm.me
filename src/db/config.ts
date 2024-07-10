@@ -17,13 +17,10 @@ const importableRepoSchema = new mongoose.Schema({
     type: String,
     required: true,
   },
-  repoUrl: {
-    type: String,
-    required: true,
-  },
   name: {
     type: String,
     required: true,
+    unique: true,
   },
   lastModifiedAt: {
     type: Date,
@@ -72,8 +69,8 @@ const removeIR = async (repo: importableRepo) => {
     { findMe: "default" },
     {
       importableRepos: config?.importableRepos.filter((r) => {
-        if (r._id) {
-          return r._id !== repo._id;
+        if (r.name) {
+          return r.name !== repo.name;
         }
       }),
       lastModifiedAt: Date.now(),
@@ -86,7 +83,7 @@ const editIR = async (repo: importableRepo) => {
     { findMe: "default" },
     {
       importableRepos: config?.importableRepos.map((r) => {
-        if (r._id === repo._id) {
+        if (r.name === repo.name) {
           return repo;
         }
         return r;
