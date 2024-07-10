@@ -9,6 +9,8 @@ type importableRepo = {
   command: string;
   name: string;
   url: string;
+  lastModifiedAt: Date;
+  createdAt: Date;
 };
 
 // Exports
