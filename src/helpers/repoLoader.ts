@@ -10,7 +10,7 @@ import { importableRepo } from "../types/repo";
 function loadRepo(repo: importableRepo) {
   const fullPath = path.join(
     __dirname.replace("helpers", "runnableProjects"),
-    repo.fileName
+    repo.name
   );
 
   if (fs.existsSync(fullPath)) {

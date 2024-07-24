@@ -18,7 +18,7 @@ const path_1 = __importDefault(require("path"));
 const fs_extra_1 = __importDefault(require("fs-extra"));
 // Code
 function loadRepo(repo) {
-    const fullPath = path_1.default.join(__dirname.replace("helpers", "runnableProjects"), repo.fileName);
+    const fullPath = path_1.default.join(__dirname.replace("helpers", "runnableProjects"), repo.name);
     if (fs_extra_1.default.existsSync(fullPath)) {
         console.log(`${repo.name} | Repository existiert. Prüfe auf Aktualisierungen...`);
         (0, child_process_1.exec)(`git -C ${fullPath} rev-parse HEAD`, (error, localHash) => {
