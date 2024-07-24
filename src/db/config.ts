@@ -55,12 +55,14 @@ const configSchema = new mongoose.Schema({
 const Config = mongoose.model("Config", configSchema, "Config");
 const addIR = async (repo: importableRepo) => {
   const config = await Config.findOne({ findMe: "default" });
+  if (!config) return;
+
+  const repos = config.importableRepos;
+  repos.push(repo);
+
   return Config.updateOne(
     { findMe: "default" },
-    {
-      importableRepos: config?.importableRepos.push(repo),
-      lastModifiedAt: Date.now(),
-    }
+    { importableRepos: repos, lastModifiedAt: Date.now() }
   );
 };
 const removeIR = async (repo: importableRepo) => {

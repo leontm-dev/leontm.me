@@ -62,10 +62,11 @@ const Config = mongoose_1.default.model("Config", configSchema, "Config");
 exports.Config = Config;
 const addIR = (repo) => __awaiter(void 0, void 0, void 0, function* () {
     const config = yield Config.findOne({ findMe: "default" });
-    return Config.updateOne({ findMe: "default" }, {
-        importableRepos: config === null || config === void 0 ? void 0 : config.importableRepos.push(repo),
-        lastModifiedAt: Date.now(),
-    });
+    if (!config)
+        return;
+    const repos = config.importableRepos;
+    repos.push(repo);
+    return Config.updateOne({ findMe: "default" }, { importableRepos: repos, lastModifiedAt: Date.now() });
 });
 exports.addIR = addIR;
 const removeIR = (repo) => __awaiter(void 0, void 0, void 0, function* () {
