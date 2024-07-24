@@ -12,6 +12,7 @@ import path from "path";
 
 import router from "./router";
 import pages from "./router/pages";
+import repoRunner from "./repoRunner";
 
 // Presets
 
@@ -50,6 +51,7 @@ mongoose
 
 app.use("/api", router());
 app.use("/", pages());
-app.listen(process.env.PORT || 10000, () => {
+app.listen(process.env.PORT || 10000, async () => {
   console.log(`Server running on port ${process.env.PORT || 10000}`);
+  await repoRunner();
 });

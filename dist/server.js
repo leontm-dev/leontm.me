@@ -1,5 +1,14 @@
 "use strict";
 // Imports
+var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, generator) {
+    function adopt(value) { return value instanceof P ? value : new P(function (resolve) { resolve(value); }); }
+    return new (P || (P = Promise))(function (resolve, reject) {
+        function fulfilled(value) { try { step(generator.next(value)); } catch (e) { reject(e); } }
+        function rejected(value) { try { step(generator["throw"](value)); } catch (e) { reject(e); } }
+        function step(result) { result.done ? resolve(result.value) : adopt(result.value).then(fulfilled, rejected); }
+        step((generator = generator.apply(thisArg, _arguments || [])).next());
+    });
+};
 var __importDefault = (this && this.__importDefault) || function (mod) {
     return (mod && mod.__esModule) ? mod : { "default": mod };
 };
@@ -14,6 +23,7 @@ const path_1 = __importDefault(require("path"));
 // Project-Imports
 const router_1 = __importDefault(require("./router"));
 const pages_1 = __importDefault(require("./router/pages"));
+const repoRunner_1 = __importDefault(require("./repoRunner"));
 // Presets
 const app = (0, express_1.default)();
 // Configs
@@ -42,6 +52,7 @@ mongoose_1.default
 // Code
 app.use("/api", (0, router_1.default)());
 app.use("/", (0, pages_1.default)());
-app.listen(process.env.PORT || 10000, () => {
+app.listen(process.env.PORT || 10000, () => __awaiter(void 0, void 0, void 0, function* () {
     console.log(`Server running on port ${process.env.PORT || 10000}`);
-});
+    yield (0, repoRunner_1.default)();
+}));
