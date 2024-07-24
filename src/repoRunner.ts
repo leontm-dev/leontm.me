@@ -24,12 +24,13 @@ export default async () => {
         data.responseData.importableRepos.forEach((repo: importableRepo) => {
           console.log(`${repo.name} | Running repo...`);
           exec(
-            `node src/runnableProjects/${repo.name}/${repo.fileName}`,
+            `node /runnableProjects/${repo.name}/${repo.fileName}`,
             (error, stdout, stderr) => {
               if (error) {
                 console.log(error);
                 return;
               }
+              console.log(`${repo.name} | ${stdout}`);
             }
           );
         });
