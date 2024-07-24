@@ -66,7 +66,8 @@ const addIR = (repo) => __awaiter(void 0, void 0, void 0, function* () {
         return;
     const repos = config.importableRepos;
     repos.push(repo);
-    return Config.updateOne({ findMe: "default" }, { importableRepos: repos, lastModifiedAt: Date.now() });
+    yield Config.updateOne({ findMe: "default" }, { importableRepos: repos, lastModifiedAt: Date.now() });
+    return Config.findOne({ findMe: "default" });
 });
 exports.addIR = addIR;
 const removeIR = (repo) => __awaiter(void 0, void 0, void 0, function* () {

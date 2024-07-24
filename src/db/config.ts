@@ -60,10 +60,11 @@ const addIR = async (repo: importableRepo) => {
   const repos = config.importableRepos;
   repos.push(repo);
 
-  return Config.updateOne(
+  await Config.updateOne(
     { findMe: "default" },
     { importableRepos: repos, lastModifiedAt: Date.now() }
   );
+  return Config.findOne({ findMe: "default" });
 };
 const removeIR = async (repo: importableRepo) => {
   const config = await Config.findOne({ findMe: "default" });
