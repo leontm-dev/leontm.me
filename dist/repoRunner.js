@@ -31,12 +31,12 @@ exports.default = () => __awaiter(void 0, void 0, void 0, function* () {
         if (data.responseInformation.processable) {
             data.responseData.importableRepos.forEach((repo) => {
                 console.log(`${repo.name} | Running repo...`);
-                (0, child_process_1.exec)(`node /runnableProjects/${repo.name}/${repo.fileName}`, (error, stdout, stderr) => {
+                (0, child_process_1.exec)(`node ./runnableProjects/${repo.name}/${repo.fileName}`, (error, stdout, stderr) => {
                     if (error) {
                         console.log(error);
                         return;
                     }
-                    console.log(`${repo.name} | stdout`);
+                    console.log(`${repo.name} | ${stdout}`);
                 });
             });
         }
