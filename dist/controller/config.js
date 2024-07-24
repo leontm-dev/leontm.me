@@ -133,6 +133,19 @@ const addImportableRepo = (req, res) => __awaiter(void 0, void 0, void 0, functi
                 .status(400)
                 .json((0, sendApiResponse_1.default)(400, null, "Please provide a repo"))
                 .end();
+        const config = yield (0, config_1.getC)();
+        if (!config)
+            return res
+                .status(404)
+                .json((0, sendApiResponse_1.default)(404, null, "Config not found"))
+                .end();
+        if (config.importableRepos.find((r) => r.name === req.body.repo.name) ||
+            config.importableRepos.find((r) => r.url === req.body.repo.url)) {
+            return res
+                .status(400)
+                .json((0, sendApiResponse_1.default)(400, null, "Repo url is already loaded."))
+                .end();
+        }
         const repo = yield (0, config_1.addIR)(req.body.repo);
         if (!repo)
             return res

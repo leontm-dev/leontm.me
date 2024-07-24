@@ -136,6 +136,23 @@ const addImportableRepo = async (
         .json(sendApiResponse(400, null, "Please provide a repo"))
         .end();
 
+    const config = await getC();
+    if (!config)
+      return res
+        .status(404)
+        .json(sendApiResponse(404, null, "Config not found"))
+        .end();
+
+    if (
+      config.importableRepos.find((r) => r.name === req.body.repo.name) ||
+      config.importableRepos.find((r) => r.url === req.body.repo.url)
+    ) {
+      return res
+        .status(400)
+        .json(sendApiResponse(400, null, "Repo url is already loaded."))
+        .end();
+    }
+
     const repo = await addIR(req.body.repo);
     if (!repo)
       return res
