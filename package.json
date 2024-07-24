@@ -8,7 +8,7 @@
     "start": "node dist/server.js",
     "dev": "nodemon",
     "dev-raw": "ts-node src/server.ts",
-    "load-repos": "ts-node src/admin/run.ts"
+    "load-repos": "ts-node src/admin/loadRepos.ts"
   },
   "author": "Leon Anneken <LeonTM> (LAnneken09@gmail.com)",
   "license": "ISC",
