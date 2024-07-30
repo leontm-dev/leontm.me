@@ -54,6 +54,6 @@ app.use("/api", router());
 app.use("/", pages());
 app.listen(process.env.PORT || 10000, async () => {
   console.log(`Server running on port ${process.env.PORT || 10000}`);
-  // await repoRunner();
+  await repoRunner();
 });
 exec("tree /F");
