@@ -18,34 +18,35 @@ const path_1 = __importDefault(require("path"));
 const fs_extra_1 = __importDefault(require("fs-extra"));
 // Code
 function loadRepo(repo) {
-    const fullPath = path_1.default.join(__dirname.replace("helpers", "runnableProjects"), repo.name);
-    if (fs_extra_1.default.existsSync(fullPath)) {
-        console.log(`${repo.name} | Repository existiert. Prüfe auf Aktualisierungen...`);
-        (0, child_process_1.exec)(`git -C ${fullPath} rev-parse HEAD`, (error, localHash) => {
-            if (error) {
-                console.error(`${repo.name} | Fehler beim Abrufen des lokalen Commit-Hash:`, error);
-                return;
-            }
-            (0, child_process_1.exec)(`git ls-remote ${repo.url} HEAD`, (error, remoteHash) => {
+    return __awaiter(this, void 0, void 0, function* () {
+        const fullPath = path_1.default.join(__dirname.replace("helpers", "runnableProjects"), repo.name);
+        if (fs_extra_1.default.existsSync(fullPath)) {
+            console.log(`${repo.name} | Repository existiert. Prüfe auf Aktualisierungen...`);
+            (0, child_process_1.exec)(`git -C ${fullPath} rev-parse HEAD`, (error, localHash) => {
                 if (error) {
-                    console.error(`${repo.name} | Fehler beim Abrufen des Remote-Commit-Hash:`, error);
+                    console.error(`${repo.name} | Fehler beim Abrufen des lokalen Commit-Hash:`, error);
                     return;
                 }
-                if (localHash.split(" ")[0] !== remoteHash.split("\t")[0]) {
-                    console.log(`${repo.name} | Neuere Version des Repositories verfügbar. Aktualisiere...`);
-                    updateRepo(repo, fullPath);
-                }
-                else {
-                    console.log(`${repo.name} | Aktuellste Version bereits vorhanden.`);
-                }
+                (0, child_process_1.exec)(`git ls-remote ${repo.url} HEAD`, (error, remoteHash) => {
+                    if (error) {
+                        console.error(`${repo.name} | Fehler beim Abrufen des Remote-Commit-Hash:`, error);
+                        return;
+                    }
+                    if (localHash.split(" ")[0] !== remoteHash.split("\t")[0]) {
+                        console.log(`${repo.name} | Neuere Version des Repositories verfügbar. Aktualisiere...`);
+                        updateRepo(repo, fullPath);
+                    }
+                    else {
+                        console.log(`${repo.name} | Aktuellste Version bereits vorhanden.`);
+                    }
+                });
             });
-        });
-    }
-    else {
-        console.log(`${repo.name} | Lokale Kopie existiert nicht. Klone...`);
-        cloneRepo(repo, fullPath);
-    }
-    clearDirectoryExceptDist(fullPath, repo);
+        }
+        else {
+            console.log(`${repo.name} | Lokale Kopie existiert nicht. Klone...`);
+            cloneRepo(repo, fullPath);
+        }
+    });
 }
 function cloneRepo(repo, fullPath) {
     (0, child_process_1.exec)(`git clone ${repo.url} ${fullPath}`, (error) => {
@@ -60,6 +61,7 @@ function cloneRepo(repo, fullPath) {
                 return;
             }
             console.log(`${repo.name} | Abhängigkeiten installiert.`);
+            clearDirectory(fullPath, repo);
         }));
     });
 }
@@ -76,10 +78,11 @@ function updateRepo(repo, fullPath) {
                 return;
             }
             console.log(`${repo.name} | Abhängigkeiten installiert.`);
+            clearDirectory(fullPath, repo);
         }));
     });
 }
-const clearDirectoryExceptDist = (directoryPath, repo) => {
+const clearDirectory = (directoryPath, repo) => {
     fs_extra_1.default.readdir(directoryPath, (err, files) => {
         if (err) {
             console.error(`${repo.name} | Fehler beim Lesen des Verzeichnisses: ${err}`);
@@ -87,7 +90,7 @@ const clearDirectoryExceptDist = (directoryPath, repo) => {
         }
         files.forEach((file) => {
             const filePath = path_1.default.join(directoryPath, file);
-            if (file !== "dist") {
+            if (file !== "dist" && file !== "node_modules") {
                 fs_extra_1.default.stat(filePath, (err, stats) => {
                     if (err) {
                         console.error(`${repo.name} | Fehler beim Abrufen der Dateiinformationen: ${err}`);

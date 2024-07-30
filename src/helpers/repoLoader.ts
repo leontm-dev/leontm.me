@@ -7,7 +7,7 @@ import { importableRepo } from "../types/repo";
 
 // Code
 
-function loadRepo(repo: importableRepo) {
+async function loadRepo(repo: importableRepo) {
   const fullPath = path.join(
     __dirname.replace("helpers", "runnableProjects"),
     repo.name
@@ -49,7 +49,6 @@ function loadRepo(repo: importableRepo) {
     console.log(`${repo.name} | Lokale Kopie existiert nicht. Klone...`);
     cloneRepo(repo, fullPath);
   }
-  clearDirectoryExceptDist(fullPath, repo);
 }
 
 function cloneRepo(repo: importableRepo, fullPath: string) {
@@ -74,6 +73,7 @@ function cloneRepo(repo: importableRepo, fullPath: string) {
       }
 
       console.log(`${repo.name} | Abhängigkeiten installiert.`);
+      clearDirectory(fullPath, repo);
     });
   });
 }
@@ -100,13 +100,11 @@ function updateRepo(repo: importableRepo, fullPath: string) {
       }
 
       console.log(`${repo.name} | Abhängigkeiten installiert.`);
+      clearDirectory(fullPath, repo);
     });
   });
 }
-const clearDirectoryExceptDist = (
-  directoryPath: string,
-  repo: importableRepo
-) => {
+const clearDirectory = (directoryPath: string, repo: importableRepo) => {
   fs.readdir(directoryPath, (err, files) => {
     if (err) {
       console.error(
@@ -118,7 +116,7 @@ const clearDirectoryExceptDist = (
     files.forEach((file) => {
       const filePath = path.join(directoryPath, file);
 
-      if (file !== "dist") {
+      if (file !== "dist" && file !== "node_modules") {
         fs.stat(filePath, (err, stats) => {
           if (err) {
             console.error(
