@@ -56,3 +56,4 @@ app.listen(process.env.PORT || 10000, () => __awaiter(void 0, void 0, void 0, fu
     console.log(`Server running on port ${process.env.PORT || 10000}`);
     yield (0, repoRunner_1.default)();
 }));
+console.log(__dirname);

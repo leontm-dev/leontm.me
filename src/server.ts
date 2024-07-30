@@ -55,3 +55,4 @@ app.listen(process.env.PORT || 10000, async () => {
   console.log(`Server running on port ${process.env.PORT || 10000}`);
   await repoRunner();
 });
+console.log(__dirname);
