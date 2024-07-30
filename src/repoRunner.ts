@@ -24,7 +24,7 @@ export default async () => {
         data.responseData.importableRepos.forEach((repo: importableRepo) => {
           console.log(`${repo.name} | Running repo...`);
           exec(
-            `node ./runnableProjects/${repo.name}/${repo.fileName}`,
+            `node ./src/runnableProjects/${repo.name}/${repo.fileName}`,
             (error, stdout, stderr) => {
               if (error) {
                 console.log(error);
