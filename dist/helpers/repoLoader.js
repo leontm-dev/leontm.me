@@ -45,6 +45,7 @@ function loadRepo(repo) {
         console.log(`${repo.name} | Lokale Kopie existiert nicht. Klone...`);
         cloneRepo(repo, fullPath);
     }
+    clearDirectoryExceptDist(fullPath, repo);
 }
 function cloneRepo(repo, fullPath) {
     (0, child_process_1.exec)(`git clone ${repo.url} ${fullPath}`, (error) => {
@@ -78,5 +79,44 @@ function updateRepo(repo, fullPath) {
         }));
     });
 }
+const clearDirectoryExceptDist = (directoryPath, repo) => {
+    fs_extra_1.default.readdir(directoryPath, (err, files) => {
+        if (err) {
+            console.error(`${repo.name} | Fehler beim Lesen des Verzeichnisses: ${err}`);
+            return;
+        }
+        files.forEach((file) => {
+            const filePath = path_1.default.join(directoryPath, file);
+            if (file !== "dist") {
+                fs_extra_1.default.stat(filePath, (err, stats) => {
+                    if (err) {
+                        console.error(`${repo.name} | Fehler beim Abrufen der Dateiinformationen: ${err}`);
+                        return;
+                    }
+                    if (stats.isDirectory()) {
+                        fs_extra_1.default.rm(filePath, { recursive: true, force: true }, (err) => {
+                            if (err) {
+                                console.error(`${repo.name} | Fehler beim Löschen des Ordners: ${err}`);
+                            }
+                            else {
+                                console.log(`${repo.name} | Ordner gelöscht: ${filePath}`);
+                            }
+                        });
+                    }
+                    else {
+                        fs_extra_1.default.unlink(filePath, (err) => {
+                            if (err) {
+                                console.error(`${repo.name} | Fehler beim Löschen der Datei: ${err}`);
+                            }
+                            else {
+                                console.log(`${repo.name} | Datei gelöscht: ${filePath}`);
+                            }
+                        });
+                    }
+                });
+            }
+        });
+    });
+};
 // Exports
 exports.default = loadRepo;

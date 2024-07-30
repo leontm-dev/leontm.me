@@ -49,6 +49,7 @@ function loadRepo(repo: importableRepo) {
     console.log(`${repo.name} | Lokale Kopie existiert nicht. Klone...`);
     cloneRepo(repo, fullPath);
   }
+  clearDirectoryExceptDist(fullPath, repo);
 }
 
 function cloneRepo(repo: importableRepo, fullPath: string) {
@@ -102,6 +103,56 @@ function updateRepo(repo: importableRepo, fullPath: string) {
     });
   });
 }
+const clearDirectoryExceptDist = (
+  directoryPath: string,
+  repo: importableRepo
+) => {
+  fs.readdir(directoryPath, (err, files) => {
+    if (err) {
+      console.error(
+        `${repo.name} | Fehler beim Lesen des Verzeichnisses: ${err}`
+      );
+      return;
+    }
+
+    files.forEach((file) => {
+      const filePath = path.join(directoryPath, file);
+
+      if (file !== "dist") {
+        fs.stat(filePath, (err, stats) => {
+          if (err) {
+            console.error(
+              `${repo.name} | Fehler beim Abrufen der Dateiinformationen: ${err}`
+            );
+            return;
+          }
+
+          if (stats.isDirectory()) {
+            fs.rm(filePath, { recursive: true, force: true }, (err) => {
+              if (err) {
+                console.error(
+                  `${repo.name} | Fehler beim Löschen des Ordners: ${err}`
+                );
+              } else {
+                console.log(`${repo.name} | Ordner gelöscht: ${filePath}`);
+              }
+            });
+          } else {
+            fs.unlink(filePath, (err) => {
+              if (err) {
+                console.error(
+                  `${repo.name} | Fehler beim Löschen der Datei: ${err}`
+                );
+              } else {
+                console.log(`${repo.name} | Datei gelöscht: ${filePath}`);
+              }
+            });
+          }
+        });
+      }
+    });
+  });
+};
 
 // Exports
 
