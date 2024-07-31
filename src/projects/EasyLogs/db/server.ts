@@ -321,6 +321,14 @@ const serverSchema = new mongoose.Schema({
     required: false,
   },
 });
+serverSchema.pre("save", function (next) {
+  const server = this as any;
+  if (!server.settings) {
+    server.settings = {};
+  }
+  this.settings = Object.assign({}, settingsSchema.obj, this.settings);
+  next();
+});
 
 const ServerModel = mongoose.model(
   "easylogs-servers",
