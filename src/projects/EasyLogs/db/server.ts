@@ -318,7 +318,7 @@ const serverSchema = new mongoose.Schema({
   },
   settings: {
     type: settingsSchema,
-    default: settingsSchema,
+    required: false,
   },
 });
 

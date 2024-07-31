@@ -273,7 +273,7 @@ const serverSchema = new mongoose_1.default.Schema({
     },
     settings: {
         type: settingsSchema,
-        default: settingsSchema,
+        required: false,
     },
 });
 const ServerModel = mongoose_1.default.model("easylogs-servers", serverSchema, "EasyLogs-Servers");
