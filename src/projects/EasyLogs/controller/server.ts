@@ -59,7 +59,7 @@ const getServer = async (req: express.Request, res: express.Response) => {
         .json(sendApiResponse(401, null, "Unauthorized"))
         .end();
 
-    const { discordId } = req.body;
+    const { discordId } = req.params;
     if (!discordId)
       return res
         .status(400)
