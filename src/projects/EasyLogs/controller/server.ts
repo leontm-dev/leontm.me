@@ -59,14 +59,14 @@ const getServer = async (req: express.Request, res: express.Response) => {
         .json(sendApiResponse(401, null, "Unauthorized"))
         .end();
 
-    const { discordId } = req.params;
+    const { discordId } = req.query;
     if (!discordId)
       return res
         .status(400)
         .json(sendApiResponse(400, null, "discordId is missing"))
         .end();
 
-    const server = await getS(discordId);
+    const server = await getS(<string>discordId);
     if (!server)
       return res
         .status(404)
