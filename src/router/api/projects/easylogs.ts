@@ -16,19 +16,19 @@ import {
 // Code
 
 export default (router: express.Router) => {
-  router.post("/projects/EasyLogs/server/create", createServer);
-  router.get("/projects/EasyLogs/server/get", getServer);
+  router.post("/projects/easyLogs/server/create", createServer);
+  router.get("/projects/easyLogs/server/get", getServer);
   router.put(
-    "/projects/EasyLogs/server/updateLanguage",
+    "/projects/easyLogs/server/updateLanguage",
     updateLanguageForServer
   );
   router.put(
-    "/projects/EasyLogs/server/updateLogChannel",
+    "/projects/easyLogs/server/updateLogChannel",
     updateLogChannelForServer
   );
   router.put(
-    "/projects/EasyLogs/server/updateSettings",
+    "/projects/easyLogs/server/updateSettings",
     updateSettingsForServer
   );
-  router.delete("/projects/EasyLogs/server/delete", deleteServer);
+  router.delete("/projects/easyLogs/server/delete", deleteServer);
 };
