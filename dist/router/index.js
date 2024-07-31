@@ -14,6 +14,7 @@ const test_1 = __importDefault(require("./api/test"));
 const betterTracker_1 = __importDefault(require("./api/projects/betterTracker"));
 const excludeMe_1 = __importDefault(require("./api/projects/excludeMe"));
 const config_1 = __importDefault(require("./api/config"));
+const easylogs_1 = __importDefault(require("./api/projects/easylogs"));
 // Presets
 const router = express_1.default.Router();
 // Code
@@ -26,5 +27,6 @@ exports.default = () => {
     // Projects
     (0, betterTracker_1.default)(router);
     (0, excludeMe_1.default)(router);
+    (0, easylogs_1.default)(router);
     return router;
 };

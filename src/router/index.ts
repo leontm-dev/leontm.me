@@ -14,6 +14,7 @@ import test from "./api/test";
 import betterTracker from "./api/projects/betterTracker";
 import excludeMe from "./api/projects/excludeMe";
 import config from "./api/config";
+import easylogs from "./api/projects/easylogs";
 
 // Presets
 
@@ -30,5 +31,6 @@ export default (): express.Router => {
   // Projects
   betterTracker(router);
   excludeMe(router);
+  easylogs(router);
   return router;
 };
