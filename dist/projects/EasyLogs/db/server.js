@@ -334,7 +334,7 @@ const serverSchema = new mongoose_1.default.Schema({
         required: true,
     },
 });
-const ServerModel = mongoose_1.default.model("easylogs_servers", serverSchema);
+const ServerModel = mongoose_1.default.model("easylogs-servers", serverSchema, "EasyLogs-Servers");
 const createS = (discordId) => __awaiter(void 0, void 0, void 0, function* () { return ServerModel.create({ discordId }); });
 exports.createS = createS;
 const getS = (discordId) => __awaiter(void 0, void 0, void 0, function* () { return ServerModel.findOne({ discordId }); });

@@ -324,7 +324,11 @@ const serverSchema = new mongoose.Schema({
   },
 });
 
-const ServerModel = mongoose.model("easylogs_servers", serverSchema);
+const ServerModel = mongoose.model(
+  "easylogs-servers",
+  serverSchema,
+  "EasyLogs-Servers"
+);
 const createS = async (discordId: string) => ServerModel.create({ discordId });
 const getS = async (discordId: string) => ServerModel.findOne({ discordId });
 const updateLanguageForS = async (discordId: string, language: Language) =>
