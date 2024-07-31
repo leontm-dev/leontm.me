@@ -59,7 +59,7 @@ const getServer = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
                 .status(401)
                 .json((0, sendApiResponse_1.default)(401, null, "Unauthorized"))
                 .end();
-        const { discordId } = req.params;
+        const { discordId } = req.query;
         if (!discordId)
             return res
                 .status(400)
