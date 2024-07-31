@@ -32,6 +32,11 @@ const createServer = (req, res) => __awaiter(void 0, void 0, void 0, function* (
                 .status(400)
                 .json((0, sendApiResponse_1.default)(400, null, "discordId is missing"))
                 .end();
+        if (yield (0, server_1.getS)(discordId))
+            return res
+                .status(409)
+                .json((0, sendApiResponse_1.default)(409, null, "Server already exists"))
+                .end();
         const server = yield (0, server_1.createS)(discordId);
         if (!server)
             return res

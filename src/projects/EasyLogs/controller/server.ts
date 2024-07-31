@@ -31,6 +31,11 @@ const createServer = async (req: express.Request, res: express.Response) => {
         .status(400)
         .json(sendApiResponse(400, null, "discordId is missing"))
         .end();
+    if (await getS(discordId))
+      return res
+        .status(409)
+        .json(sendApiResponse(409, null, "Server already exists"))
+        .end();
 
     const server = await createS(discordId);
     if (!server)

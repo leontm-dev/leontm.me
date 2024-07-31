@@ -299,6 +299,7 @@ const serverSchema = new mongoose.Schema({
   discordId: {
     type: String,
     required: true,
+    unique: true,
   },
   createdAt: {
     type: Date,
