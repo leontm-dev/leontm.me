@@ -80,7 +80,7 @@ const getServer = async (req: express.Request, res: express.Response) => {
 
     return res
       .status(200)
-      .json(sendApiResponse(200, { server }, "Server found"))
+      .json(sendApiResponse(200, server, "Server found"))
       .end();
   } catch (error) {
     console.log(error);

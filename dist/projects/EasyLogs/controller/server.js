@@ -78,7 +78,7 @@ const getServer = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
                 .end();
         return res
             .status(200)
-            .json((0, sendApiResponse_1.default)(200, { server }, "Server found"))
+            .json((0, sendApiResponse_1.default)(200, server, "Server found"))
             .end();
     }
     catch (error) {
