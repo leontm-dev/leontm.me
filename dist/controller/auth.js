@@ -13,7 +13,7 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
     return (mod && mod.__esModule) ? mod : { "default": mod };
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.login = exports.register = void 0;
+exports.checkForUsernames = exports.login = exports.register = void 0;
 // Project-Imports
 const sendApiResponse_1 = __importDefault(require("../helpers/sendApiResponse"));
 const user_1 = require("../db/user");
@@ -28,8 +28,8 @@ const register = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
                 .status(403)
                 .json((0, sendApiResponse_1.default)(403, null, "No permissions for this request."))
                 .end();
-        const { username, password } = req.body;
-        if (!username || !password) {
+        const { username, password, rememberMe } = req.body;
+        if (!username || !password || !rememberMe) {
             return res
                 .status(400)
                 .json((0, sendApiResponse_1.default)(400, null, "You forgot either username or password in your request body. Check that again."))
@@ -72,7 +72,10 @@ const register = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
         yield user.save();
         return res
             .cookie("LEONTM-AUTH", (_d = (_c = user.auth) === null || _c === void 0 ? void 0 : _c.connections[0]) === null || _d === void 0 ? void 0 : _d.key, {
-            domain: "localhost",
+            domain: "https://leontm.me",
+            expires: rememberMe
+                ? undefined
+                : new Date(Date.now() + 1000 * 60 * 60 * 24 * 7),
         })
             .status(200)
             .json((0, sendApiResponse_1.default)(200, user, "Your user."))
@@ -139,8 +142,43 @@ const login = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
         console.log(error);
         return res
             .status(500)
-            .json((0, sendApiResponse_1.default)(500, null, "Internal server error, we will check it."))
+            .json((0, sendApiResponse_1.default)(500, { error }, "Internal server error, we will check it."))
             .end();
     }
 });
 exports.login = login;
+const checkForUsernames = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
+    try {
+        if (!(0, validateReq_1.default)(req, 5).p)
+            return res
+                .status(403)
+                .json((0, sendApiResponse_1.default)(403, null, "No permissions for this request."))
+                .end();
+        const { username } = req.query;
+        if (!username) {
+            return res
+                .status(400)
+                .json((0, sendApiResponse_1.default)(400, null, "No username given."))
+                .end();
+        }
+        const user = yield (0, user_1.getUbyUsername)(username);
+        if (!user) {
+            return res
+                .status(200)
+                .json((0, sendApiResponse_1.default)(200, { available: true }, "Username available."))
+                .end();
+        }
+        return res
+            .status(200)
+            .json((0, sendApiResponse_1.default)(200, { available: false }, "Username not available."))
+            .end();
+    }
+    catch (error) {
+        console.log(error);
+        return res
+            .status(500)
+            .json((0, sendApiResponse_1.default)(500, { error }, "Internal server error"))
+            .end();
+    }
+});
+exports.checkForUsernames = checkForUsernames;
