@@ -9,6 +9,7 @@
     <link rel="stylesheet" href="/general/styles/inputs.css" />
     <link rel="stylesheet" href="/general/styles/buttons.css" />
     <link rel="stylesheet" href="/general/styles/fonts.css" />
+    <link rel="stylesheet" href="/general/styles/checkboxes.css" />
     <link rel="stylesheet" href="/signup/style.css" />
     <link rel="stylesheet" href="/signup/form.css" />
   </head>
@@ -51,6 +52,7 @@
             placeholder="Your username, a unique one"
             required
             type="text"
+            id="username"
           />
           <span class="input-border input-border-alt"></span>
         </div>
@@ -60,6 +62,7 @@
             placeholder="A password, also unique at best"
             required
             type="text"
+            id="password"
           />
           <span class="input-border input-border-alt"></span>
         </div>
@@ -69,11 +72,40 @@
             placeholder="Your password, again"
             required
             type="text"
+            id="2ndpassword"
           />
           <span class="input-border input-border-alt"></span>
         </div>
         <div class="error" id="error"></div>
-        <button class="button">
+        <div class="checkbox-wrapper">
+          <input id="rememberMe" name="checkbox" type="checkbox" />
+          <label class="terms-label" for="rememberMe">
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              fill="none"
+              viewBox="0 0 200 200"
+              class="checkbox-svg"
+            >
+              <mask fill="white" id="path-1-inside-1_476_5-37">
+                <rect height="200" width="200"></rect>
+              </mask>
+              <rect
+                mask="url(#path-1-inside-1_476_5-37)"
+                stroke-width="40"
+                class="checkbox-box"
+                height="200"
+                width="200"
+              ></rect>
+              <path
+                stroke-width="15"
+                d="M52 111.018L76.9867 136L149 64"
+                class="checkbox-tick"
+              ></path>
+            </svg>
+            <span>Remember me</span>
+          </label>
+        </div>
+        <button class="button" id="signup">
           Sign up
           <div class="icon">
             <svg
