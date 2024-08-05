@@ -182,12 +182,56 @@ const login = async (req: express.Request, res: express.Response) => {
     return res
       .status(500)
       .json(
-        sendApiResponse(500, null, "Internal server error, we will check it.")
+        sendApiResponse(
+          500,
+          { error },
+          "Internal server error, we will check it."
+        )
       )
       .end();
   }
 };
+const checkForUsernames = async (
+  req: express.Request,
+  res: express.Response
+) => {
+  try {
+    if (!validateReq(req, 5).p)
+      return res
+        .status(403)
+        .json(sendApiResponse(403, null, "No permissions for this request."))
+        .end();
 
+    const { username } = req.query;
+    if (!username) {
+      return res
+        .status(400)
+        .json(sendApiResponse(400, null, "No username given."))
+        .end();
+    }
+
+    const user = await getUbyUsername(<string>username);
+    if (!user) {
+      return res
+        .status(200)
+        .json(sendApiResponse(200, { available: true }, "Username available."))
+        .end();
+    }
+
+    return res
+      .status(200)
+      .json(
+        sendApiResponse(200, { available: false }, "Username not available.")
+      )
+      .end();
+  } catch (error) {
+    console.log(error);
+    return res
+      .status(500)
+      .json(sendApiResponse(500, { error }, "Internal server error"))
+      .end();
+  }
+};
 // Exports
 
-export { register, login };
+export { register, login, checkForUsernames };
