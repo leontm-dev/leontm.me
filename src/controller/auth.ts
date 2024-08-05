@@ -5,7 +5,6 @@ import express from "express";
 // Project-Imports
 
 import sendApiResponse from "../helpers/sendApiResponse";
-import validateId from "../helpers/validateId";
 import { createU, getUbyUsername, UserModel } from "../db/user";
 import { auth, random } from "../helpers/auth";
 import validateReq from "../helpers/validateReq";
@@ -19,9 +18,9 @@ const register = async (req: express.Request, res: express.Response) => {
         .status(403)
         .json(sendApiResponse(403, null, "No permissions for this request."))
         .end();
-    const { username, password } = req.body;
+    const { username, password, rememberMe } = req.body;
 
-    if (!username || !password) {
+    if (!username || !password || !rememberMe) {
       return res
         .status(400)
         .json(
@@ -83,7 +82,10 @@ const register = async (req: express.Request, res: express.Response) => {
 
     return res
       .cookie("LEONTM-AUTH", user.auth?.connections[0]?.key, {
-        domain: "localhost",
+        domain: "https://leontm.me",
+        expires: (rememberMe as Boolean)
+          ? undefined
+          : new Date(Date.now() + 1000 * 60 * 60 * 24 * 7),
       })
       .status(200)
       .json(sendApiResponse(200, user, "Your user."))
