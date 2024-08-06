@@ -210,7 +210,7 @@ const checkForUsernames = async (
         .json(
           sendApiResponse(
             403,
-            req.get("Referer"),
+            req.get("Referer") + " " + validateReq(req, 5),
             "No permissions for this request."
           )
         )
