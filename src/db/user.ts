@@ -179,7 +179,7 @@ const userSchema = new mongoose.Schema({
     default: [],
   },
 });
-const UserModel = mongoose.model("User", userSchema, "user");
+const UserModel = mongoose.model("User", userSchema, "User");
 
 // Code
 

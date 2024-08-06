@@ -191,7 +191,7 @@ const userSchema = new mongoose_1.default.Schema({
         default: [],
     },
 });
-const UserModel = mongoose_1.default.model("User", userSchema, "user");
+const UserModel = mongoose_1.default.model("User", userSchema, "User");
 exports.UserModel = UserModel;
 // Code
 const getAllU = () => __awaiter(void 0, void 0, void 0, function* () { return UserModel.find(); });
