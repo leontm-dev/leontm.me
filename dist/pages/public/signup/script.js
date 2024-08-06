@@ -25,9 +25,6 @@ button.addEventListener("click", async (ev) => {
     `https://leontm.me/api/auth/usernames?username=${username.value}`,
     {
       method: "GET",
-      headers: {
-        Authorization: "DEV " + process.env.DEV_TOKEN,
-      },
     }
   )
     .then((res) => res.json())
@@ -52,7 +49,6 @@ button.addEventListener("click", async (ev) => {
     method: "POST",
     headers: {
       "Content-Type": "application/json",
-      Authorization: "DEV " + process.env.DEV_TOKEN,
     },
     body: JSON.stringify({
       username: username.value,
