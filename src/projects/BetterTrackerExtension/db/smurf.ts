@@ -33,7 +33,11 @@ const smurfSchema = new mongoose.Schema({
   },
 });
 
-const smurfModel = mongoose.model("smurf", smurfSchema, "bte-smurfs");
+const smurfModel = mongoose.model(
+  "smurf",
+  smurfSchema,
+  "BetterTrackerExtension-Smurfs"
+);
 
 // Functions
 

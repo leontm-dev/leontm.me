@@ -44,7 +44,7 @@ const smurfSchema = new mongoose_1.default.Schema({
         default: Date.now,
     },
 });
-const smurfModel = mongoose_1.default.model("smurf", smurfSchema, "bte-smurfs");
+const smurfModel = mongoose_1.default.model("smurf", smurfSchema, "BetterTrackerExtension-Smurfs");
 // Functions
 const create = (url, statsOnSave) => __awaiter(void 0, void 0, void 0, function* () { return yield smurfModel.create({ url, statsOnSave }); });
 exports.create = create;
