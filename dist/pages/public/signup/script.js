@@ -27,7 +27,7 @@ button.addEventListener("click", async (ev) => {
     .then((res) => res.json())
     .then((data) => {
       if (data.responseInformation.processable) {
-        if (data.responseInformation.available) {
+        if (data.responseData.available) {
           fetch("https://leontm.me/api/auth/signup", {
             method: "POST",
             headers: {
