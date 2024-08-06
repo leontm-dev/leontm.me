@@ -25,11 +25,7 @@ const validateReq = (
     req.headers["x-leontm-auth"] === process.env.ADMIN_KEY
   ) {
     actualTier = parseInt(<string>req.headers["x-leontm-tier"]);
-  } else if (
-    req.baseUrl === "leontm.me" &&
-    req.get("Referer") &&
-    req.get("Referer")?.startsWith("https://leontm.me")
-  ) {
+  } else if (req.get("Referer")?.startsWith("https://leontm.me")) {
     actualTier = 5; // Annahme, dass dies Tier 5 entspricht
   } else if (req.headers.authorization === `DEV ${process.env.DEV_TOKEN}`) {
     actualTier = 4; // Annahme, dass dies Tier 4 entspricht
