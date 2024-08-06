@@ -8,6 +8,7 @@ const dotenv_1 = __importDefault(require("dotenv"));
 // Code
 dotenv_1.default.config();
 const validateReq = (req, requestedTier) => {
+    var _a;
     let returnObj = {
         p: false,
         requestedTier,
@@ -21,7 +22,8 @@ const validateReq = (req, requestedTier) => {
         actualTier = parseInt(req.headers["x-leontm-tier"]);
     }
     else if (req.baseUrl === "leontm.me" &&
-        req.headers.authorization === `DEV ${process.env.DEV_TOKEN}`) {
+        req.get("Referer") &&
+        ((_a = req.get("Referer")) === null || _a === void 0 ? void 0 : _a.startsWith("https://leontm.me"))) {
         actualTier = 5; // Annahme, dass dies Tier 5 entspricht
     }
     else if (req.headers.authorization === `DEV ${process.env.DEV_TOKEN}`) {
