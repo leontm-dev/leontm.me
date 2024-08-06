@@ -26,7 +26,7 @@ const register = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
         if (!(0, validateReq_1.default)(req, 5).p)
             return res
                 .status(403)
-                .json((0, sendApiResponse_1.default)(403, { tier: (0, validateReq_1.default)(req, 5).currentTier }, "No permissions for this request."))
+                .json((0, sendApiResponse_1.default)(403, null, "No permissions for this request."))
                 .end();
         const { username, password, rememberMe } = req.body;
         if (!username || !password || !rememberMe) {
@@ -152,7 +152,7 @@ const checkForUsernames = (req, res) => __awaiter(void 0, void 0, void 0, functi
         if (!(0, validateReq_1.default)(req, 5).p)
             return res
                 .status(403)
-                .json((0, sendApiResponse_1.default)(403, { 1: req.get("Referer"), 2: (0, validateReq_1.default)(req, 5) }, "No permissions for this request."))
+                .json((0, sendApiResponse_1.default)(403, null, "No permissions for this request."))
                 .end();
         const { username } = req.query;
         if (!username) {

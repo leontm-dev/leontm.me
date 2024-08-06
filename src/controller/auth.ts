@@ -16,13 +16,7 @@ const register = async (req: express.Request, res: express.Response) => {
     if (!validateReq(req, 5).p)
       return res
         .status(403)
-        .json(
-          sendApiResponse(
-            403,
-            { tier: validateReq(req, 5).currentTier },
-            "No permissions for this request."
-          )
-        )
+        .json(sendApiResponse(403, null, "No permissions for this request."))
         .end();
     const { username, password, rememberMe } = req.body;
 
@@ -207,13 +201,7 @@ const checkForUsernames = async (
     if (!validateReq(req, 5).p)
       return res
         .status(403)
-        .json(
-          sendApiResponse(
-            403,
-            { 1: req.get("Referer"), 2: validateReq(req, 5) },
-            "No permissions for this request."
-          )
-        )
+        .json(sendApiResponse(403, null, "No permissions for this request."))
         .end();
 
     const { username } = req.query;
