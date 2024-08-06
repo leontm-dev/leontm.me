@@ -21,47 +21,43 @@ button.addEventListener("click", async (ev) => {
     return;
   }
 
-  const userNameCheck = await fetch(
-    `https://leontm.me/api/auth/usernames?username=${username.value}`,
-    {
-      method: "GET",
-    }
-  )
-    .then((res) => res.json())
-    .then((data) => {
-      if (data.responseInformation.processable) {
-        return data.responseInformation.available;
-      } else {
-        error.innerHTML = "Internal server error, try again later";
-        username.value = "";
-      }
-    })
-    .catch((err) => {
-      console.log(err);
-      error.innerHTML = "Internal server error, try again later";
-    });
-  if (!userNameCheck) {
-    error.innerHTML = "Username is already taken";
-    return;
-  }
-
-  fetch("https://leontm.me/api/auth/signup", {
-    method: "POST",
-    headers: {
-      "Content-Type": "application/json",
-    },
-    body: JSON.stringify({
-      username: username.value,
-      password: password.value,
-      rememberMe: rememberMe.checked,
-    }),
+  fetch(`https://leontm.me/api/auth/usernames?username=${username.value}`, {
+    method: "GET",
   })
     .then((res) => res.json())
     .then((data) => {
       if (data.responseInformation.processable) {
-        window.location.href = "https://leontm.me/account";
+        if (data.responseInformation.available) {
+          fetch("https://leontm.me/api/auth/signup", {
+            method: "POST",
+            headers: {
+              "Content-Type": "application/json",
+            },
+            body: JSON.stringify({
+              username: username.value,
+              password: password.value,
+              rememberMe: rememberMe.checked,
+            }),
+          })
+            .then((res) => res.json())
+            .then((data) => {
+              if (data.responseInformation.processable) {
+                window.location.href = "https://leontm.me/account";
+              } else {
+                error.innerHTML = "Internal server error, try again later";
+              }
+            })
+            .catch((err) => {
+              console.log(err);
+              error.innerHTML = "Internal server error, try again later";
+            });
+        } else {
+          error.innerHTML = "Username is already taken";
+          return;
+        }
       } else {
         error.innerHTML = "Internal server error, try again later";
+        username.value = "";
       }
     })
     .catch((err) => {
