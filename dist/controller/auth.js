@@ -152,7 +152,7 @@ const checkForUsernames = (req, res) => __awaiter(void 0, void 0, void 0, functi
         if (!(0, validateReq_1.default)(req, 5).p)
             return res
                 .status(403)
-                .json((0, sendApiResponse_1.default)(403, req.get("Referer") + " " + (0, validateReq_1.default)(req, 5), "No permissions for this request."))
+                .json((0, sendApiResponse_1.default)(403, { 1: req.get("Referer"), 2: (0, validateReq_1.default)(req, 5) }, "No permissions for this request."))
                 .end();
         const { username } = req.query;
         if (!username) {
