@@ -20,17 +20,17 @@ const isAuthenticated = async (
 
     if (!sessionToken) {
       return res
-        .status(401)
-        .json(sendApiResponse(401, null, "The sessionToken is missing"))
-        .end();
+        .status(400)
+        .json(sendApiResponse(400, null, "SessionToken is unavailable"))
+        .render("login");
     }
 
     const user = await getUBySessionToken(sessionToken);
     if (!user) {
       return res
         .status(403)
-        .json(sendApiResponse(403, null, "The sessionToken is invalid"))
-        .end();
+        .json(sendApiResponse(403, null, "SessionToken is invalid."))
+        .render("login");
     }
 
     merge(req, { identity: user });
@@ -38,7 +38,10 @@ const isAuthenticated = async (
     return next();
   } catch (error) {
     console.error(error);
-    return res.status(500).json({ error: "Internal Server Error" }).end();
+    return res
+      .status(500)
+      .json(sendApiResponse(500, null, "Our fault."))
+      .render("login");
   }
 };
 
