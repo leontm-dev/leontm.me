@@ -126,6 +126,10 @@ const userSchema = new mongoose.Schema({
       type: Number,
       default: NaN,
     },
+    profileColor: {
+      type: String,
+      default: "255, 0, 0",
+    },
     permissions: {
       admin: {
         type: Boolean,
