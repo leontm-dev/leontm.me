@@ -21,7 +21,7 @@ import validateReq from "../helpers/validateReq";
 
 const getAllUsers = async (req: express.Request, res: express.Response) => {
   try {
-    if (!validateReq(req, 1).p)
+    if (!validateReq(req, 5).p)
       return res
         .status(403)
         .json(sendApiResponse(403, null, "No permissions for this request."))
@@ -39,82 +39,44 @@ const getAllUsers = async (req: express.Request, res: express.Response) => {
       .end();
   }
 };
-const getUserByUsername = async (
-  req: express.Request,
-  res: express.Response
-) => {
+const getUser = async (req: express.Request, res: express.Response) => {
   try {
-    if (!validateReq(req, 1).p)
+    if (!validateReq(req, 5).p) {
       return res
         .status(403)
         .json(sendApiResponse(403, null, "No permissions for this request."))
         .end();
-    const user = await getUbyUsername(req.params.username);
-    if (!user)
+    }
+
+    const { id, username, token } = req.query;
+    if (!id && !username && !token) {
       return res
-        .status(404)
-        .json(sendApiResponse(404, null, "User not found"))
+        .status(400)
+        .json(sendApiResponse(400, null, "No identifier provided."))
         .end();
-    res
+    }
+
+    const user = id
+      ? await getUById(id as string)
+      : username
+      ? await getUbyUsername(username as string)
+      : token
+      ? await getUBySessionToken(token as string)
+      : null;
+    if (!user) {
+      return res
+        .status(400)
+        .json(sendApiResponse(400, null, "No identifier provided."))
+        .end();
+    }
+
+    return res
       .status(200)
       .json(sendApiResponse(200, user, "The resource you requested."))
       .end();
   } catch (error) {
-    console.error(error);
-    res
-      .status(500)
-      .json(sendApiResponse(500, { error }, "Internal error"))
-      .end();
-  }
-};
-const getUserById = async (req: express.Request, res: express.Response) => {
-  try {
-    if (!validateReq(req, 1).p)
-      return res
-        .status(403)
-        .json(sendApiResponse(403, null, "No permissions for this request."))
-        .end();
-    const user = await getUById(req.params.id);
-    if (!user)
-      return res
-        .status(404)
-        .json(sendApiResponse(404, null, "User not found"))
-        .end();
-    res
-      .status(200)
-      .json(sendApiResponse(200, user, "The resource you requested."))
-      .end();
-  } catch (error) {
-    console.error(error);
-    res
-      .status(500)
-      .json(sendApiResponse(500, { error }, "Internal error"))
-      .end();
-  }
-};
-const getUserBySessionToken = async (
-  req: express.Request,
-  res: express.Response
-) => {
-  try {
-    if (!validateReq(req, 1).p)
-      return res
-        .status(403)
-        .json(sendApiResponse(403, null, "No permissions for this request."))
-        .end();
-    const user = await getUBySessionToken(req.params.token);
-    if (!user)
-      return res
-        .status(404)
-        .json(sendApiResponse(404, null, "User not found"))
-        .end();
-    res
-      .status(200)
-      .json(sendApiResponse(200, user, "The resource you requested."))
-      .end();
-  } catch (error) {
-    console.error(error);
-    res
+    console.log(error);
+    return res
       .status(500)
       .json(sendApiResponse(500, { error }, "Internal error"))
       .end();
@@ -122,7 +84,7 @@ const getUserBySessionToken = async (
 };
 const updateUserAuth = async (req: express.Request, res: express.Response) => {
   try {
-    if (!validateReq(req, 2).p)
+    if (!validateReq(req, 5).p)
       return res
         .status(403)
         .json(sendApiResponse(403, null, "No permissions for this request."))
@@ -147,12 +109,26 @@ const updateUserAuth = async (req: express.Request, res: express.Response) => {
 };
 const updateUserInfo = async (req: express.Request, res: express.Response) => {
   try {
-    if (!validateReq(req, 2).p)
+    if (!validateReq(req, 5).p)
       return res
         .status(403)
         .json(sendApiResponse(403, null, "No permissions for this request."))
         .end();
-    const user = await updateUInfo(req.params.id, req.body);
+    const { id } = req.query;
+    if (!id)
+      return res
+        .status(400)
+        .json(sendApiResponse(400, null, "No identifier provided."))
+        .end();
+
+    const body = req.body;
+    if (!body)
+      return res
+        .status(400)
+        .json(sendApiResponse(400, null, "No body provided."))
+        .end();
+
+    const user = await updateUInfo(id as string, body);
     if (!user)
       return res
         .status(404)
@@ -175,12 +151,27 @@ const updateUserServices = async (
   res: express.Response
 ) => {
   try {
-    if (!validateReq(req, 2).p)
+    if (!validateReq(req, 5).p)
       return res
         .status(403)
         .json(sendApiResponse(403, null, "No permissions for this request."))
         .end();
-    const user = await updateUServices(req.params.id, req.body);
+
+    const { id } = req.query;
+    if (!id)
+      return res
+        .status(400)
+        .json(sendApiResponse(400, null, "No identifier provided."))
+        .end();
+
+    const body = req.body;
+    if (!body)
+      return res
+        .status(400)
+        .json(sendApiResponse(400, null, "No body provided."))
+        .end();
+
+    const user = await updateUServices(id as string, body);
     if (!user)
       return res
         .status(404)
@@ -200,12 +191,20 @@ const updateUserServices = async (
 };
 const deleteUser = async (req: express.Request, res: express.Response) => {
   try {
-    if (!validateReq(req, 4).p)
+    if (!validateReq(req, 5).p)
       return res
         .status(403)
         .json(sendApiResponse(403, null, "No permissions for this request."))
         .end();
-    const user = await deleteU(req.params.id);
+
+    const { id } = req.query;
+    if (!id)
+      return res
+        .status(400)
+        .json(sendApiResponse(400, null, "No identifier provided."))
+        .end();
+
+    const user = await deleteU(id as string);
     if (!user)
       return res
         .status(404)
@@ -228,9 +227,7 @@ const deleteUser = async (req: express.Request, res: express.Response) => {
 
 export {
   getAllUsers,
-  getUserByUsername,
-  getUserById,
-  getUserBySessionToken,
+  getUser,
   updateUserAuth,
   updateUserInfo,
   updateUserServices,
