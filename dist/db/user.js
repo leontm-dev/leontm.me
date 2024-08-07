@@ -216,7 +216,17 @@ const deleteU = (username) => __awaiter(void 0, void 0, void 0, function* () { r
 exports.deleteU = deleteU;
 const getUbyUsername = (username) => __awaiter(void 0, void 0, void 0, function* () { return UserModel.findOne({ username }); });
 exports.getUbyUsername = getUbyUsername;
-const getUBySessionToken = (sessionToken) => UserModel.findOne({ "auth.session.key": sessionToken });
+const getUBySessionToken = (sessionToken) => __awaiter(void 0, void 0, void 0, function* () {
+    const users = yield UserModel.find();
+    for (const user of users) {
+        if (!user.auth)
+            continue;
+        for (const connection of user.auth.connections) {
+            if (connection.key === sessionToken)
+                return user;
+        }
+    }
+});
 exports.getUBySessionToken = getUBySessionToken;
 const getUById = (id) => __awaiter(void 0, void 0, void 0, function* () { return UserModel.findById(id); });
 exports.getUById = getUById;
@@ -224,5 +234,5 @@ const updateUAuth = (username, auth) => __awaiter(void 0, void 0, void 0, functi
 exports.updateUAuth = updateUAuth;
 const updateUServices = (username, services) => __awaiter(void 0, void 0, void 0, function* () { return UserModel.findOneAndUpdate({ username }, { services }); });
 exports.updateUServices = updateUServices;
-const updateUInfo = (username, userInfo) => __awaiter(void 0, void 0, void 0, function* () { return UserModel.findOneAndUpdate({ username }, { userInfo }); });
+const updateUInfo = (username, userInfo) => __awaiter(void 0, void 0, void 0, function* () { return UserModel.findOneAndUpdate({ username }, { information: userInfo }); });
 exports.updateUInfo = updateUInfo;

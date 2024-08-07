@@ -24,23 +24,26 @@ const isAuthenticated = (req, res, next) => __awaiter(void 0, void 0, void 0, fu
         const sessionToken = req.cookies["LEONTM-AUTH"];
         if (!sessionToken) {
             return res
-                .status(401)
-                .json((0, sendApiResponse_1.default)(401, null, "The sessionToken is missing"))
-                .end();
+                .status(400)
+                .json((0, sendApiResponse_1.default)(400, null, "SessionToken is unavailable"))
+                .render("login");
         }
         const user = yield (0, user_1.getUBySessionToken)(sessionToken);
         if (!user) {
             return res
                 .status(403)
-                .json((0, sendApiResponse_1.default)(403, null, "The sessionToken is invalid"))
-                .end();
+                .json((0, sendApiResponse_1.default)(403, null, "SessionToken is invalid."))
+                .render("login");
         }
         (0, lodash_1.merge)(req, { identity: user });
         return next();
     }
     catch (error) {
         console.error(error);
-        return res.status(500).json({ error: "Internal Server Error" }).end();
+        return res
+            .status(500)
+            .json((0, sendApiResponse_1.default)(500, null, "Our fault."))
+            .render("login");
     }
 });
 exports.isAuthenticated = isAuthenticated;
