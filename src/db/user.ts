@@ -213,8 +213,10 @@ const updateUServices = async (
   username: string,
   services: Record<string, any>
 ) => UserModel.findOneAndUpdate({ username }, { services });
-const updateUInfo = async (username: string, userInfo: Record<string, any>) =>
-  UserModel.findOneAndUpdate({ username }, { userInfo });
+const updateUInfo = async (
+  username: string,
+  userInfo: { banner: string; pfp: string; description: string }
+) => UserModel.findOneAndUpdate({ username }, { information: userInfo });
 
 // Exports
 
