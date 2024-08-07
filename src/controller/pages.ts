@@ -11,11 +11,7 @@ const openAboutPage = (req: express.Request, res: express.Response) => {
   res.render("about");
 };
 const openAccountPage = (req: express.Request, res: express.Response) => {
-  if (req.cookies.userToken) {
-    res.render("account");
-  } else {
-    res.redirect("login");
-  }
+  res.render("account");
 };
 const openProjectsPage = (req: express.Request, res: express.Response) => {
   res.render("projects");
