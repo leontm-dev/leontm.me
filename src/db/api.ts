@@ -30,7 +30,7 @@ const apiKeySchema = new mongoose.Schema({
   },
 });
 
-const ApiKey = mongoose.model("ApiKey", apiKeySchema, "apiKeys");
+const ApiKey = mongoose.model("ApiKey", apiKeySchema, "Developer-API-Keys");
 
 const getAllA = async () => await ApiKey.find();
 const getAByKey = async (key: string) => await ApiKey.findOne({ key });
