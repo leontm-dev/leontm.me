@@ -18,12 +18,12 @@ import {
 // Code
 
 export default (router: express.Router) => {
-  router.get("/users", getAllUsers);
-  router.get("/users/:id", getUserById);
-  router.get("/users/username/:username", getUserByUsername);
-  router.get("/users/session/:sessionToken", getUserBySessionToken);
-  router.put("/users/auth/:id", updateUserAuth);
-  router.put("/users/info/:id", updateUserInfo);
-  router.put("/users/services/:id", updateUserServices);
-  router.delete("/users/:id", deleteUser);
+  router.get("/users/all", getAllUsers);
+  router.get("/users/get?id=", getUserById);
+  router.get("/users/get?username=", getUserByUsername);
+  router.get("/users/get?sessionToken=", getUserBySessionToken);
+  router.put("/users/auth/update?id=", updateUserAuth);
+  router.put("/users/info/update?id=", updateUserInfo);
+  router.put("/users/services/update?id=", updateUserServices);
+  router.delete("/users/delete?id=", deleteUser);
 };
