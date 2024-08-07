@@ -33,20 +33,6 @@ const userSchema = new mongoose.Schema({
     required: true,
     unique: true,
   },
-  information: {
-    banner: {
-      type: String,
-      default: "",
-    },
-    pfp: {
-      type: String,
-      default: "",
-    },
-    description: {
-      type: String,
-      default: "",
-    },
-  },
   auth: {
     connections: {
       type: [
@@ -106,69 +92,85 @@ const userSchema = new mongoose.Schema({
       ],
       default: [],
     },
-    userInfo: {
-      profilePic: {
-        type: String,
-        required: false,
+  },
+  information: {
+    profilePictureUrl: {
+      type: String,
+      default: "",
+    },
+    description: {
+      type: String,
+      default: "",
+    },
+    shownConnections: {
+      type: [String],
+      default: [],
+    },
+    tags: {
+      type: [String],
+      default: [],
+    },
+    bannerUrl: {
+      type: String,
+      default: "",
+    },
+    website: {
+      type: String,
+      default: "",
+    },
+    location: {
+      type: String,
+      default: "",
+    },
+    age: {
+      type: Number,
+      default: NaN,
+    },
+    permissions: {
+      admin: {
+        type: Boolean,
+        default: false,
+        select: false,
       },
-      description: {
-        type: String,
-        required: false,
+      editUsers: {
+        type: Boolean,
+        default: false,
+        select: false,
       },
-      shownConnections: {
-        type: [String],
-        default: [],
+      editPermissions: {
+        type: Boolean,
+        default: false,
+        select: false,
       },
-      tags: {
-        type: [String],
-        default: [],
+      editOwnProfile: {
+        type: Boolean,
+        default: true,
+        select: false,
       },
-      permissions: {
-        admin: {
-          type: Boolean,
-          default: false,
-          select: false,
-        },
-        editUsers: {
-          type: Boolean,
-          default: false,
-          select: false,
-        },
-        editPermissions: {
-          type: Boolean,
-          default: false,
-          select: false,
-        },
-        editOwnProfile: {
-          type: Boolean,
-          default: true,
-          select: false,
-        },
-        editOtherProfile: {
-          type: Boolean,
-          default: false,
-          select: false,
-        },
-        checkDatabase: {
-          type: Boolean,
-          default: false,
-          select: false,
-        },
-        editProducts: {
-          type: Boolean,
-          default: false,
-          select: false,
-        },
-        editGlobalSettings: {
-          type: Boolean,
-          default: false,
-          select: false,
-        },
-        editLocalSettings: {
-          type: Boolean,
-          default: true,
-          select: false,
-        },
+      editOtherProfile: {
+        type: Boolean,
+        default: false,
+        select: false,
+      },
+      checkDatabase: {
+        type: Boolean,
+        default: false,
+        select: false,
+      },
+      editProducts: {
+        type: Boolean,
+        default: false,
+        select: false,
+      },
+      editGlobalSettings: {
+        type: Boolean,
+        default: false,
+        select: false,
+      },
+      editLocalSettings: {
+        type: Boolean,
+        default: true,
+        select: false,
       },
     },
   },
