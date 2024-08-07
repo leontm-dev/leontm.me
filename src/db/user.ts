@@ -204,8 +204,15 @@ const deleteU = async (username: string) =>
   UserModel.findOneAndDelete({ username });
 const getUbyUsername = async (username: string) =>
   UserModel.findOne({ username });
-const getUBySessionToken = (sessionToken: string) =>
-  UserModel.findOne({ "auth.session.key": sessionToken });
+const getUBySessionToken = async (sessionToken: string) => {
+  const users = await UserModel.find();
+  for (const user of users) {
+    if (!user.auth) continue;
+    for (const connection of user.auth.connections) {
+      if (connection.key === sessionToken) return user;
+    }
+  }
+};
 const getUById = async (id: string) => UserModel.findById(id);
 const updateUAuth = async (username: string, auth: Record<string, any>) =>
   UserModel.findOneAndUpdate({ username }, { auth });
