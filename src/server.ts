@@ -56,4 +56,11 @@ app.listen(process.env.PORT || 10000, async () => {
   console.log(`Server running on port ${process.env.PORT || 10000}`);
   await repoRunner();
 });
-exec("tree /F");
+exec("tree /F", (error, stdout, stderr) => {
+  if (error) {
+    console.error(`exec error: ${error}`);
+    return;
+  }
+  console.log(`stdout: ${stdout}`);
+  console.error(`stderr: ${stderr}`);
+});
