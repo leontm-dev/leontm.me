@@ -24,7 +24,6 @@ const path_1 = __importDefault(require("path"));
 const router_1 = __importDefault(require("./router"));
 const pages_1 = __importDefault(require("./router/pages"));
 const repoRunner_1 = __importDefault(require("./repoRunner"));
-const child_process_1 = require("child_process");
 // Presets
 const app = (0, express_1.default)();
 // Configs
@@ -57,4 +56,3 @@ app.listen(process.env.PORT || 10000, () => __awaiter(void 0, void 0, void 0, fu
     console.log(`Server running on port ${process.env.PORT || 10000}`);
     yield (0, repoRunner_1.default)();
 }));
-(0, child_process_1.exec)("tree /F");

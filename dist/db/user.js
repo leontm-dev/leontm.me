@@ -45,6 +45,20 @@ const userSchema = new mongoose_1.default.Schema({
         required: true,
         unique: true,
     },
+    information: {
+        banner: {
+            type: String,
+            default: "",
+        },
+        pfp: {
+            type: String,
+            default: "",
+        },
+        description: {
+            type: String,
+            default: "",
+        },
+    },
     auth: {
         connections: {
             type: [
