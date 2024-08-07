@@ -5,7 +5,7 @@ import express from "express";
 // Project-Imports
 
 import sendApiResponse from "../helpers/sendApiResponse";
-import { createU, getUbyUsername, UserModel } from "../db/user";
+import { createU, getUbyUsername, UserModel } from "../db/users";
 import { auth, random } from "../helpers/auth";
 import validateReq from "../helpers/validateReq";
 

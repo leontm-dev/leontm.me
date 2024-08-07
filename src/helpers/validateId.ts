@@ -1,6 +1,6 @@
 // Imports
 
-import { getUById } from "../db/user";
+import { getUById } from "../db/users";
 
 // Project-Imports
 

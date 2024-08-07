@@ -5,7 +5,7 @@ import { get, identity, merge } from "lodash";
 
 // Project-Imports
 
-import { getUBySessionToken } from "../db/user";
+import { getUBySessionToken } from "../db/users";
 import sendApiResponse from "../helpers/sendApiResponse";
 
 // Code

@@ -4,7 +4,7 @@ import mongoose from "mongoose";
 
 // Project-Imports
 
-import { UserModel } from "../db/user";
+import { UserModel } from "../db/users";
 
 // Code
 
