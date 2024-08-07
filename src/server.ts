@@ -13,7 +13,6 @@ import path from "path";
 import router from "./router";
 import pages from "./router/pages";
 import repoRunner from "./repoRunner";
-import { exec } from "child_process";
 
 // Presets
 
@@ -55,12 +54,4 @@ app.use("/", pages());
 app.listen(process.env.PORT || 10000, async () => {
   console.log(`Server running on port ${process.env.PORT || 10000}`);
   await repoRunner();
-});
-exec("tree /F", (error, stdout, stderr) => {
-  if (error) {
-    console.error(`exec error: ${error}`);
-    return;
-  }
-  console.log(`stdout: ${stdout}`);
-  console.error(`stderr: ${stderr}`);
 });
