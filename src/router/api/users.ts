@@ -11,7 +11,7 @@ import {
   updateUserServices,
   updateUserAuth,
   updateUserInfo,
-} from "../../controller/user";
+} from "../../controller/users";
 
 // Code
 

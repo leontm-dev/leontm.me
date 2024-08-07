@@ -13,7 +13,7 @@ import {
   updateUInfo,
   updateUServices,
   deleteU,
-} from "../db/user";
+} from "../db/users";
 import sendApiResponse from "../helpers/sendApiResponse";
 import validateReq from "../helpers/validateReq";
 

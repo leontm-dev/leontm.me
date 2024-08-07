@@ -6,7 +6,7 @@ import express from "express";
 // API
 
 import auth from "./api/auth";
-import user from "./api/user";
+import user from "./api/users";
 import test from "./api/test";
 
 // Projects
