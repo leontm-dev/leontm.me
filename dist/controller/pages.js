@@ -12,12 +12,7 @@ const openAboutPage = (req, res) => {
 };
 exports.openAboutPage = openAboutPage;
 const openAccountPage = (req, res) => {
-    if (req.cookies.userToken) {
-        res.render("account");
-    }
-    else {
-        res.redirect("login");
-    }
+    res.render("account");
 };
 exports.openAccountPage = openAccountPage;
 const openProjectsPage = (req, res) => {

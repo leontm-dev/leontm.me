@@ -15,28 +15,34 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 Object.defineProperty(exports, "__esModule", { value: true });
 const mongoose_1 = __importDefault(require("mongoose"));
 // Project-Imports
-const user_1 = require("../db/user");
+const users_1 = require("../db/users");
 // Code
 const updateUsers = () => __awaiter(void 0, void 0, void 0, function* () {
     try {
-        const users = yield user_1.UserModel.find();
+        const users = yield users_1.UserModel.find();
         for (const user of users) {
             let updated = false;
             if (!user.information) {
                 user.information = {
-                    banner: "",
-                    pfp: "",
+                    bannerUrl: "",
+                    profilePictureUrl: "",
                     description: "",
+                    age: 0,
+                    location: "",
+                    website: "",
+                    shownConnections: [],
+                    tags: [],
+                    profileColor: "255, 0, 0",
                 };
                 updated = true;
             }
             else {
-                if (!user.information.banner) {
-                    user.information.banner = "";
+                if (!user.information.bannerUrl) {
+                    user.information.bannerUrl = "";
                     updated = true;
                 }
-                if (!user.information.pfp) {
-                    user.information.pfp = "";
+                if (!user.information.profilePictureUrl) {
+                    user.information.profilePictureUrl = "";
                     updated = true;
                 }
                 if (!user.information.description) {

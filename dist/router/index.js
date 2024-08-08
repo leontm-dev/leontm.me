@@ -8,7 +8,7 @@ const express_1 = __importDefault(require("express"));
 // Project-Imports
 // API
 const auth_1 = __importDefault(require("./api/auth"));
-const user_1 = __importDefault(require("./api/user"));
+const users_1 = __importDefault(require("./api/users"));
 const test_1 = __importDefault(require("./api/test"));
 // Projects
 const betterTracker_1 = __importDefault(require("./api/projects/betterTracker"));
@@ -21,7 +21,7 @@ const router = express_1.default.Router();
 exports.default = () => {
     // API
     (0, auth_1.default)(router);
-    (0, user_1.default)(router);
+    (0, users_1.default)(router);
     (0, test_1.default)(router);
     (0, config_1.default)(router);
     // Projects

@@ -16,7 +16,7 @@ Object.defineProperty(exports, "__esModule", { value: true });
 exports.isAuthenticated = void 0;
 const lodash_1 = require("lodash");
 // Project-Imports
-const user_1 = require("../db/user");
+const users_1 = require("../db/users");
 const sendApiResponse_1 = __importDefault(require("../helpers/sendApiResponse"));
 // Code
 const isAuthenticated = (req, res, next) => __awaiter(void 0, void 0, void 0, function* () {
@@ -28,7 +28,7 @@ const isAuthenticated = (req, res, next) => __awaiter(void 0, void 0, void 0, fu
                 .json((0, sendApiResponse_1.default)(400, null, "SessionToken is unavailable"))
                 .render("login");
         }
-        const user = yield (0, user_1.getUBySessionToken)(sessionToken);
+        const user = yield (0, users_1.getUBySessionToken)(sessionToken);
         if (!user) {
             return res
                 .status(403)

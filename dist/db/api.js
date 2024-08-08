@@ -41,7 +41,7 @@ const apiKeySchema = new mongoose_1.default.Schema({
         unique: true,
     },
 });
-const ApiKey = mongoose_1.default.model("ApiKey", apiKeySchema, "apiKeys");
+const ApiKey = mongoose_1.default.model("ApiKey", apiKeySchema, "Developer-API-Keys");
 exports.ApiKey = ApiKey;
 const getAllA = () => __awaiter(void 0, void 0, void 0, function* () { return yield ApiKey.find(); });
 exports.getAllA = getAllA;

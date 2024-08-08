@@ -16,7 +16,7 @@ Object.defineProperty(exports, "__esModule", { value: true });
 exports.checkForUsernames = exports.login = exports.register = void 0;
 // Project-Imports
 const sendApiResponse_1 = __importDefault(require("../helpers/sendApiResponse"));
-const user_1 = require("../db/user");
+const users_1 = require("../db/users");
 const auth_1 = require("../helpers/auth");
 const validateReq_1 = __importDefault(require("../helpers/validateReq"));
 // Code
@@ -38,7 +38,7 @@ const register = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
         let passwordSalt = (0, auth_1.random)();
         let sessionSalt = (0, auth_1.random)();
         let ipSalt = (0, auth_1.random)();
-        const user = yield (0, user_1.createU)(username, {
+        const user = yield (0, users_1.createU)(username, {
             connections: [{}],
             password: { salt: passwordSalt, key: (0, auth_1.auth)(passwordSalt, password) },
             session: {
@@ -105,7 +105,7 @@ const login = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
                 .json((0, sendApiResponse_1.default)(400, null, "You forgot either username or password in the request body, please check it once more."))
                 .end();
         }
-        const user = yield user_1.UserModel.findOne({ username: username })
+        const user = yield users_1.UserModel.findOne({ username: username })
             .select("+auth.password.salt +auth.password.key")
             .populate("auth.connections");
         if (!user) {
@@ -161,7 +161,7 @@ const checkForUsernames = (req, res) => __awaiter(void 0, void 0, void 0, functi
                 .json((0, sendApiResponse_1.default)(400, null, "No username given."))
                 .end();
         }
-        const user = yield (0, user_1.getUbyUsername)(username);
+        const user = yield (0, users_1.getUbyUsername)(username);
         if (!user) {
             return res
                 .status(200)
