@@ -20,7 +20,7 @@ const updateUsers = async () => {
           bannerUrl: "",
           profilePictureUrl: "",
           description: "",
-          age: 0,
+          age: -1,
           location: "",
           website: "",
           shownConnections: [],
