@@ -27,7 +27,7 @@ const updateUsers = () => __awaiter(void 0, void 0, void 0, function* () {
                     bannerUrl: "",
                     profilePictureUrl: "",
                     description: "",
-                    age: 0,
+                    age: -1,
                     location: "",
                     website: "",
                     shownConnections: [],

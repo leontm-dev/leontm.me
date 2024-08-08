@@ -136,7 +136,7 @@ const userSchema = new mongoose_1.default.Schema({
         },
         age: {
             type: Number,
-            default: NaN,
+            default: -1,
         },
         profileColor: {
             type: String,
