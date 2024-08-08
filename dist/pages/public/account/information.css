@@ -1,0 +1,52 @@
+.information {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  border: red 4px solid;
+  border-radius: 10px;
+  padding: 10px 20px;
+  background-color: rgba(255, 0, 0, 0.2);
+  width: 90%;
+}
+.description {
+  font-size: 1rem;
+  font-weight: 500;
+  color: black;
+  font-family: "Inter", sans-serif;
+}
+.more-info {
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  width: 20%;
+}
+.more-info-content {
+  background-color: white;
+  border-radius: 10px;
+  padding: 10px;
+  display: flex;
+  align-items: center;
+  flex-direction: row;
+  gap: 10px;
+  height: 50px;
+  margin: 10px 0;
+}
+.more-info-content svg {
+  width: 25px;
+  height: 25px;
+  color: red;
+  fill: red;
+}
+.more-info-content p {
+  font-size: 1rem;
+  font-weight: 500;
+  color: red;
+  font-family: "Inter", sans-serif;
+}
+.more-info-content a {
+  font-size: 1rem;
+  font-weight: 500;
+  color: red;
+  font-family: "Inter", sans-serif;
+}
