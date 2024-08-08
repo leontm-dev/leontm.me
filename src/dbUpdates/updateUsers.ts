@@ -17,18 +17,24 @@ const updateUsers = async () => {
 
       if (!user.information) {
         user.information = {
-          banner: "",
-          pfp: "",
+          bannerUrl: "",
+          profilePictureUrl: "",
           description: "",
+          age: 0,
+          location: "",
+          website: "",
+          shownConnections: [],
+          tags: [],
+          profileColor: "255, 0, 0",
         };
         updated = true;
       } else {
-        if (!user.information.banner) {
-          user.information.banner = "";
+        if (!user.information.bannerUrl) {
+          user.information.bannerUrl = "";
           updated = true;
         }
-        if (!user.information.pfp) {
-          user.information.pfp = "";
+        if (!user.information.profilePictureUrl) {
+          user.information.profilePictureUrl = "";
           updated = true;
         }
         if (!user.information.description) {
