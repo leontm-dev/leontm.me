@@ -1,10 +1,30 @@
 @import "tailwindcss";
 @import "tw-animate-css";
 @import "shadcn/tailwind.css";
+@import "@fontsource/bangers";
+@import "@fontsource-variable/dancing-script";
+@import "@fontsource/abril-fatface";
+@import "@fontsource-variable/roboto";
+@import "@fontsource/bungee";
+@import "@fontsource-variable/playfair-display";
+@import "@fontsource/rubik-storm";
+@import "@fontsource/bebas-neue";
+@import "@fontsource/lobster-two";
 
 @custom-variant dark (&:is(.dark *));
 
+@tailwind utilities;
+
 @theme inline {
+  --font-bangers: "Bangers", system-ui;
+  --font-dancing-script-variable: "Dancing Script Variable", cursive;
+  --font-abril-fatface: "Abril Fatface", system-ui;
+  --font-roboto: "Roboto Variable", sans-serif;
+  --font-bungee: "Bungee", system-ui;
+  --font-playfair-display: "Playfair Display Variable", serif;
+  --font-rubik-storm: "Rubik Storm", system-ui;
+  --font-bebas-neue: "Bebas Neue", sans-serif;
+  --font-lobster-two: "Lobster Two", system-ui;
   --color-background: var(--background);
   --color-foreground: var(--foreground);
   --font-sans: var(--font-sans);
