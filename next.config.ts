@@ -1,7 +1,29 @@
 import type { NextConfig } from "next";
 
 const nextConfig: NextConfig = {
-  /* config options here */
+  typedRoutes: true,
+  experimental: {
+    typedEnv: true,
+    optimisticClientCache: true,
+    optimizeCss: true,
+    optimizeServerReact: true,
+  },
+  compress: true,
+  logging: {
+    fetches: { fullUrl: true, hmrRefreshes: false },
+    incomingRequests: true,
+  },
+  output: "standalone",
+  reactCompiler: true,
+  turbopack: {
+    rules: {
+      "*.svg": {
+        loaders: ["@svgr/webpack"],
+        as: "*.js",
+      },
+    },
+    root: "./",
+  },
 };
 
 export default nextConfig;
