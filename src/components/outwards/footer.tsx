@@ -17,7 +17,7 @@ import {
 // Components
 
 import { Separator } from "../ui/separator";
-import { Tooltip, TooltipContent, TooltipTrigger } from "../ui/base-tooltip";
+import { Tooltip, TooltipContent, TooltipTrigger } from "../ui/tooltip";
 import { Button } from "../ui/button";
 import { ToggleGroup, ToggleGroupItem } from "../ui/toggle-group";
 
@@ -44,7 +44,7 @@ export function PageFooter() {
                 </Link>
               }
             ></TooltipTrigger>
-            <TooltipContent variant={"default"}>GitHub</TooltipContent>
+            <TooltipContent>GitHub</TooltipContent>
           </Tooltip>
           <Tooltip>
             <TooltipTrigger
@@ -60,14 +60,14 @@ export function PageFooter() {
                 </Link>
               }
             ></TooltipTrigger>
-            <TooltipContent variant={"default"}>LinkedIn</TooltipContent>
+            <TooltipContent>LinkedIn</TooltipContent>
           </Tooltip>
         </div>
         <h1 className="text-muted-foreground text-xs">2025 © Leon Anneken</h1>
         <ToggleGroup
-          onValueChange={(value) => setTheme(value)}
-          type="single"
-          defaultValue={resolvedTheme}
+          onValueChange={(value) => setTheme(value[0])}
+          multiple={false}
+          defaultValue={[resolvedTheme || "system"]}
         >
           <ToggleGroupItem value="light">
             <SunIcon />
