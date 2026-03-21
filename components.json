@@ -1,18 +1,17 @@
 {
   "$schema": "https://ui.shadcn.com/schema.json",
-  "style": "base-nova",
+  "style": "base-lyra",
   "rsc": true,
   "tsx": true,
   "tailwind": {
-    "config": "",
+    "config": "tailwind.config.ts",
     "css": "src/app/globals.css",
     "baseColor": "zinc",
     "cssVariables": true,
     "prefix": ""
   },
-  "iconLibrary": "phosphor",
-  "menuColor": "default",
-  "menuAccent": "subtle",
+  "iconLibrary": "hugeicons",
+  "rtl": false,
   "aliases": {
     "components": "@/components",
     "utils": "@/lib/utils",
@@ -20,8 +19,7 @@
     "lib": "@/lib",
     "hooks": "@/hooks"
   },
-  "registries": {
-    "@reui": "https://reui.io/r/{name}.json",
-    "@react-bits": "https://reactbits.dev/r/{name}.json"
-  }
+  "menuColor": "default",
+  "menuAccent": "bold",
+  "registries": {}
 }
