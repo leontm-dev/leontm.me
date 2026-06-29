@@ -3,16 +3,10 @@
 import {
   AddressBookIcon,
   AppWindowIcon,
-  ArticleMediumIcon,
-  CactusIcon,
   GithubLogoIcon,
-  GlobeIcon,
   HouseIcon,
   Icon,
-  LegoIcon,
   LinkedinLogoIcon,
-  PackageIcon,
-  RobotIcon,
   UserCircleIcon,
   XIcon,
 } from "@phosphor-icons/react";
@@ -32,6 +26,8 @@ import {
 } from "../ui/sidebar";
 import { Route } from "next";
 import Link from "next/link";
+import { projects } from "@/types/projects.const";
+import { SidebarPreviewItem } from "./sidebar-preview-item";
 
 // Imports
 
@@ -52,30 +48,8 @@ const contents: { icon: Icon; text: string; href: Route }[] = [
   },
   {
     icon: AppWindowIcon,
-    href: "/apps",
+    href: "/projects",
     text: "Projects, Apps & Softwares",
-  },
-];
-const projects: { icon: Icon; text: string; href: Route }[] = [
-  {
-    icon: LegoIcon,
-    href: "https://spiky.leontm.me",
-    text: "Spiky.js",
-  },
-  {
-    icon: RobotIcon,
-    href: "https://obyn.leontm.me",
-    text: "Obyn Discord Bot",
-  },
-  {
-    icon: PackageIcon,
-    href: "https://www.npmjs.com/package/sevdesk-api-wrapper",
-    text: "sevdesk API Wrapper",
-  },
-  {
-    icon: GlobeIcon,
-    href: "https://find-a.app",
-    text: "finda",
   },
 ];
 export function MainSidebar() {
@@ -98,7 +72,7 @@ export function MainSidebar() {
               {contents.map((content, index) => (
                 <SidebarMenuItem key={index}>
                   <Link href={content.href}>
-                    <SidebarMenuButton className="cursor-pointer hover:underline decoration-primary">
+                    <SidebarMenuButton className="decoration-primary cursor-pointer hover:underline">
                       <content.icon className="text-primary" /> {content.text}
                     </SidebarMenuButton>
                   </Link>
@@ -111,14 +85,8 @@ export function MainSidebar() {
           <SidebarGroupLabel>Projects</SidebarGroupLabel>
           <SidebarGroupContent>
             <SidebarMenu>
-              {projects.map((project, index) => (
-                <SidebarMenuItem key={index}>
-                  <Link href={project.href}>
-                    <SidebarMenuButton className="cursor-pointer hover:underline decoration-primary">
-                      <project.icon className="text-primary" /> {project.text}
-                    </SidebarMenuButton>
-                  </Link>
-                </SidebarMenuItem>
+              {projects.map((project) => (
+                <SidebarPreviewItem {...project} key={project.href} />
               ))}
             </SidebarMenu>
           </SidebarGroupContent>
@@ -129,14 +97,14 @@ export function MainSidebar() {
             <SidebarMenu>
               <SidebarMenuItem>
                 <Link href={"https://github.com/leontm-dev"}>
-                  <SidebarMenuButton className="cursor-pointer hover:underline decoration-primary">
+                  <SidebarMenuButton className="decoration-primary cursor-pointer hover:underline">
                     <GithubLogoIcon className="text-primary" /> Github
                   </SidebarMenuButton>
                 </Link>
               </SidebarMenuItem>
               <SidebarMenuItem>
                 <Link href={"https://www.linkedin.com/in/leon-anneken/"}>
-                  <SidebarMenuButton className="cursor-pointer hover:underline decoration-primary">
+                  <SidebarMenuButton className="decoration-primary cursor-pointer hover:underline">
                     <LinkedinLogoIcon className="text-primary" /> LinkedIn
                   </SidebarMenuButton>
                 </Link>
