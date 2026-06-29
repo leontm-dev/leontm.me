@@ -21,7 +21,7 @@ export default function Page() {
   const { resolvedTheme } = useTheme();
   return (
     <div className="relative flex w-screen flex-col items-center justify-center gap-4">
-      <div className="flex h-screen w-full flex-col items-center justify-center">
+      <main className="flex h-screen w-full flex-col items-center justify-center">
         <FontChangingText text="LeonTM" className="absolute text-[200px]" />
         <GradientBlinds
           className="h-screen"
@@ -47,7 +47,7 @@ export default function Page() {
           nativeButton={false}
           render={<ListIcon className="text-primary p-2" />}
         />
-      </div>
+      </main>
       <MainSidebar />
       <div className="flex w-full flex-col items-center justify-center">
         <div className="m-2 flex w-5/6 flex-row items-center justify-evenly">
