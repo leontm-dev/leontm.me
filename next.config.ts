@@ -16,6 +16,7 @@ const nextConfig: NextConfig = {
         port: "",
         pathname: "/api/assets/icon/**",
       },
+      new URL("https://iad.microlink.io/**"),
     ],
   },
   compress: true,
