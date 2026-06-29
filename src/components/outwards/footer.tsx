@@ -26,20 +26,20 @@ import { ToggleGroup, ToggleGroupItem } from "../ui/toggle-group";
 export function PageFooter() {
   const { setTheme, resolvedTheme } = useTheme();
   return (
-    <div className="w-3/4 flex flex-col gap-2 items-center">
+    <div className="mb-2 flex w-full flex-col items-center gap-2 md:w-3/4">
       <Separator className="w-3/4" orientation="horizontal" />
-      <div className="flex flex-row items-center justify-between w-3/4">
-        <div className="flex flex-row items-center gap-1">
+      <div className="flex w-3/4 flex-row items-center justify-evenly">
+        <div className="flex w-1/3 flex-row items-center justify-start">
           <Tooltip>
             <TooltipTrigger
               render={
                 <Link href={"https://github.com/leontm-dev"}>
                   <Button
-                    className="hover:cursor-pointer group text-white"
+                    className="group hover:cursor-pointer"
                     variant={"ghost"}
                     size={"icon"}
                   >
-                    <GithubLogoIcon className="group-hover:text-primary " />
+                    <GithubLogoIcon className="group-hover:text-primary" />
                   </Button>
                 </Link>
               }
@@ -51,7 +51,7 @@ export function PageFooter() {
               render={
                 <Link href={"https://www.linkedin.com/in/leon-anneken/"}>
                   <Button
-                    className="hover:cursor-pointer group"
+                    className="group hover:cursor-pointer"
                     variant={"ghost"}
                     size={"icon"}
                   >
@@ -63,22 +63,28 @@ export function PageFooter() {
             <TooltipContent>LinkedIn</TooltipContent>
           </Tooltip>
         </div>
-        <h1 className="text-muted-foreground text-xs">2025 © Leon Anneken</h1>
-        <ToggleGroup
-          onValueChange={(value) => setTheme(value[0])}
-          multiple={false}
-          defaultValue={[resolvedTheme || "system"]}
-        >
-          <ToggleGroupItem value="light">
-            <SunIcon />
-          </ToggleGroupItem>
-          <ToggleGroupItem value="dark">
-            <MoonIcon />
-          </ToggleGroupItem>
-          <ToggleGroupItem value="system">
-            <MonitorIcon />
-          </ToggleGroupItem>
-        </ToggleGroup>
+        <div className="flex w-1/3 flex-row items-center justify-center">
+          <h3 className="text-muted-foreground text-center text-xs">
+            2025-2026 © LeonTM
+          </h3>
+        </div>
+        <div className="flex w-1/3 flex-row items-center justify-end">
+          <ToggleGroup
+            onValueChange={(value) => setTheme(value[0])}
+            multiple={false}
+            defaultValue={[resolvedTheme || "system"]}
+          >
+            <ToggleGroupItem value="light">
+              <SunIcon />
+            </ToggleGroupItem>
+            <ToggleGroupItem value="dark">
+              <MoonIcon />
+            </ToggleGroupItem>
+            <ToggleGroupItem value="system">
+              <MonitorIcon />
+            </ToggleGroupItem>
+          </ToggleGroup>
+        </div>
       </div>
     </div>
   );
