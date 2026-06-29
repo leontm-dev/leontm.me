@@ -8,6 +8,16 @@ const nextConfig: NextConfig = {
     optimizeCss: true,
     optimizeServerReact: true,
   },
+  images: {
+    remotePatterns: [
+      {
+        protocol: "https",
+        hostname: "services.find-a.app",
+        port: "",
+        pathname: "/api/assets/icon/**",
+      },
+    ],
+  },
   compress: true,
   logging: {
     fetches: { fullUrl: true, hmrRefreshes: false },
