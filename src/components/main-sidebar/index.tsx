@@ -28,6 +28,7 @@ import { Route } from "next";
 import Link from "next/link";
 import { projects } from "@/types/projects.const";
 import { SidebarPreviewItem } from "./sidebar-preview-item";
+import { Send } from "lucide-react";
 
 // Imports
 
@@ -50,6 +51,11 @@ const contents: { icon: Icon; text: string; href: Route }[] = [
     icon: AppWindowIcon,
     href: "/projects",
     text: "Projects, Apps & Softwares",
+  },
+  {
+    icon: Send,
+    href: "/contact",
+    text: "Contact me",
   },
 ];
 export function MainSidebar() {
