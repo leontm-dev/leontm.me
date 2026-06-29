@@ -56,7 +56,7 @@ export function FontChangingText({ text, className }: Props) {
 
   return (
     <AnimatePresence mode="wait">
-      <motion.h1
+      <motion.p
         key={currentFontIndex}
         className={cn(fonts[currentFontIndex].font.className, className)}
         initial={{ opacity: 0, y: 5 }}
@@ -65,7 +65,7 @@ export function FontChangingText({ text, className }: Props) {
         transition={{ duration: 0.1 }}
       >
         {text}
-      </motion.h1>
+      </motion.p>
     </AnimatePresence>
   );
 }
