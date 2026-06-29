@@ -1,10 +1,5 @@
 "use client";
-import {
-  Field,
-  FieldDescription,
-  FieldLabel,
-  FieldError,
-} from "@/components/ui/field";
+import { Field, FieldLabel, FieldError } from "@/components/ui/field";
 import {
   InputGroup,
   InputGroupInput,
@@ -13,8 +8,6 @@ import {
 import { zodResolver } from "@hookform/resolvers/zod";
 import { z } from "zod";
 import { useForm, Controller } from "react-hook-form";
-import { useState, useEffect } from "react";
-import { Input } from "@/components/ui/input";
 import { MailIcon, KeyRoundIcon } from "lucide-react";
 import { Button } from "@/components/ui/button";
 
@@ -113,7 +106,7 @@ export default function LoginForm() {
         <Controller
           control={form.control}
           name="submit-button-0"
-          render={({ field, fieldState }) => (
+          render={({ fieldState }) => (
             <Field
               className="col-span-12 col-start-auto flex flex-col items-start gap-2 space-y-0 self-end"
               data-invalid={fieldState.invalid}
