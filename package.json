@@ -59,7 +59,7 @@
     "@types/react-dom": "19.2.3",
     "eslint": "^10",
     "eslint-config-next": "16.2.9",
-    "prettier": "^3.8.5",
+    "prettier": "^3.9.4",
     "prettier-plugin-tailwindcss": "^0.7.2",
     "tailwindcss": "^4",
     "typescript": "^5"
