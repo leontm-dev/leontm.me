@@ -14,7 +14,7 @@
         "@fontsource/bebas-neue": "^5.2.7",
         "@fontsource/bungee": "^5.2.7",
         "@fontsource/lobster-two": "^5.2.8",
-        "@fontsource/rubik-storm": "^5.2.7",
+        "@fontsource/rubik-storm": "^5.3.0",
         "@hookform/resolvers": "^5.4.0",
         "@hugeicons/core-free-icons": "^4.2.2",
         "@hugeicons/react": "^1.1.9",
@@ -183,7 +183,7 @@
 
     "@fontsource/lobster-two": ["@fontsource/lobster-two@5.2.8", "", {}, "sha512-q7OLUvumPhizj+O0URAi6i5I+1ULa7G8GDg55SLdw1C3yfkRGi4VrYPiSHJ6ohqPuXMZsBy3r5B9DTBg/ZQcKQ=="],
 
-    "@fontsource/rubik-storm": ["@fontsource/rubik-storm@5.2.7", "", {}, "sha512-3jTLdKERPIQrKDg0CL+lSA7FGRobdFsAfGQCtcWN7BplAfxTODEBhMPH8jr1inVxfGY3FhTbEPt/mSasIXLafQ=="],
+    "@fontsource/rubik-storm": ["@fontsource/rubik-storm@5.3.0", "", {}, "sha512-idHwXOqLTGkcCKRdTsUz0wzDhczBtm01Tj1UI2pg6zRzR8YN7ozq/FB2fr/AfPWqle2yHFqbIEy/mjbeIFS5dQ=="],
 
     "@hono/node-server": ["@hono/node-server@1.19.14", "", { "peerDependencies": { "hono": "^4" } }, "sha512-GwtvgtXxnWsucXvbQXkRgqksiH2Qed37H9xHZocE5sA3N8O8O8/8FA3uclQXxXVzc9XBZuEOMK7+r02FmSpHtw=="],
 
