@@ -8,7 +8,7 @@
         "@base-ui/react": "^1.3.0",
         "@fontsource-variable/dancing-script": "^5.3.0",
         "@fontsource-variable/playfair-display": "^5.3.0",
-        "@fontsource-variable/roboto": "^5.2.10",
+        "@fontsource-variable/roboto": "^5.3.0",
         "@fontsource/abril-fatface": "^5.3.0",
         "@fontsource/bangers": "^5.2.8",
         "@fontsource/bebas-neue": "^5.2.7",
@@ -171,7 +171,7 @@
 
     "@fontsource-variable/playfair-display": ["@fontsource-variable/playfair-display@5.3.0", "", {}, "sha512-IHdzTvE8eGIXHteZql7KXoqdc3Gfm+Zs1u4XlSC3MeplkwviT3sx/P6gI0tLwg/xIYLF4ZJYveZ5V+bl9cnDwA=="],
 
-    "@fontsource-variable/roboto": ["@fontsource-variable/roboto@5.2.10", "", {}, "sha512-LJ0iLg6aHbLzN515gyHzmdTqJzd9NlI95cCg1DW0F5G7KkFqRLBBKBbqEJx4nSu4aby3IKmw3ZH6Fe928IfaSQ=="],
+    "@fontsource-variable/roboto": ["@fontsource-variable/roboto@5.3.0", "", {}, "sha512-BoaaZiQf8fgtxv07KXkTwx1bKz/EoqIlTXq2OOKKXINxp6qXWdnlChqV+hSaDANS49yyUASFl3OVBMMDTCIHFA=="],
 
     "@fontsource/abril-fatface": ["@fontsource/abril-fatface@5.3.0", "", {}, "sha512-voKCJEhGGZNdlk+OS3uFRSDV/HWbs6TAy7qKe9wXq96Uzwadfksyk5eyXLa1T5FkEazBgpHRMRSFBKfA3rbKbg=="],
 
