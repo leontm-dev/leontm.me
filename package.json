@@ -21,7 +21,7 @@
     "@fontsource/bungee": "^5.2.7",
     "@fontsource/lobster-two": "^5.2.8",
     "@fontsource/rubik-storm": "^5.3.0",
-    "@hookform/resolvers": "^5.4.0",
+    "@hookform/resolvers": "^5.7.1",
     "@hugeicons/core-free-icons": "^4.2.3",
     "@hugeicons/react": "^1.1.9",
     "@microlink/mql": "^0.16.1",
