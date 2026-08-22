@@ -13,7 +13,7 @@
         "@fontsource/bangers": "^5.2.8",
         "@fontsource/bebas-neue": "^5.2.7",
         "@fontsource/bungee": "^5.2.7",
-        "@fontsource/lobster-two": "^5.2.8",
+        "@fontsource/lobster-two": "^5.3.0",
         "@fontsource/rubik-storm": "^5.3.0",
         "@hookform/resolvers": "^5.7.1",
         "@hugeicons/core-free-icons": "^4.2.3",
@@ -181,7 +181,7 @@
 
     "@fontsource/bungee": ["@fontsource/bungee@5.2.7", "", {}, "sha512-pzUlTXEFdiDM5p0inlWRM+1ovS3vTWG6NplJ65EpfBwZNQmM6wNS6z22tml07+NWKK+e8/FPPupBVbzd0th54w=="],
 
-    "@fontsource/lobster-two": ["@fontsource/lobster-two@5.2.8", "", {}, "sha512-q7OLUvumPhizj+O0URAi6i5I+1ULa7G8GDg55SLdw1C3yfkRGi4VrYPiSHJ6ohqPuXMZsBy3r5B9DTBg/ZQcKQ=="],
+    "@fontsource/lobster-two": ["@fontsource/lobster-two@5.3.0", "", {}, "sha512-fvdLsLjYRvrd5A82qXx+w7ksEiCHo0T9FcENQ4OpZOaqyPNOAIU3ORnVr177KxrHsfCup06J3BkKBpcdXTuLQg=="],
 
     "@fontsource/rubik-storm": ["@fontsource/rubik-storm@5.3.0", "", {}, "sha512-idHwXOqLTGkcCKRdTsUz0wzDhczBtm01Tj1UI2pg6zRzR8YN7ozq/FB2fr/AfPWqle2yHFqbIEy/mjbeIFS5dQ=="],
 
