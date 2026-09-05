@@ -12,7 +12,7 @@
         "@fontsource/abril-fatface": "^5.3.0",
         "@fontsource/bangers": "^5.3.0",
         "@fontsource/bebas-neue": "^5.3.0",
-        "@fontsource/bungee": "^5.2.7",
+        "@fontsource/bungee": "^5.3.0",
         "@fontsource/lobster-two": "^5.3.0",
         "@fontsource/rubik-storm": "^5.3.0",
         "@hookform/resolvers": "^5.7.1",
@@ -179,7 +179,7 @@
 
     "@fontsource/bebas-neue": ["@fontsource/bebas-neue@5.3.0", "", {}, "sha512-nCxMEb9Bg9sjNWm9TIOsvHKDMLRUfEZPWpLgYu6m9KavZZVSA/WoHzI5wROwqA+eNwEi/PNBAcB5Co7HA3S0Cw=="],
 
-    "@fontsource/bungee": ["@fontsource/bungee@5.2.7", "", {}, "sha512-pzUlTXEFdiDM5p0inlWRM+1ovS3vTWG6NplJ65EpfBwZNQmM6wNS6z22tml07+NWKK+e8/FPPupBVbzd0th54w=="],
+    "@fontsource/bungee": ["@fontsource/bungee@5.3.0", "", {}, "sha512-vKwbDE7yMrqfGxgFan+diPLwgWp9j4FGYaLm+OhUoqYO6Pr02QIi/p0KiTW0E/7uiXqfTd6cMj+/E4h2sc3Ocg=="],
 
     "@fontsource/lobster-two": ["@fontsource/lobster-two@5.3.0", "", {}, "sha512-fvdLsLjYRvrd5A82qXx+w7ksEiCHo0T9FcENQ4OpZOaqyPNOAIU3ORnVr177KxrHsfCup06J3BkKBpcdXTuLQg=="],
 
