@@ -17,7 +17,7 @@
         "@fontsource/rubik-storm": "^5.3.0",
         "@hookform/resolvers": "^5.9.1",
         "@hugeicons/core-free-icons": "^4.4.0",
-        "@hugeicons/react": "^1.1.9",
+        "@hugeicons/react": "^1.1.10",
         "@microlink/mql": "^0.19.2",
         "@phosphor-icons/react": "^2.1.10",
         "@use-gesture/react": "^10.2.27",
@@ -195,7 +195,7 @@
 
     "@hugeicons/core-free-icons": ["@hugeicons/core-free-icons@4.4.0", "", {}, "sha512-7Mz8bmGoY6tZ6l3C2TXwNMLVSr0I8HPwjjFIERAuJFj3rWwLxdF2ZLkDqdrVuEE1dx5b/VXyIsP4WoSU6Q40KQ=="],
 
-    "@hugeicons/react": ["@hugeicons/react@1.1.9", "", { "peerDependencies": { "react": ">=16.0.0" } }, "sha512-O+lWSWjbijoAvMCxn4K2bQWCGN5+mP1y5j+X99j23mXMj+s0X25fs71T6t9YJLaBodwmZdaewD27dzS/PiboQw=="],
+    "@hugeicons/react": ["@hugeicons/react@1.1.10", "", { "peerDependencies": { "react": ">=16.0.0" } }, "sha512-9tAsd92yMVVGP+E+d8cM+wc0VnXuYZHNbWQi7TOe8k2neawmhiaFmVFbzyruejhOMa197/LbgvSED32ayUo3ZA=="],
 
     "@humanfs/core": ["@humanfs/core@0.19.2", "", { "dependencies": { "@humanfs/types": "^0.15.0" } }, "sha512-UhXNm+CFMWcbChXywFwkmhqjs3PRCmcSa/hfBgLIb7oQ5HNb1wS0icWsGtSAUNgefHeI+eBrA8I1fxmbHsGdvA=="],
 
